@@ -43,7 +43,7 @@ Now create a new file `/test/test.js` in your text editor
 and write/paste the following code:
 
 ```js
-var test = require('tape'); //
+var test = require('tape'); // assing the tape library to the variable "test"
 
 test('should return -1 when the value is not present', function (t) {
   t.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so
