@@ -1,7 +1,7 @@
-Learn Mocha [![Build Status](https://travis-ci.org/nelsonic/learn-tape.png?branch=master)](https://travis-ci.org/nelsonic/learn-tape) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-tape/badge.png)](https://coveralls.io/r/nelsonic/learn-tape) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-tape.png)](https://codeclimate.com/github/nelsonic/learn-tape) [![devDependency Status](https://david-dm.org/nelsonic/learn-tape/dev-status.svg)](https://david-dm.org/nelsonic/learn-tape#info=devDependencies)
+Learn Tape [![Build Status](https://travis-ci.org/nelsonic/learn-tape.png?branch=master)](https://travis-ci.org/nelsonic/learn-tape) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-tape/badge.png)](https://coveralls.io/r/nelsonic/learn-tape) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-tape.png)](https://codeclimate.com/github/nelsonic/learn-tape) [![devDependency Status](https://david-dm.org/nelsonic/learn-tape/dev-status.svg)](https://david-dm.org/nelsonic/learn-tape#info=devDependencies)
 ===========
 
-*Quick Guide* to **mocha.js** Test Driven Development (TDD) in **node.js**
+*Quick Guide* to **Tape** Test Driven Development (TDD) in **node.js**
 
 ![Cowboy Coder](https://raw.github.com/nelsonic/learn-tape/master/images/cowboy-coder.png "Cowboy Coder")
 
