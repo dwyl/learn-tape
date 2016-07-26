@@ -2,19 +2,16 @@
   "name": "learn-tape",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nelsonic/learn-tape.git"
+    "url": "https://github.com/dwyl/learn-tape.git"
   },
-  "description": "Simple mocha.js tutorial including istanbul test coverage",
+  "description": "Simple TDD tutorial using Tape",
   "author": "https://twitter.com/nelsonic",
   "version": "0.0.2",
   "devDependencies": {
-    "coveralls": "2.11.1",
     "istanbul": "0.3.2",
     "tape": "^4.5.1"
   },
   "scripts": {
-    "test": "mocha",
-    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "tape"
   }
 }

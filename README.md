@@ -3,14 +3,7 @@ Learn Tape [![Build Status](https://travis-ci.org/nelsonic/learn-tape.png?branch
 
 *Quick Guide* to **Tape** Test Driven Development (TDD) in **node.js**
 
-![Cowboy Coder](https://raw.github.com/nelsonic/learn-tape/master/images/cowboy-coder.png "Cowboy Coder")
 
-We all know *Cowboy Coders*. (*If you don't, its you!*)
-
-The "*I just get things done*" developer who writes "*quick fixes*" and
-maintains "*I don't have time to write tests*" or
-"*Writing tests for my code takes longer*" and then acts *surprised* when
-everything starts breaking ... "*it was working this morning*" ...
 
 - - -
 
