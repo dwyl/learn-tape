@@ -1,13 +1,52 @@
-Learn Tape [![Build Status](https://travis-ci.org/nelsonic/learn-tape.png?branch=master)](https://travis-ci.org/nelsonic/learn-tape) [![Coverage Status](https://coveralls.io/repos/nelsonic/learn-tape/badge.png)](https://coveralls.io/r/nelsonic/learn-tape) [![Code Climate](https://codeclimate.com/github/nelsonic/learn-tape.png)](https://codeclimate.com/github/nelsonic/learn-tape) [![devDependency Status](https://david-dm.org/nelsonic/learn-tape/dev-status.svg)](https://david-dm.org/nelsonic/learn-tape#info=devDependencies)
+Learn Tape [![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape) [![Coverage Status](https://coveralls.io/repos/dwyl/learn-tape/badge.png)](https://coveralls.io/r/dwyl/learn-tape) [![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape) [![devDependency Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape#info=devDependencies)
 ===========
 
-*Quick Guide* to **Tape** Test Driven Development (TDD) in **node.js**
+A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 
 
 
-- - -
+> **Note**: if you are ***new to Test Driven Development*** (TDD) go to:
+> [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+where here is more general background about testing and a beginner's intro.
 
-#### Installation
+
+## *Why?*
+
+***Testing*** your code is ***essential*** to ensuring reliability.  
+
+There are _many_ testing frameworks so it can be
+[*difficult to chose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en),
+***most*** try to do too much, have ***too many features***
+(["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
+or ***inject global variables*** into your run-time or have complicated syntax.
+
+The _shortcut_ to chosing our tools is to apply the golden rule:
+
+![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png)
+
+We use Tape because its' ***minmalist*** (*yet complete and easy to learn*)
+***feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
+
+> Not convinced? read:
+https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4
+
+## *What?*
+
+Tape
+
++ Tape website: https://github.com/substack/tape
++
+
+## *Who?*
+
+
+
+
+
+
+## *How?*
+
+### Install
 
 ```sh
 npm install tape --save-dev
@@ -15,9 +54,9 @@ npm install tape --save-dev
 
 You should see some output *confirming* it *installed*:
 
-![Mocha Installed](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-installed.png "Mocha Installed Successfully")
+![Mocha Installed](https://raw.github.com/dwyl/learn-tape/master/images/mocha-installed.png "Mocha Installed Successfully")
 
-More info: https://github.com/substack/tape
+
 
 ### First Tests
 
@@ -53,7 +92,7 @@ will look for a **/test** directory and run any **.js** files it contains:
 node test/test.js
 ```
 
-![Test Passes](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-1-test-passing.png "Mocha 1 Test Passes")
+![Test Passes](https://raw.github.com/dwyl/learn-tape/master/images/mocha-1-test-passing.png "Mocha 1 Test Passes")
 
 ### A More Useful TDD Example (Cash Register Mini Project)
 
@@ -72,8 +111,8 @@ Essentially we are building a *simple* **calculator** that *only does* **subtrac
 
 In the UK we have the following Notes & Coins:
 
-![GBP Notes](https://raw.github.com/nelsonic/learn-tape/master/images/gbp-notes.jpg "GBP Notes")
-![GBP Coins](https://raw.github.com/nelsonic/learn-tape/master/images/gbp-coins.jpg "GBP Coins")
+![GBP Notes](https://raw.github.com/dwyl/learn-tape/master/images/gbp-notes.jpg "GBP Notes")
+![GBP Coins](https://raw.github.com/dwyl/learn-tape/master/images/gbp-coins.jpg "GBP Coins")
 
 see: http://en.wikipedia.org/wiki/Banknotes_of_the_pound_sterling
 (technically there are also £100 and even £100,000,000 notes,
@@ -128,7 +167,7 @@ Back in your terminal window, re-run the **mocha** command and watch it *fail*:
 mocha
 ```
 
-![Mocha TFD Fail](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-tfd-cannot-find-module-first-fail.png "Mocha TFD Fail")
+![Mocha TFD Fail](https://raw.github.com/dwyl/learn-tape/master/images/mocha-tfd-cannot-find-module-first-fail.png "Mocha TFD Fail")
 
 This error ("**Cannot find module '../cash.js'**") is pretty self explanatory.
 We haven't created the file yet so test.js is requesting a non-existent file!
@@ -150,7 +189,7 @@ touch cash.js
 
 Re-run the **mocha** command in terminal, it will pass (*zero* tests)
 
-![Mocha Pass 0 Tests](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-0-passing.png "Mocha Pass 0 Tests")
+![Mocha Pass 0 Tests](https://raw.github.com/dwyl/learn-tape/master/images/mocha-0-passing.png "Mocha Pass 0 Tests")
 
 Lets add a test to ./test/**test.js** and watch it fail again:
 
@@ -169,7 +208,7 @@ describe('Cash Register', function(){
 ```
 Re-run `mocha`:
 
-![Mocha 1 Test Failing](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-first-test-failing.png "Mocha 1 Test Failing")
+![Mocha 1 Test Failing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-first-test-failing.png "Mocha 1 Test Failing")
 
 #### Write *Just* Enough Code to Make the Test Pass
 
@@ -186,7 +225,7 @@ module.exports = C;            // export the module with a single method
 
 Re-run `mocha` (now it passes):
 
-![Mocha 1 Test Passes](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-1-test-pass.png "Mocha 1 Test Passes")
+![Mocha 1 Test Passes](https://raw.github.com/dwyl/learn-tape/master/images/mocha-1-test-pass.png "Mocha 1 Test Passes")
 
 
 #### Write A Real Test
@@ -214,7 +253,7 @@ it('getChange(210,300) should equal [50,20,20]', function(){
 **Note**: use assert.**deepEqual** for arrays
 see: http://stackoverflow.com/questions/13225274/
 
-![Mocha Assertion Error](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-assertionError.png "Mocha Assertion Error")
+![Mocha Assertion Error](https://raw.github.com/dwyl/learn-tape/master/images/mocha-assertionError.png "Mocha Assertion Error")
 
 #### Write the Method to Pass the Test
 
@@ -229,7 +268,7 @@ C.getChange = function (totalPayable, cashPaid) {
 
 This will pass:
 
-![Mocha Passing](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-2-passing.png "Mocha 2 Passing")
+![Mocha Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-2-passing.png "Mocha 2 Passing")
 
 This only works *once*. When the Spec (Test) Writer writes the next test, the method will need
 to be re-written to satisfy it.
@@ -252,7 +291,7 @@ it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
 
 As expected, our lazy method fails:
 
-![Mocha 3 Test Fails](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-2-passing-1-fail.png "Mocha 3rd Test Fails")
+![Mocha 3 Test Fails](https://raw.github.com/dwyl/learn-tape/master/images/mocha-2-passing-1-fail.png "Mocha 3rd Test Fails")
 
 #### Keep Cheating or Solve the Problem?
 
@@ -269,7 +308,7 @@ C.getChange = function (totalPayable, cashPaid) {
 ```
 The *Arthur Andersen Approach* gets results:
 
-![Mocha 3 Passing](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-3-passing.png "Mocha 3 Passing")
+![Mocha 3 Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-3-passing.png "Mocha 3 Passing")
 
 But its arguably *more work* than simply *solving* the problem.
 Lets do that instead.
@@ -315,7 +354,7 @@ it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', func
 });
 ```
 
-![Mocha 4 Passing](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
+![Mocha 4 Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
 
 
 - - -
@@ -340,11 +379,11 @@ istanbul cover _mocha -- -R spec
 ```
 You should see:
 
-![Istanbul Coverage](https://raw.github.com/nelsonic/learn-tape/master/images/istanbul-cover-mocha.png "Istanbul Code Coverage")
+![Istanbul Coverage](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-cover-mocha.png "Istanbul Code Coverage")
 
 or if you prefer the **lcov-report**:
 
-![Istanbul Coverage Report](https://raw.github.com/nelsonic/learn-tape/master/images/istanbul-coverage-report.png "Istanbul Code Coverage Report")
+![Istanbul Coverage Report](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-coverage-report.png "Istanbul Code Coverage Report")
 
 > **100% Coverage** for Statements, Branches, Functions and Lines.
 
@@ -357,31 +396,17 @@ https://github.com/nelsonic/learn-travis
 > Visit: https://travis-ci.org/profile
 > Enable Travis for learn-travis project
 
-![Travis Enabled](https://raw.github.com/nelsonic/learn-tape/master/images/travis-on.png "Travis Enabled")
+![Travis Enabled](https://raw.github.com/dwyl/learn-tape/master/images/travis-on.png "Travis Enabled")
 
-[![Build Status](https://travis-ci.org/nelsonic/learn-tape.png?branch=master)](https://travis-ci.org/nelsonic/learn-tape)
+[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape)
 
-![Travis Build Pass](https://raw.github.com/nelsonic/learn-tape/master/images/learn-travis-build-passing.png "Travis Build Passing")
+![Travis Build Pass](https://raw.github.com/dwyl/learn-tape/master/images/learn-travis-build-passing.png "Travis Build Passing")
 
 Done.
 
 - - -
 
-### Background
-
-#### What is Mocha?
-
-Mocha is a **JavaScript test framework** running on **node.js**
-*and* the **browser**.
-
-![Mocha Logo](https://raw.github.com/nelsonic/learn-tape/master/images/mocha-logo.png "Mocha Logo")
-
-Made by [TJ Holowaychuk](https://twitter.com/tjholowaychuk) creator of
-[Express](https://github.com/visionmedia/express) (*by far* the *most popular*
-node.js web framework), Mocha is TJ's answer to the problem of testing JavaScript.
-
-- Site: http://mochajs.org
-- Code: https://github.com/mochajs/mocha
+## tl;dr
 
 #### Why Mocha?
 
@@ -413,64 +438,5 @@ My **criteria** for chosing a testing framework:
 
 Advanced:
 
-- Easy to Trouble-shoot (Plenty of *Answered* Questions on
-[stackoverflow](http://stackoverflow.com/questions/tagged/mocha?sort=frequent&pageSize=15))
-- Automatic Test Running when File Changes (using
-[Watchr](https://github.com/bevry/watchr)/[Grunt](http://gruntjs.com/))
-- Detailed reports of test execution (extensible reports!)
-
 
 ### Notes
-
-#### Other Mocha Tutorials/Background
-
-- DailyJS Mocha: http://dailyjs.com/2011/12/08/mocha/
-- Azat's Mocha Tutorial: http://webapplog.com/test-driven-development-in-node-js-with-mocha/
-- NetTuts: http://net.tutsplus.com/tutorials/javascript-ajax/better-coffeescript-testing-with-mocha/
-- Grunt.js Mocha Plugins: http://gruntjs.com/plugins/mocha
-- Test Coverage with Mocha: http://stackoverflow.com/questions/16633246/code-coverage-with-mocha
-
-#### Test Driven Development (TDD) Background/Philosophy
-
-- Wikipedia (duh!): http://en.wikipedia.org/wiki/Test-driven_development
-- Excellent Explanation by Scott Ambler: http://www.agiledata.org/essays/tdd.html
-
-
-#### Further Reading
-
-- Testing takes "*twice as long*" (Myth): http://googletesting.blogspot.co.uk/2009/10/cost-of-testing.html
-- Estimating Testing Effort as % of Development Time: http://stackoverflow.com/questions/1595346/estimating-of-testing-effort-as-a-percentage-of-development-time
-- Technical Debt (Bad Code): http://jessewarden.com/2010/07/agile-chronicles-12-technical-debt.html
-- Agile = an excuse for cowboys? Discussion: http://programmers.stackexchange.com/questions/11188/is-the-agile-approach-too-much-of-a-convenient-excuse-for-cowboys
-- TDD Examples: http://stackoverflow.com/questions/1920259/recommend-good-online-sample-walkthrough-of-tdd/7213630#7213630
-
-- - -
-
-#### Trying to think of a good example for TDD ...
-
-- Bowling: http://www.objectmentor.com/resources/articles/xpepisode.htm
-- Sudoku: http://johannesbrodwall.com/2010/04/06/why-tdd-makes-a-lot-of-sense-for-sudoko/
-- Vending machine.
-- Cash Register.
-- Roman Numerals: http://www.diveintopython.net/
-
-
-#### Rant
-
-Code without tests is like a *building without a foundation*!
-
-![Building Collapse](https://raw.github.com/nelsonic/learn-tape/master/images/building-collapse-940x627.jpg "Building Collapse")
-
-Its only a matter of *time* before it all comes crashing down ...
-
-Is Test Driven Development (TDD) a *silver bullet* for *all* my software
-development woes? *Short answer*: **No**.
-There is a *lot* more that goes into writing *great* software than
-*just* having tests. But *without tests* reliability is *impossible*.
-
-If you are *not* doing TDD in your projects I'm probably not going to be
-the one to change your mind by evangelizing about it. I know plenty of
-people calling themesleves "developers" who stubbornly cling to the idea
-that testing is for "QA" or "That's why we have testers" and wish them
-nothing but the best of luck! I just cant't work with you or use your
-"product", no hard feelings. :-)
