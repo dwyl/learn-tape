@@ -7,7 +7,7 @@ A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 
 > **Note**: if you are ***new to Test Driven Development*** (TDD) go to:
 > [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
-where here is more general background about testing and a beginner's intro.
+where there is more *general* ***beginner's introduction*** and background about testing.
 
 
 ## *Why?*
@@ -27,22 +27,39 @@ The _shortcut_ to chosing our tools is to apply the golden rule:
 We use Tape because its' ***minmalist*** (*yet complete and easy to learn*)
 ***feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
 
-> Not convinced? read:
-https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4
+### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
+
++ ***No configuration*** required. (_works out of the box. but can be configured if needed_)
++ ***NO "Magic" Global Variables*** injected into your run-time
+(e.g: `describe`, `it`, `before`, etc.)
++ ***No Shared State*** between tests. (_tape does not encourage you to write messy tests_!)
++ **Bare-minimum** only `require` or `import` into your test file.
++ Tests are "Just JavaScript" so you can run tests as a node script
+e.g: `node test/my-test.js`
++ No globally installed "CLI" required
++ Appearance of test output (what you see in your terminal/browser) is fully customisable.
+
+> Read: https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4
 
 ## *What?*
 
-Tape
+Tape is a JavaScript testing framework that works in both Node.js and Browsers.
+It lets you write simple tests that are easy to read/maintain.
+The _output_ of Tape tape tests is a "***TAP Stream***" which can be
+ready by other programs/packages e.g. to display statistics of your tests.
+
+### Background Reading
 
 + Tape website: https://github.com/substack/tape
-+
++ Test Anything Protocol (TAP) https://testanything.org/
++ Test Anything Protocol - gentler introduction:
+https://en.wikipedia.org/wiki/Test_Anything_Protocol
+
 
 ## *Who?*
 
-
-
-
-
+People who want to write tests for their Node.js or Web Browser JavaScript code.
+(*i.e. ALL JavaScript coders!*)
 
 ## *How?*
 
@@ -54,13 +71,12 @@ npm install tape --save-dev
 
 You should see some output *confirming* it *installed*:
 
-![Mocha Installed](https://raw.github.com/dwyl/learn-tape/master/images/mocha-installed.png "Mocha Installed Successfully")
+![learn-tape-install-save-dev](https://cloud.githubusercontent.com/assets/12497678/18086275/04850802-6ea7-11e6-8e27-ef357daa258c.png)
 
 
+### First Tepe Test
 
-### First Tests
-
-#### Create Test Directory
+#### Create Test _Directory_
 
 In your project create a new **/test** directory to hold your tests:
 
@@ -68,38 +84,68 @@ In your project create a new **/test** directory to hold your tests:
 mkdir test
 ```
 
-#### Create test.js File
+#### Create Test _File_
 
-Now create a new file `/test/test.js` in your text editor
+Now create a new file `/test/learn-tape.test.js` in your text editor.
 
-and write/paste the following code:
+and write (_or copy-paste_) the following code:
 
 ```js
-var test = require('tape'); // assing the tape library to the variable "test"
+var test = require('tape'); // assign the tape library to the variable "test"
 
-test('should return -1 when the value is not present', function (t) {
-  t.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so
-  t.end()
+test('should return -1 when the value is not present in Array', function (t) {
+  t.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so passes
+  t.end();
 });
 ```
 
-#### Run Test
 
-By typing the command **mocha** in your terminal the mocha comand line program
-will look for a **/test** directory and run any **.js** files it contains:
+#### Run The Test
+
+You run a Tape test by executing the _file_ in your terminal e.g:
 
 ```sh
-node test/test.js
+node test/learn-tape.test.js
 ```
 
-![Test Passes](https://raw.github.com/dwyl/learn-tape/master/images/mocha-1-test-passing.png "Mocha 1 Test Passes")
+![your-first-tape-test-passing](https://cloud.githubusercontent.com/assets/12497678/18088977/869f9efc-6eb5-11e6-9ed3-20018e32ae9c.png)
 
-### A More Useful TDD Example (Cash Register Mini Project)
 
-While I'm the first to agree that *cash-less* payments are the future,
-paying with cash is something *everyone* can relate to and is therefore
-a good example to use. (*think of better TDD example*? *tell me*!)
 
+> **Note**: we use this naming convention `/test/{test-name}.test.js`
+for test files in our projects so that we can keep other "_helper_" files
+in the `/test` directory and still be able to _run_ all the _test_ files in the
+`/test` directory using a _pattern_: `node ./test/*.test.js`
+
+### Make it _Pass_
+
+Copy the following code into a new file called `test/make-it-pass.test.js`:
+
+```js
+var test = require('tape'); // assign the tape library to the variable "test"
+
+function sum (a, b) {
+  // your code to make the test pass goes here ...
+}
+
+test('sum should return the addition of two numbers', function (t) {
+  t.equal(3, sum(1, 2)); // make this test pass by completing the add function!
+  t.end();
+});
+```
+
+Run the file (_script_) in your terminal: `node test/make-it-pass.test.js`
+
+You should see something like this:
+
+![learn-tape-not-passing](https://cloud.githubusercontent.com/assets/194400/18090697/db9393de-6ebd-11e6-92b3-6cf767b1e296.png)
+
+Try writing the code required in the `sum` function to make the test _pass_!
+
+![learn-tape-make-it-pass](https://cloud.githubusercontent.com/assets/194400/18092453/41ab9a30-6ec4-11e6-9bfb-26868d9de7f0.png)
+
+
+### Mini TDD Project: Change Calculator
 
 #### Basic Requirements
 
@@ -111,14 +157,14 @@ Essentially we are building a *simple* **calculator** that *only does* **subtrac
 
 In the UK we have the following Notes & Coins:
 
-![GBP Notes](https://raw.github.com/dwyl/learn-tape/master/images/gbp-notes.jpg "GBP Notes")
-![GBP Coins](https://raw.github.com/dwyl/learn-tape/master/images/gbp-coins.jpg "GBP Coins")
+![GBP Notes](https://cloud.githubusercontent.com/assets/194400/18094402/3faa2d62-6ecb-11e6-8c32-76fcc1168460.jpeg "GBP Notes")
+![GBP Coins](https://cloud.githubusercontent.com/assets/194400/18094436/5b2aca6a-6ecb-11e6-8e97-985edc0469af.jpeg "GBP Coins")
 
 see: http://en.wikipedia.org/wiki/Banknotes_of_the_pound_sterling
-(technically there are also £100 and even £100,000,000 notes,
-but these aren't common so we can leave them out. ;-)
+(_technically there are also £100 and even £100,000,000 notes,
+but these aren't common so we can leave them out._ ;-)
 
-If we use the penny as the unit (i.e. 100 pennies in a pound)
+If we use the **penny** as the **unit** (i.e. 100 pennies in a pound)
 the notes and coins can be represented as:
 
 - 5000 (£50)
@@ -161,10 +207,10 @@ var C = require('../cash.js');  // our module
 
 #### Watch it Fail
 
-Back in your terminal window, re-run the **mocha** command and watch it *fail*:
+Back in your terminal window, re-run the test by executing the command and watch it *fail*:
 
 ```sh
-mocha
+
 ```
 
 ![Mocha TFD Fail](https://raw.github.com/dwyl/learn-tape/master/images/mocha-tfd-cannot-find-module-first-fail.png "Mocha TFD Fail")
