@@ -1,5 +1,5 @@
-Learn Tape [![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape) [![Coverage Status](https://coveralls.io/repos/dwyl/learn-tape/badge.png)](https://coveralls.io/r/dwyl/learn-tape) [![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape) [![devDependency Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape#info=devDependencies)
-===========
+# Learn Tape
+[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape) [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/dwyl/learn-tape.svg?maxAge=2592000)](https://codecov.io/github/dwyl/learn-tape?branch=master) [![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape) [![devDependency Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape#info=devDependencies) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-tape/issues)
 
 A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 
@@ -48,7 +48,7 @@ ready by other programs/packages e.g. to display statistics of your tests.
 ### Background Reading
 
 + Tape website: https://github.com/substack/tape
-+ Test Anything Protocol (TAP) https://testanything.org/
++ Test Anything Protocol (TAP) https://tlearn-tapenything.org/
 + Test Anything Protocol - gentler introduction:
 https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
