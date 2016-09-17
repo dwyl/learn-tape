@@ -60,6 +60,11 @@ People who want to write tests for their Node.js or Web Browser JavaScript code.
 
 ## *How?*
 
+### Tape Features (*Subset*)
+
+> https://github.com/dwyl/learn-tape/issues/7 (_help wanted_!)
+
+
 ### Install
 
 ```sh
@@ -316,92 +321,50 @@ Re-run the test file: `node test/change-calculator.test.js` (_expect to see both
 
 ![learn-tape-two-failing-tests](https://cloud.githubusercontent.com/assets/194400/18611328/61787460-7d2d-11e6-8edc-8791f6d07fc3.png)
 
-
-#### Write the Function to Pass the Test(s)
-
-What if I cheat?
-
-```javascript
-C.getChange = function (totalPayable, cashPaid) {
-    'use strict';
-    return [50, 20, 20];    // just enough to pass :-)
-};
-```
-
-This will pass:
-
-![Tape Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-2-passing.png "Tape 2 Passing")
-
-This only works *once*. When the Spec (Test) Writer writes the next test, the method will need
-to be re-written to satisfy it.
-
-Lets try it.  Work out what you expect:
-```
-totalPayable = 486           // £4.86
-cashPaid     = 1000          // £10.00
-dfference    = 514           // £5.14
-change       = [500,10,2,2]  // £5, 10p, 2p, 2p
-```
-
-Add the following test to ./test/**test.js** and re-run `Tape`:
-
-```javascript
-it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
-    assert.deepEqual(C.getChange(486,1000), [500, 10, 2, 2]);
-})
-```
-
-As expected, our lazy method fails:
-
-![Tape 3 Test Fails](https://raw.github.com/dwyl/learn-tape/master/images/Tape-2-passing-1-fail.png "Tape 3rd Test Fails")
-
 #### Keep Cheating or Solve the Problem?
 
 We could keep cheating by writing a series of if statements:
 
 ```javascript
-C.getChange = function (totalPayable, cashPaid) {
-    'use strict';
+module.exports = function calculateChange(totalPayable, cashPaid) {
     if(totalPayable == 486 && cashPaid == 1000)
         return [500, 10, 2, 2];
     else if(totalPayable == 210 && cashPaid == 300)
         return [50, 20, 20];
 };
 ```
-The *Arthur Andersen Approach* gets results:
-
-![Tape 3 Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-3-passing.png "Tape 3 Passing")
 
 But its arguably *more work* than simply *solving* the problem.
 Lets do that instead.
 (**Note**: this is the *readable* version of the solution! feel free to suggest a more compact algorithm)
 
+Update the calculateChange function in `change-calculator.js`:
+
 ```javascript
-var C = {};     // C Object simplifies exporting the module
-C.coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
-C.getChange = function (totalPayable, cashPaid) {
-    'use strict';
-    var change = [];
-    var length = C.coins.length;
-    var remaining = cashPaid - totalPayable;          // we reduce this below
+module.exports = function calculateChange(totalPayable, cashPaid) {
 
-    for (var i = 0; i < length; i++) { // loop through array of notes & coins:
-        var coin = C.coins[i];
+  var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+  var change = [];
+  var length = coins.length;
+  var remaining = cashPaid - totalPayable;          // we reduce this below
 
-        if(remaining/coin >= 1) { // check coin fits into the remaining amount
-            var times = Math.floor(remaining/coin);        // no partial coins
+  for (var i = 0; i < length; i++) { // loop through array of notes & coins:
+    var coin = coins[i];
 
-            for(var j = 0; j < times; j++) {     // add coin to change x times
-                change.push(coin);
-                remaining = remaining - coin;  // subtract coin from remaining
-            }
-        }
+    if(remaining/coin >= 1) { // check coin fits into the remaining amount
+      var times = Math.floor(remaining/coin);        // no partial coins
+
+      for(var j = 0; j < times; j++) {     // add coin to change x times
+        change.push(coin);
+        remaining = remaining - coin;  // subtract coin from remaining
+      }
     }
-    return change;
+  }
+  return change;
 };
 ```
 
-Add one more test to ensure we are *fully* exercising our method:
+Add _one more_ test to ensure we are *fully* exercising our method:
 
 ```
 totalPayable = 1487                                 // £14.87  (fourteen pounds and eighty-seven pence)
@@ -411,12 +374,16 @@ change       = [5000, 2000, 1000, 500, 10, 2, 1 ]   // £50, £20, £10, £5, 10
 ```
 
 ```javascript
-it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(){
-    assert.deepEqual(C.getChange(1487,10000), [5000, 2000, 1000, 500, 10, 2, 1 ]);
+test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(t) {
+  var result = calculateChange(1487,10000);
+  var expected = [5000, 2000, 1000, 500, 10, 2, 1 ];
+  t.deepEqual(result, expected);
+  t.end();
 });
 ```
 
-![Tape 4 Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-4-tests-passing.png "Tape 4 Passing")
+![Tape 4 Passing](https://cloud.githubusercontent.com/assets/194400/18611450/9676bfb0-7d31-11e6-91fa-c48fb2630a65.png "Tape 4 Passing")
+
 
 
 - - -
@@ -425,80 +392,59 @@ it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', func
 
 #### Code Coverage
 
-We are using istanbul for code coverage.
-If you are new to istanbul check out my brief tutorial:
-https://github.com/nelsonic/learn-istanbul
+Code coverage lets you know _exactly_ which lines of code you have written
+are "_covered_" by your tests (_i.e. helps you check if there is
+  "dead", "un-used" or just "un-tested" code_)
+We ues `istanbul` for code coverage.
+If you are new to `istanbul` check out tutorial:
+https://github.com/dwyl/learn-istanbul
 
-Install istanbul:
+Install istanbul from NPM:
 
 ```sh
-npm install istanbul -g
+npm install istanbul --save-dev
 ```
 
-Run the following command to get a coverage report:
+Run the following command (_in your terminal_) to get a coverage report:
+
 ```sh
-istanbul cover _Tape -- -R spec
+node_modules/.bin/istanbul cover node_modules/.bin/tape ./test/*.test.js
 ```
-You should see:
 
-![Istanbul Coverage](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-cover-Tape.png "Istanbul Code Coverage")
+You should expect to see something like this:
+
+![learn-tape-coverage](https://cloud.githubusercontent.com/assets/194400/18611615/c1fe6322-7d36-11e6-8f3a-349d661ae012.png)
+
 
 or if you prefer the **lcov-report**:
 
-![Istanbul Coverage Report](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-coverage-report.png "Istanbul Code Coverage Report")
+![Istanbul Coverage Report](https://cloud.githubusercontent.com/assets/194400/18611640/b34aa308-7d37-11e6-936f-a1ff79511f0d.png "Istanbul Code Coverage Report")
 
 > **100% Coverage** for Statements, Branches, Functions and Lines.
 
+If you need a shortcut to running this command, add the following to the `scripts`
+section in your `package.json`;
 
-#### Travis
+```sh
+istanbul cover tape ./test/*.test.js
+```
 
-If you are new to Travis CI check out my tutorial:
+
+### Continuous Integration?
+
+> If you are new to Travis CI check out our tutorial:
 https://github.com/dwyl/learn-travis
 
-> Visit: https://travis-ci.org/profile
-> Enable Travis for learn-travis project
+Setting up Travis-CI (_or any other CI service_) for your Tape tests is _easy_
+simply define the `test` script in your `package.json`:
 
-![Travis Enabled](https://raw.github.com/dwyl/learn-tape/master/images/travis-on.png "Travis Enabled")
+```
+tape ./test/*.test.js
+```
 
-[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape)
+We usually let Travis send Code Coverage data to Codecov.io so we run our
+tape tests using Istanbul (see the coverage section above):
 
-![Travis Build Pass](https://raw.github.com/dwyl/learn-tape/master/images/learn-travis-build-passing.png "Travis Build Passing")
-
-Done.
-
-- - -
-
-## tl;dr
-
-#### Why Tape?
-
-At last count there were 83 testing frameworks *listed* on the node.js
-modules page: https://github.com/joyent/node/wiki/modules#wiki-testing
-this is *both* a problem (*too much choice* can be
-*overwhelming*) and good thing (diversity means new ideas and innovative
-solutions can flourish).
-
-There's no hard+fast rule for "*which testing framework is the best one*?"
-
-Over the past 3 years I've tried:
-[Assert (Core Module)](http://nodejs.org/api/assert.html),
-[Cucumber](https://github.com/cucumber/cucumber-js),
-[Expresso](https://github.com/visionmedia/expresso)
-[Jasmine](https://github.com/mhevery/jasmine-node),
-[Tape](https://github.com/Tapejs/Tape),
-[Nodeunit](https://github.com/caolan/nodeunit),
-[Should](https://github.com/visionmedia/should.js), and
-[Vows](https://github.com/cloudhead/vows)
-
-My **criteria** for chosing a testing framework:
-
-- **Simplicity** (one of TJ's *stated aims*)
-- **Elegance** (*especially when written in CoffeeScript*)
-- **Speed** (Tape is *Fast*. 300+ tests run in under a second)
-- **Documentation** (plenty of real-world examples: http://Tapejs.org)
-- **Maturity** (*Battle-tested* by *thousands* of developers!)
-
-Advanced:
-
-
-### Notes
+```
+istanbul cover tape ./test/*.test.js
+```
