@@ -3,11 +3,9 @@ Learn Tape [![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=mas
 
 A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 
-
-
-> **Note**: if you are ***new to Test Driven Development*** (TDD) go to:
-> [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
-where there is more *general* ***beginner's introduction*** and background about testing.
+> <small>**Note**: if you are ***new to Test Driven Development*** (TDD), we have a  more *general*
+***beginner's introduction*** and background about testing:
+[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd) </small>
 
 
 ## *Why?*
@@ -24,22 +22,21 @@ The _shortcut_ to chosing our tools is to apply the golden rule:
 
 ![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png)
 
-We use Tape because its' ***minmalist*** (*yet complete and easy to learn*)
-***feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
+We use Tape because its' ***minmalist feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
 
 ### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
 
 + ***No configuration*** required. (_works out of the box. but can be configured if needed_)
-+ ***NO "Magic" Global Variables*** injected into your run-time
-(e.g: `describe`, `it`, `before`, etc.)
-+ ***No Shared State*** between tests. (_tape does not encourage you to write messy tests_!)
++ ***NO "Magic" / Global Variables*** injected into your run-time
+(e.g: `describe`, `it`, `before`, `after`, etc.)
++ ***No Shared State*** between tests. (_tape does not encourage you to write messy / "leaky" tests_!)
 + **Bare-minimum** only `require` or `import` into your test file.
 + Tests are "Just JavaScript" so you can run tests as a node script
 e.g: `node test/my-test.js`
-+ No globally installed "CLI" required
++ No globally installed "CLI" required to _run_ your tests.
 + Appearance of test output (what you see in your terminal/browser) is fully customisable.
 
-> Read: https://medium.com/javascript-scene/why-i-use-tape-instead-of-mocha-so-should-you-6aa105d8eaf4
+> <small>Read: https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4 </small>
 
 ## *What?*
 
@@ -110,12 +107,10 @@ node test/learn-tape.test.js
 
 ![your-first-tape-test-passing](https://cloud.githubusercontent.com/assets/12497678/18088977/869f9efc-6eb5-11e6-9ed3-20018e32ae9c.png)
 
-
-
 > **Note**: we use this naming convention `/test/{test-name}.test.js`
 for test files in our projects so that we can keep other "_helper_" files
 in the `/test` directory and still be able to _run_ all the _test_ files in the
-`/test` directory using a _pattern_: `node ./test/*.test.js`
+`/test` directory using a _pattern_: `node_modules./.bin/tape ./test/*.test.js`
 
 ### Make it _Pass_
 
@@ -144,6 +139,7 @@ Try writing the code required in the `sum` function to make the test _pass_!
 
 ![learn-tape-make-it-pass](https://cloud.githubusercontent.com/assets/194400/18092453/41ab9a30-6ec4-11e6-9bfb-26868d9de7f0.png)
 
+Great Succes! Let's try something with a bit more code.
 
 ### Mini TDD Project: Change Calculator
 
@@ -189,94 +185,50 @@ var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 **Note**: the same can be done for any other cash system ($ ¥ €)
 simply use the cent, sen or rin as the unit and scale up notes.
 
-#### The First Test
+#### Create Test File
 
-If you are *totally* new to TDD I recommend reading this
-[intro article](http://www.agiledata.org/essays/tdd.html) by Scott Ambler
-(especially the diagrams) otherwise this (test-fail-code-pass) process
-may seem *strange* ...
-
-In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
-write the code that makes the test pass.
-
-so, back in our ./test/**test.js** file add the following line:
+Create a file called `change-calculator.test.js` in your `/test` directory and add the following lines:
 
 ```javascript
-var C = require('../cash.js');  // our module
+var test = require('tape'); // assign the tape library to the variable "test"
+var calculateChange = require('../lib/change-calculator.js');  // require (not-yet-written) module
 ```
 
 #### Watch it Fail
 
-Back in your terminal window, re-run the test by executing the command and watch it *fail*:
+Back in your terminal window, the test by executing the command (and watch it *fail*):
 
 ```sh
-
+node test/change-calculator.test.js
 ```
 
-![Mocha TFD Fail](https://raw.github.com/dwyl/learn-tape/master/images/mocha-tfd-cannot-find-module-first-fail.png "Mocha TFD Fail")
+![Tape TFD Fail](https://cloud.githubusercontent.com/assets/194400/18610249/3a620b70-7d0f-11e6-9af5-6176f2927b26.png "Tape TFD Fail = Cannot Find Module")
 
-This error ("**Cannot find module '../cash.js'**") is pretty self explanatory.
-We haven't created the file yet so test.js is requesting a non-existent file!
+This error (``Cannot find module '../lib/change-calculator.js'`) is pretty self explanatory.
+We haven't created the file yet so the test is _requering_ a non-existent file!
 
 > **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
 > **A**: To get used to the idea of *only* writing the code required to *pass*
->    the *current* (*failing*) *test*.
+>    the *current* (*failing*) *test*, and _never_ write code you think you _might_ need.
+see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 
 #### Create the Module File
 
-Create a new file for our cash register **cash.js**:
+In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
+write the code that makes the test pass.
 
-```sh
-touch cash.js
-```
+Create a new file for our change calculator `/lib/change-calculator.js`:
 
-**Note**: We are *not* going to add any code to it just yet.
+**Note**: We are *not* going to add any code to it _yet_.
 
-Re-run the **mocha** command in terminal, it will pass (*zero* tests)
+Re-run the test file in your terminal, you should expect to see _no output_ (_it will "pass" because there are no tests_)
 
-![Mocha Pass 0 Tests](https://raw.github.com/dwyl/learn-tape/master/images/mocha-0-passing.png "Mocha Pass 0 Tests")
+![Tape Pass 0 Tests](https://cloud.githubusercontent.com/assets/194400/18610318/2d54ec02-7d11-11e6-8f72-35f967836348.png "Tape Pass 0 Tests")
 
-Lets add a test to ./test/**test.js** and watch it fail again:
+#### Add a Test
 
-```javascript
-var assert = require("assert"); // core module
-var C = require('../cash.js');  // our module
-
-describe('Cash Register', function(){
-  describe('Module C', function(){
-    it('should have a getChange Method', function(){
-      assert.equal(typeof C, 'object');
-      assert.equal(typeof C.getChange, 'function');
-    })
-  })
-});  
-```
-Re-run `mocha`:
-
-![Mocha 1 Test Failing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-first-test-failing.png "Mocha 1 Test Failing")
-
-#### Write *Just* Enough Code to Make the Test Pass
-
-Add the following to **cash.js**:
-
-```javascript
-var C = {};                    // C Object simplifies exporting the module
-C.getChange = function () {    // enough to satisfy the test
-    'use strict';
-    return true;               // also passes JSLint
-};
-module.exports = C;            // export the module with a single method
-```
-
-Re-run `mocha` (now it passes):
-
-![Mocha 1 Test Passes](https://raw.github.com/dwyl/learn-tape/master/images/mocha-1-test-pass.png "Mocha 1 Test Passes")
-
-
-#### Write A Real Test
-
-Going back to the requirements, we need our getChange method to accept
+Going back to the requirements, we need our calculateChange method to accept
 two arguments/parameters (**totalPayable** and **cashPaid**) and return an
 array containing the coins equal to the difference:
 
@@ -288,20 +240,84 @@ dfference    =  90         // 90p
 change       = [50,20,20]  // 50p, 20p, 20p
 ```
 
-Add the following test to ./test/**test.js**:
+Lets add a _test_ to `test/change-calculator.test.js` and watch it fail:
 
 ```javascript
-it('getChange(210,300) should equal [50,20,20]', function(){
-    assert.deepEqual(C.getChange(210,300), [50,20,20]);
-})
+var test = require('tape'); // assign the tape library to the variable "test"
+var calculateChange = require('../lib/change-calculator.js');  // require the calculator module
+
+test('calculateChange(215, 300) should return [50, 20, 10, 5]', function(t) {
+  var result = calculateChange(215, 300); // expect an array containing [50,20,10,5]
+  var expected = [50, 20, 10, 5];
+  t.deepEqual(result, expected);
+  t.end();
+});
+```
+Re-run the test file: `node test/change-calculator.test.js`
+
+![Tape 1 Test Failing](https://cloud.githubusercontent.com/assets/194400/18610528/70577c9a-7d16-11e6-925a-9858915316ca.png "Tape 1 Test Failing")
+
+#### Export the `calculateChange` Function
+
+Right now our `change-calculator.js` file does not _contain_ anything,
+so when it's `require`'d in the test we get a error: `TypeError: calculateChange is not a function`
+
+We can "fix" this by _exporting_ a function. add a single line to `change-calculator.js`:
+
+```js
+module.exports = function calculateChange() {};
 ```
 
-**Note**: use assert.**deepEqual** for arrays
-see: http://stackoverflow.com/questions/13225274/
+Now when we run the test, we see more _useful_ error message:
 
-![Mocha Assertion Error](https://raw.github.com/dwyl/learn-tape/master/images/mocha-assertionError.png "Mocha Assertion Error")
+![learn-tape-first-test-failing](https://cloud.githubusercontent.com/assets/194400/18610631/d30f9bd6-7d18-11e6-819b-0795c104e64f.png)
 
-#### Write the Method to Pass the Test
+#### Write *Just* Enough Code to Make the Test Pass
+
+We can "fake" passing the test by by simply returning an Array in `change-calculator.js`:
+
+```javascript
+module.exports = function calculateChange(totalPayable, cashPaid) {
+  return [50, 20, 10, 5]; // return the expected Array to pass the test
+};
+```
+
+Re-run the test file `node test/change-calculator.test.js` (_now it "passes"_):
+
+![Tape 1 Test Passes](https://cloud.githubusercontent.com/assets/194400/18610825/877be2f0-7d1e-11e6-9e8f-887e9700fd1b.png "Tape 1 Test Passes")
+
+
+> Note: we aren't _really_ ***passing*** the test, we are _faking_ it
+for illustration.
+
+
+#### Add _More_ Test Cases
+
+Add a couple more tests to `test/change-calculator.test.js`:
+
+```javascript
+test('calculateChange(486, 600) should equal [100, 10, 2, 2]', function(t) {
+  var result = calculateChange(486, 600);
+  var expected = [100, 10, 2, 2];
+  t.deepEqual(result, expected);
+  t.end();
+});
+
+test('calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(t) {
+  var result = calculateChange(12, 400);
+  var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+  t.deepEqual(result, expected);
+  t.end();
+});
+```
+
+Re-run the test file: `node test/change-calculator.test.js` (_expect to see both tests failing_)
+
+
+![learn-tape-two-failing-tests](https://cloud.githubusercontent.com/assets/194400/18611328/61787460-7d2d-11e6-8edc-8791f6d07fc3.png)
+
+
+#### Write the Function to Pass the Test(s)
 
 What if I cheat?
 
@@ -314,7 +330,7 @@ C.getChange = function (totalPayable, cashPaid) {
 
 This will pass:
 
-![Mocha Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-2-passing.png "Mocha 2 Passing")
+![Tape Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-2-passing.png "Tape 2 Passing")
 
 This only works *once*. When the Spec (Test) Writer writes the next test, the method will need
 to be re-written to satisfy it.
@@ -327,7 +343,7 @@ dfference    = 514           // £5.14
 change       = [500,10,2,2]  // £5, 10p, 2p, 2p
 ```
 
-Add the following test to ./test/**test.js** and re-run `mocha`:
+Add the following test to ./test/**test.js** and re-run `Tape`:
 
 ```javascript
 it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
@@ -337,7 +353,7 @@ it('getChange(486,1000) should equal [500, 10, 2, 2]', function(){
 
 As expected, our lazy method fails:
 
-![Mocha 3 Test Fails](https://raw.github.com/dwyl/learn-tape/master/images/mocha-2-passing-1-fail.png "Mocha 3rd Test Fails")
+![Tape 3 Test Fails](https://raw.github.com/dwyl/learn-tape/master/images/Tape-2-passing-1-fail.png "Tape 3rd Test Fails")
 
 #### Keep Cheating or Solve the Problem?
 
@@ -354,7 +370,7 @@ C.getChange = function (totalPayable, cashPaid) {
 ```
 The *Arthur Andersen Approach* gets results:
 
-![Mocha 3 Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-3-passing.png "Mocha 3 Passing")
+![Tape 3 Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-3-passing.png "Tape 3 Passing")
 
 But its arguably *more work* than simply *solving* the problem.
 Lets do that instead.
@@ -400,7 +416,7 @@ it('getChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', func
 });
 ```
 
-![Mocha 4 Passing](https://raw.github.com/dwyl/learn-tape/master/images/mocha-4-tests-passing.png "Mocha 4 Passing")
+![Tape 4 Passing](https://raw.github.com/dwyl/learn-tape/master/images/Tape-4-tests-passing.png "Tape 4 Passing")
 
 
 - - -
@@ -421,11 +437,11 @@ npm install istanbul -g
 
 Run the following command to get a coverage report:
 ```sh
-istanbul cover _mocha -- -R spec
+istanbul cover _Tape -- -R spec
 ```
 You should see:
 
-![Istanbul Coverage](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-cover-mocha.png "Istanbul Code Coverage")
+![Istanbul Coverage](https://raw.github.com/dwyl/learn-tape/master/images/istanbul-cover-Tape.png "Istanbul Code Coverage")
 
 or if you prefer the **lcov-report**:
 
@@ -437,7 +453,7 @@ or if you prefer the **lcov-report**:
 #### Travis
 
 If you are new to Travis CI check out my tutorial:
-https://github.com/nelsonic/learn-travis
+https://github.com/dwyl/learn-travis
 
 > Visit: https://travis-ci.org/profile
 > Enable Travis for learn-travis project
@@ -454,7 +470,7 @@ Done.
 
 ## tl;dr
 
-#### Why Mocha?
+#### Why Tape?
 
 At last count there were 83 testing frameworks *listed* on the node.js
 modules page: https://github.com/joyent/node/wiki/modules#wiki-testing
@@ -469,7 +485,7 @@ Over the past 3 years I've tried:
 [Cucumber](https://github.com/cucumber/cucumber-js),
 [Expresso](https://github.com/visionmedia/expresso)
 [Jasmine](https://github.com/mhevery/jasmine-node),
-[Mocha](https://github.com/mochajs/mocha),
+[Tape](https://github.com/Tapejs/Tape),
 [Nodeunit](https://github.com/caolan/nodeunit),
 [Should](https://github.com/visionmedia/should.js), and
 [Vows](https://github.com/cloudhead/vows)
@@ -478,8 +494,8 @@ My **criteria** for chosing a testing framework:
 
 - **Simplicity** (one of TJ's *stated aims*)
 - **Elegance** (*especially when written in CoffeeScript*)
-- **Speed** (Mocha is *Fast*. 300+ tests run in under a second)
-- **Documentation** (plenty of real-world examples: http://mochajs.org)
+- **Speed** (Tape is *Fast*. 300+ tests run in under a second)
+- **Documentation** (plenty of real-world examples: http://Tapejs.org)
 - **Maturity** (*Battle-tested* by *thousands* of developers!)
 
 Advanced:
