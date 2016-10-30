@@ -13,25 +13,25 @@ A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 ***Testing*** your code is ***essential*** to ensuring reliability.  
 
 There are _many_ testing frameworks so it can be
-[*difficult to chose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en),
+[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en),
 ***most*** try to do too much, have ***too many features***
 (["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
 or ***inject global variables*** into your run-time or have complicated syntax.
 
-The _shortcut_ to chosing our tools is to apply the golden rule:
+The _shortcut_ to choosing our tools is to apply the golden rule:
 
 ![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png)
 
-We use Tape because its' ***minmalist feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
+We use Tape because it's ***minimalist feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
 
 ### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
 
-+ ***No configuration*** required. (_works out of the box. but can be configured if needed_)
-+ ***NO "Magic" / Global Variables*** injected into your run-time
++ ***No configuration*** required. (_works out of the box, but can be configured if needed_)
++ ***No "Magic" / Global Variables*** injected into your run-time
 (e.g: `describe`, `it`, `before`, `after`, etc.)
 + ***No Shared State*** between tests. (_tape does not encourage you to write messy / "leaky" tests_!)
 + **Bare-minimum** only `require` or `import` into your test file.
-+ Tests are "Just JavaScript" so you can run tests as a node script
++ Tests are **Just JavaScript** so you can run tests as a node script
 e.g: `node test/my-test.js`
 + No globally installed "CLI" required to _run_ your tests.
 + Appearance of test output (what you see in your terminal/browser) is fully customisable.
@@ -42,8 +42,8 @@ e.g: `node test/my-test.js`
 
 Tape is a JavaScript testing framework that works in both Node.js and Browsers.
 It lets you write simple tests that are easy to read/maintain.
-The _output_ of Tape tape tests is a "***TAP Stream***" which can be
-ready by other programs/packages e.g. to display statistics of your tests.
+The _output_ of Tape tests is a "***TAP Stream***" which can be
+read by other programs/packages e.g. to display statistics of your tests.
 
 ### Background Reading
 
@@ -76,7 +76,7 @@ You should see some output *confirming* it *installed*:
 ![learn-tape-install-save-dev](https://cloud.githubusercontent.com/assets/12497678/18086275/04850802-6ea7-11e6-8e27-ef357daa258c.png)
 
 
-### First Tepe Test
+### First Tape Test
 
 #### Create Test _Directory_
 
@@ -210,7 +210,7 @@ node test/change-calculator.test.js
 ![Tape TFD Fail](https://cloud.githubusercontent.com/assets/194400/18610249/3a620b70-7d0f-11e6-9af5-6176f2927b26.png "Tape TFD Fail = Cannot Find Module")
 
 This error (``Cannot find module '../lib/change-calculator.js'`) is pretty self explanatory.
-We haven't created the file yet so the test is _requering_ a non-existent file!
+We haven't created the file yet so the test is _requiring_ a non-existent file!
 
 > **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
 > **A**: To get used to the idea of *only* writing the code required to *pass*
@@ -241,7 +241,7 @@ e.g:
 ```
 totalPayable = 210         // £2.10
 cashPaid     = 300         // £3.00
-dfference    =  90         // 90p
+difference    =  90         // 90p
 change       = [50,20,20]  // 50p, 20p, 20p
 ```
 
@@ -369,7 +369,7 @@ Add _one more_ test to ensure we are *fully* exercising our method:
 ```
 totalPayable = 1487                                 // £14.87  (fourteen pounds and eighty-seven pence)
 cashPaid     = 10000                                // £100.00 (one hundred pounds)
-dfference    = 8513                                 // £85.13
+difference    = 8513                                 // £85.13
 change       = [5000, 2000, 1000, 500, 10, 2, 1 ]   // £50, £20, £10, £5, 10p, 2p, 1p
 ```
 
@@ -395,11 +395,11 @@ test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 
 Code coverage lets you know _exactly_ which lines of code you have written
 are "_covered_" by your tests (_i.e. helps you check if there is
   "dead", "un-used" or just "un-tested" code_)
-We ues `istanbul` for code coverage.
+We use `istanbul` for code coverage.
 If you are new to `istanbul` check out tutorial:
 https://github.com/dwyl/learn-istanbul
 
-Install istanbul from NPM:
+Install `istanbul` from NPM:
 
 ```sh
 npm install istanbul --save-dev
