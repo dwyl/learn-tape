@@ -428,7 +428,37 @@ section in your `package.json`;
 ```sh
 istanbul cover tape ./test/*.test.js
 ```
+### Run your Tape tests in the browser
 
+Follow these steps to run `Tape` tests in the browser:
+
+1. You'll have to bundle up your test files so that the browser can read them.
+We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. **(other module bundlers are
+available)**. You'll need to install it globally to access the commands that
+come with it. Enter the following command into the command line:
+`npm install browserify --save-dev`  
+2. Next you have to bundle your test files. Run the following browserify
+command:  
+`node_modules/.bin/browserify test/*.js > lib/bundle.js`  
+3. Create a `test.html` file that can hold your bundle:  
+`touch lib/test.html`  
+4. Add your test script to your newly created `test.html`:  
+`echo '<script src="bundle.js"></script>' > lib/test.html`
+5. Copy the full path of your `test.html` file and then paste it into your
+browser. Open up the developer console and you should see something that looks
+like:  
+![browser](https://cloud.githubusercontent.com/assets/12450298/19898078/79f41d30-a052-11e6-954b-8dad5fa71771.png)
+
+#### Headless Browser
+You can print our your test results to the command line instead of the browser
+by using a headless browser:
+
+1. Install [`testling`](https://www.npmjs.com/package/testling):  
+`npm install testling --save-dev`  
+2. Run the following command to print your test results in your terminal:  
+`node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`  
+3. You should see something that looks like this:  
+![testling](https://cloud.githubusercontent.com/assets/12450298/19898553/63e0e8a0-a054-11e6-93e1-2fe4872989ed.png)
 
 ### Continuous Integration?
 
