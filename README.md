@@ -71,6 +71,7 @@ People who want to write tests for their Node.js or Web Browser JavaScript code.
 npm install tape --save-dev
 ```
 
+
 You should see some output *confirming* it *installed*:
 
 ![learn-tape-install-save-dev](https://cloud.githubusercontent.com/assets/12497678/18086275/04850802-6ea7-11e6-8e27-ef357daa258c.png)
