@@ -70,6 +70,7 @@ People who want to write tests for their Node.js or Web Browser JavaScript code.
 ```sh
 npm install tape --save-dev
 ```
+(For us newbies, I'd like to suggest you include the npm init step.  We did this project in Iron Yard bootcamp, but didn't know to init npm, nor to add Node to the .gitignore file)
 
 You should see some output *confirming* it *installed*:
 
