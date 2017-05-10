@@ -1,5 +1,9 @@
 # Learn Tape
-[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape) [![codecov.io Code Coverage](https://img.shields.io/codecov/c/github/dwyl/learn-tape.svg?maxAge=2592000)](https://codecov.io/github/dwyl/learn-tape?branch=master) [![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape) [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape?type=dev) [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-tape/issues)
+[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape)
+[![codecov](https://codecov.io/gh/dwyl/learn-tape/branch/tape/graph/badge.svg)](https://codecov.io/gh/dwyl/learn-tape)
+[![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-tape/issues)
 
 A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 
