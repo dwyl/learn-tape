@@ -3,6 +3,7 @@ var inc = document.querySelector('.inc');
 var dec = document.querySelector('.dec');
 var reset = document.querySelector('.reset');
 var count = document.querySelector('.count');
+var error = document.querySelector('.error');
 
 //current count varies, so we have it as a function so we can always get the up to date version
 function currentCount() {
@@ -11,9 +12,15 @@ function currentCount() {
 
 // write the functions
 function increment(number) {
+  //we want to make sure that the argument being passed in as a number, so we coerce it to be a number
   number = Number(number);
+  //if Number is passed something which cannot be coerced to be a number it will return 'NaN' (not a number), you can check if something is NaN with the isNaN function
   if (isNaN(number)) {
-    return handleError('Argument passed to increment was not a number');
+    //if the argument passed in is not a number we don't want to do anything and tell the user that something was wrong
+    return updateDom(
+      'Error: Argument passed to increment was not a number',
+      error
+    );
   }
   return number + 1;
 }
@@ -21,7 +28,10 @@ function increment(number) {
 function decrement(number) {
   number = Number(number);
   if (isNaN(number)) {
-    return handleError('Argument passed to decrement was not a number');
+    return updateDom(
+      'Error: Argument passed to decrement was not a number',
+      error
+    );
   }
   return number - 1;
 }
@@ -30,13 +40,8 @@ function resetFunc() {
   return 0;
 }
 
-function updateDom(number, node) {
-  node.textContent = number;
-}
-
-function handleError(errorText) {
-  // do something with the error text
-  console.log(errorText);
+function updateDom(text, node) {
+  node.textContent = text;
 }
 
 //attach the event listeners
@@ -59,13 +64,14 @@ reset.addEventListener('click', function() {
 updateDom(0, count);
 
 // This is for testing with tape, we need to check if we're in node or if we're in the browser, then export if we are in node
+// We ignore it for code coverage as it is only here for testing
 /*istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     increment: increment,
     decrement: decrement,
-    reset: reset,
+    resetFunc: resetFunc,
     updateDom: updateDom,
-    handleError: handleError,
+    currentCount: currentCount,
   };
 }

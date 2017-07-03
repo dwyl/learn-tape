@@ -19,3 +19,5 @@ coverage
 
 # bundled files
 lib/bundle.js
+
+package-lock.json
