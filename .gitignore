@@ -21,3 +21,5 @@ coverage
 lib/bundle.js
 
 package-lock.json
+
+front-end-testing/test/*
