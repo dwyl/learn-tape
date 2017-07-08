@@ -483,3 +483,6 @@ tape tests using Istanbul (see the coverage section above):
 ```
 istanbul cover tape ./test/*.test.js
 ```
+
+#### What about front end code with Tape?
+Now that you're a pro at using Tape to test your back end code check out our [front end testing with tape guide!](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md) 
