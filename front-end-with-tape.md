@@ -51,7 +51,9 @@ We use `/*istanbul ignore next*/` as we do not want this if statement to effect
 
 So, lets get started!
 
-Inside of `front-end-testing/test` make a file called `test.spec.js`.
+Inside of the `front-end-testing` directory make a new directory called `test`
+and inside of the new `front-end-testing/test` directory you just created
+create a file called `test.spec.js`.
 
 Open it in your favourite text editor and lets get started!
 
