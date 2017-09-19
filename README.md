@@ -52,7 +52,7 @@ read by other programs/packages e.g. to display statistics of your tests.
 ### Background Reading
 
 + Tape website: https://github.com/substack/tape
-+ Test Anything Protocol (TAP) https://tlearn-tapenything.org/
++ Test Anything Protocol (TAP) https://testanything.org/
 + Test Anything Protocol - gentler introduction:
 https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
