@@ -189,7 +189,7 @@ the notes and coins can be represented as:
 this can be represented as an Array:
 
 ```javascript
-let coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
+const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 ```
 
 **Note**: the same can be done for any other cash system ($ ¥ €)
@@ -348,9 +348,9 @@ Update the calculateChange function in `change-calculator.js`:
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
 
-  let coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+  const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
   let change = [];
-  let length = coins.length;
+  const length = coins.length;
   let remaining = cashPaid - totalPayable;          // we reduce this below
 
   for (let i = 0; i < length; i++) { // loop through array of notes & coins:
