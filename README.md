@@ -98,7 +98,7 @@ Now create a new file `/test/learn-tape.test.js` in your text editor.
 and write (_or copy-paste_) the following code:
 
 ```js
-var test = require('tape'); // assign the tape library to the variable "test"
+const test = require('tape'); // assign the tape library to the variable "test"
 
 test('should return -1 when the value is not present in Array', function (t) {
   t.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so passes
@@ -127,7 +127,7 @@ in the `/test` directory and still be able to _run_ all the _test_ files in the
 Copy the following code into a new file called `test/make-it-pass.test.js`:
 
 ```js
-var test = require('tape'); // assign the tape library to the variable "test"
+const test = require('tape'); // assign the tape library to the variable "test"
 
 function sum (a, b) {
   // your code to make the test pass goes here ...
@@ -189,7 +189,7 @@ the notes and coins can be represented as:
 this can be represented as an Array:
 
 ```javascript
-var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
+let coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
 ```
 
 **Note**: the same can be done for any other cash system ($ ¥ €)
@@ -200,8 +200,8 @@ simply use the cent, sen or rin as the unit and scale up notes.
 Create a file called `change-calculator.test.js` in your `/test` directory and add the following lines:
 
 ```javascript
-var test = require('tape'); // assign the tape library to the variable "test"
-var calculateChange = require('../lib/change-calculator.js');  // require (not-yet-written) module
+const test = require('tape'); // assign the tape library to the variable "test"
+const calculateChange = require('../lib/change-calculator.js');  // require (not-yet-written) module
 ```
 
 #### Watch it Fail
@@ -253,12 +253,12 @@ change       = [50,20,20]  // 50p, 20p, 20p
 Lets add a _test_ to `test/change-calculator.test.js` and watch it fail:
 
 ```javascript
-var test = require('tape'); // assign the tape library to the variable "test"
-var calculateChange = require('../lib/change-calculator.js');  // require the calculator module
+const test = require('tape'); // assign the tape library to the variable "test"
+const calculateChange = require('../lib/change-calculator.js');  // require the calculator module
 
 test('calculateChange(215, 300) should return [50, 20, 10, 5]', function(t) {
-  var result = calculateChange(215, 300); // expect an array containing [50,20,10,5]
-  var expected = [50, 20, 10, 5];
+  const result = calculateChange(215, 300); // expect an array containing [50,20,10,5]
+  const expected = [50, 20, 10, 5];
   t.deepEqual(result, expected);
   t.end();
 });
@@ -307,15 +307,15 @@ Add a couple more tests to `test/change-calculator.test.js`:
 
 ```javascript
 test('calculateChange(486, 600) should equal [100, 10, 2, 2]', function(t) {
-  var result = calculateChange(486, 600);
-  var expected = [100, 10, 2, 2];
+  const result = calculateChange(486, 600);
+  const expected = [100, 10, 2, 2];
   t.deepEqual(result, expected);
   t.end();
 });
 
 test('calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(t) {
-  var result = calculateChange(12, 400);
-  var expected = [200, 100, 50, 20, 10, 5, 2, 1];
+  const result = calculateChange(12, 400);
+  const expected = [200, 100, 50, 20, 10, 5, 2, 1];
   t.deepEqual(result, expected);
   t.end();
 });
@@ -348,18 +348,18 @@ Update the calculateChange function in `change-calculator.js`:
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
 
-  var coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
-  var change = [];
-  var length = coins.length;
-  var remaining = cashPaid - totalPayable;          // we reduce this below
+  let coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
+  let change = [];
+  let length = coins.length;
+  let remaining = cashPaid - totalPayable;          // we reduce this below
 
-  for (var i = 0; i < length; i++) { // loop through array of notes & coins:
-    var coin = coins[i];
+  for (let i = 0; i < length; i++) { // loop through array of notes & coins:
+    let coin = coins[i];
 
     if(remaining/coin >= 1) { // check coin fits into the remaining amount
-      var times = Math.floor(remaining/coin);        // no partial coins
+      let times = Math.floor(remaining/coin);        // no partial coins
 
-      for(var j = 0; j < times; j++) {     // add coin to change x times
+      for(let j = 0; j < times; j++) {     // add coin to change x times
         change.push(coin);
         remaining = remaining - coin;  // subtract coin from remaining
       }
@@ -380,8 +380,8 @@ change       = [5000, 2000, 1000, 500, 10, 2, 1 ]   // £50, £20, £10, £5, 10
 
 ```javascript
 test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(t) {
-  var result = calculateChange(1487,10000);
-  var expected = [5000, 2000, 1000, 500, 10, 2, 1 ];
+  const result = calculateChange(1487,10000);
+  const expected = [5000, 2000, 1000, 500, 10, 2, 1 ];
   t.deepEqual(result, expected);
   t.end();
 });
