@@ -1,9 +1,9 @@
 // get the elements from the DOM
-var inc = document.querySelector('.inc');
-var dec = document.querySelector('.dec');
-var reset = document.querySelector('.reset');
-var count = document.querySelector('.count');
-var error = document.querySelector('.error');
+const inc = document.querySelector('.inc');
+const dec = document.querySelector('.dec');
+const reset = document.querySelector('.reset');
+const count = document.querySelector('.count');
+const error = document.querySelector('.error');
 
 //current count varies, so we have it as a function so we can always get the up to date version
 function currentCount() {

@@ -59,18 +59,18 @@ Open it in your favourite text editor and lets get started!
 
 First we'll require in tape, JSDOM and fs.
 ```js
-var test = require('tape');
+const test = require('tape');
 // jsdom is a way to create a document object on the backend, we only need the
 // JSDOM constructor from it so we get that out straight away
-var JSDOM = require('jsdom').JSDOM;
-var fs = require('fs');
+const JSDOM = require('jsdom').JSDOM;
+const fs = require('fs');
 ```
 
 We then need to get the contents of our html file so that JSDOM can use it to
 create its own DOM.
 
 ```js
-var html = fs.readFileSync(__dirname + '/../lib/index.html', 'utf8');
+const html = fs.readFileSync(__dirname + '/../lib/index.html', 'utf8');
 ```
 
 If you've not used the core node packages before then checkout
@@ -103,7 +103,7 @@ with the DOM we just made!
 
 So now we can require our script file in.
 ```js
-var frontEndCode = require('../lib/script.js');
+const frontEndCode = require('../lib/script.js');
 ```
 
 So now frontEndCode will be an object which is a copy of what we exported using
@@ -120,8 +120,8 @@ So first off lets write a test for increment for when it's passed the expected
 arguments.
 ```js
 test('test increment function', function(t) {
-  var actual = frontEndCode.increment(1);
-  var expected = 2;
+  const actual = frontEndCode.increment(1);
+  const expected = 2;
   t.equal(actual, expected, 'should add one to a number');
   t.end();
 });
@@ -135,8 +135,8 @@ error message.
 So we can update the test function so it looks like this:
 ```js
 test('test increment function', function(t) {
-  var actual = frontEndCode.increment(1);
-  var expected = 2;
+  let actual = frontEndCode.increment(1);
+  let expected = 2;
   t.equal(actual, expected, 'should add one to a number');
   frontEndCode.increment('not a number');
   // JSDOM does not support the use of 'node.innerText' so we have to use 'node.textContent'
@@ -161,7 +161,7 @@ exactly the same way we would in front end code.
 ```js
 actual = document.querySelector('.error').textContent;
 ```
-(since `var actual` has already been declared above in this function's scope, we
+(since `let actual` has already been declared above in this function's scope, we
 don't have to declare it, we just have to reassign it.)
 
 Then assign what we expect to a variable:
@@ -230,7 +230,7 @@ test('increment is called properly when the inc button is clicked', function(t) 
 now we want to make sure that `count` is at zero, just in case the previous code
 has effected it, so we pull in the count node and update it:
 ```js
-var count = document.querySelector('.count');
+let count = document.querySelector('.count');
 
 frontEndCode.updateDom(frontEndCode.resetFunc(), count);
 ```
@@ -242,8 +242,8 @@ document.querySelector('.inc').click();
 ```
 And under that we can set up an expected, actual and a test by using our JSDOM.
 ```js
-var actual = count.textContent;
-var expected = '1';
+let actual = count.textContent;
+let expected = '1';
 t.equal(
   actual,
   expected,
@@ -254,13 +254,13 @@ t.end();
 You should now have a test that looks like this:
 ```js
 test('increment is called properly when the inc button is clicked', function(t) {
-  var count = document.querySelector('.count');
+  let count = document.querySelector('.count');
 
   frontEndCode.updateDom(frontEndCode.resetFunc(), count);
 
   document.querySelector('.inc').click();
-  var actual = count.textContent;
-  var expected = '1';
+  let actual = count.textContent;
+  let expected = '1';
   t.equal(
     actual,
     expected,
