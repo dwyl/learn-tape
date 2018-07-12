@@ -8,11 +8,12 @@
   "description": "Simple Test Driven Development (TDD) Tutorial using Tape",
   "author": "dwyl & friends!",
   "devDependencies": {
-    "browserify": "^14.3.0",
+    "browserify": "^16.2.2",
     "istanbul": "^0.4.5",
+    "jsdom": "^11.1.0",
     "pre-commit": "^1.2.2",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.3",
+    "tap-spec": "^5.0.0",
+    "tape": "^4.9.1",
     "testling": "^1.7.1"
   },
   "scripts": {
@@ -35,8 +36,5 @@
     "tap",
     "tutorial",
     "how to"
-  ],
-  "dependencies": {
-    "jsdom": "^11.1.0"
-  }
+  ]
 }
