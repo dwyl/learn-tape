@@ -17,8 +17,8 @@ global.document = DOM.window.document;
 const frontEndCode = require('../lib/script.js');
 
 test('test increment function', function(t) {
-  const actual = frontEndCode.increment(1);
-  const expected = 2;
+  let actual = frontEndCode.increment(1); // cannot be "const" if re-assigning below!!
+  let expected = 2;
   t.equal(actual, expected, 'should add one to a number');
   frontEndCode.increment('not a number');
   // JSDOM does not support the use of 'node.innerText' so we have to use 'node.textContent'
@@ -31,8 +31,8 @@ test('test increment function', function(t) {
 
 //the same tests for decrement
 test('test decrement function', function(t) {
-  const actual = frontEndCode.decrement(1);
-  const expected = 0;
+  let actual = frontEndCode.decrement(1);
+  let expected = 0;
   t.equal(actual, expected, 'should add one to a number');
   frontEndCode.decrement('not a number');
   actual = document.querySelector('.error').textContent;
@@ -76,9 +76,7 @@ test('testing currentCount', function(t) {
 });
 
 //testing our event listeners
-test('increment is called properly when the inc button is clicked', function(
-  t
-) {
+test('increment is called when the inc button is clicked', function(t) {
   const count = document.querySelector('.count');
 
   frontEndCode.updateDom(frontEndCode.resetFunc(), count);
