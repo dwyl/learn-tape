@@ -120,7 +120,7 @@ node test/learn-tape.test.js
 > **Note**: we use this naming convention `/test/{test-name}.test.js`
 for test files in our projects so that we can keep other "_helper_" files
 in the `/test` directory and still be able to _run_ all the _test_ files in the
-`/test` directory using a _pattern_: `node_modules./.bin/tape ./test/*.test.js`
+`/test` directory using a _pattern_: `node_modules/.bin/tape ./test/*.test.js`
 
 ### Make it _Pass_
 
