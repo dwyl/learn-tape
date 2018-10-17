@@ -1,15 +1,30 @@
-# Learn Tape
-[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape)
-[![codecov](https://codecov.io/gh/dwyl/learn-tape/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/learn-tape/branch/master)
-[![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape)
-[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape?type=dev)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-tape/issues)
+<div align="center">
 
-A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
+# Learn Tape ~ Testing in JavaScript
 
-> <small>**Note**: if you are ***new to Test Driven Development*** (TDD), we have a  more *general*
-***beginner's introduction*** and background about testing:
-[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd) </small>
+[![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-tape?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
+<!-- uncomment when PR is ready!
+[![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
+-->
+
+A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
+and ***Tap*** including front-end testing!
+
+<img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
+alt="Car Designers follow a Testing Mindset">
+
+</div>
+<br />
+
+> <small>
+**Note**: if you are ***new to Test Driven Development*** (TDD),
+consider reading our _general **beginner's introduction**_:
+[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+</small>
 
 
 ## *Why?*
@@ -17,16 +32,17 @@ A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 ***Testing*** your code is ***essential*** to ensuring reliability.
 
 There are _many_ testing frameworks so it can be
-[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en),
-***most*** try to do too much, have ***too many features***
+[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en).
+Most testing frameworks/systems try to do too much, have ***too many features***
 (["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
 or ***inject global variables*** into your run-time or have complicated syntax.
 
-The _shortcut_ to choosing our tools is to apply the golden rule:
+The _shortcut_ to choosing our tools is to apply Antoine's principal:
 
-![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png)
+![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")
 
-We use Tape because it's ***minimalist feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
+We use Tape because it's ***minimalist feature-set***
+lets you craft ***simple maintainable tests*** that ***run fast***.
 
 ### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
 
@@ -433,6 +449,7 @@ section in your `package.json`;
 ```sh
 istanbul cover tape ./test/*.test.js
 ```
+
 ### Run your Tape tests in the browser
 
 Follow these steps to run `Tape` tests in the browser:
@@ -455,13 +472,16 @@ like:
 ![browser](https://cloud.githubusercontent.com/assets/12450298/19898078/79f41d30-a052-11e6-954b-8dad5fa71771.png)
 
 #### Headless Browser
+
 You can print our your test results to the command line instead of the browser
 by using a headless browser:
 
 1. Install [`testling`](https://www.npmjs.com/package/testling):
 `npm install testling --save-dev`
+
 2. Run the following command to print your test results in your terminal:
 `node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`
+
 3. You should see something that looks like this:
 ![testling](https://cloud.githubusercontent.com/assets/12450298/19898553/63e0e8a0-a054-11e6-93e1-2fe4872989ed.png)
 
@@ -485,4 +505,5 @@ istanbul cover tape ./test/*.test.js
 ```
 
 #### What about front end code with Tape?
+
 Now that you're a pro at using Tape to test your back end code check out our [front end testing with tape guide!](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md)
