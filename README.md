@@ -42,7 +42,7 @@ The _shortcut_ to choosing our tools is to apply Antoine's principal:
 ![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")
 
 We use Tape because it's ***minimalist feature-set***
-lets you craft ***simple maintainable tests*** that ***run fast***.
+lets us craft ***simple maintainable tests*** that ***run fast***.
 
 ### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
 
@@ -60,8 +60,9 @@ e.g: `node test/my-test.js`
 
 ## *What?*
 
-Tape is a JavaScript testing framework that works in both Node.js and Browsers.
-It lets you write simple tests that are easy to read/maintain.
+Tape is a JavaScript testing framework
+that works in both Node.js and Browsers. <br />
+It lets you write simple tests that are easy to read and maintain.
 The _output_ of Tape tests is a "***TAP Stream***" which can be
 read by other programs/packages e.g. to display statistics of your tests.
 
@@ -75,22 +76,58 @@ https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
 ## *Who?*
 
-People who want to write tests for their Node.js or Web Browser JavaScript code.
-(*i.e. ALL JavaScript coders!*)
+People who write tests for their Node.js or Frontend JavaScript code.
+(_i.e. everyone that writes JavaScript!_)
 
 ## *How?*
 
+<!--
 ### Tape Features (*Subset*)
 
 > https://github.com/dwyl/learn-tape/issues/7 (_help wanted_!)
+-->
+
+### _Initialise_
+
+In your existing (_test-lacking_) project or a new learning directory, <br />
+_ensure_ that you have a **`package.json`** file
+by running the **`npm init`** command:
+
+```sh
+npm init -y
+```
+That will create a basic **`package.json`** file with the following:
+```js
+{
+  "name": "learn-tape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+That's enough to continue with the learning quest. <br />
+If you want to _understand_ the **`package.json`** file
+in more detail, see: https://docs.npmjs.com/files/package.json
+
+> If you are pushing your learning code to GitHub/GitLab,
+consider adding the standard node.js
+[**`.gitignore`**](https://github.com/github/gitignore/blob/master/Node.gitignore)
+file too.
 
 
 ### Install
 
+Install **`tape`** using the following command:
+
 ```sh
 npm install tape --save-dev
 ```
-(For us newbies, I'd like to suggest you include the npm init step.  We did this project in Iron Yard bootcamp, but didn't know to init npm, nor to add Node to the .gitignore file)
 
 You should see some output *confirming* it *installed*:
 
