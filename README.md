@@ -529,9 +529,11 @@ command:
 4. Add your test script to your newly created `test.html`:
 `echo '<script src="bundle.js"></script>' > lib/test.html`
 
-5. Copy the full path of your `test.html` file and then paste it into your
-browser. Open up the developer console and you should see something that looks
-like:
+5. Copy the full path of your `test.html` file
+and then paste it into your browser. <br />
+Open up the developer console
+and you should see something that looks like this:
+
 ![browser](https://cloud.githubusercontent.com/assets/12450298/19898078/79f41d30-a052-11e6-954b-8dad5fa71771.png)
 
 #### Headless Browser
@@ -553,20 +555,50 @@ by using a headless browser:
 > If you are new to Travis CI check out our tutorial:
 https://github.com/dwyl/learn-travis
 
-Setting up Travis-CI (_or any other CI service_) for your Tape tests is _easy_
-simply define the `test` script in your `package.json`:
+Setting up Travis-CI (_or any other CI service_) for your Tape tests
+is quite straightforward. <br />
+First define the `test` script in your `package.json`:
 
-```
+```sh
 tape ./test/*.test.js
 ```
 
-We usually let Travis send Code Coverage data to Codecov.io so we run our
-tape tests using Istanbul (see the coverage section above):
+We usually let Travis send Code Coverage data to
+[Codecov.io](https://github.com/dwyl/learn-istanbul#tracking-coverage-as-a-service)
+so we run our tape tests using Istanbul (_see the coverage section above_):
 
-```
+```sh
 istanbul cover tape ./test/*.test.js
 ```
 
-#### What about front end code with Tape?
+Next add a basic `.travis.yml` file to your project:
 
-Now that you're a pro at using Tape to test your back end code check out our [front end testing with tape guide!](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md)
+```yml
+language: node_js
+node_js:
+ - "node"
+```
+
+And _enable_ the project on Traivs-CI.
+
+
+### Can We Use Tape for _Frontend_ Tests?
+
+Now that you've learned how to use Tape to test your back end code
+check out our guide on
+[frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
+
+
+## What about _Tap_?
+
+We use **Tape** for _most_ of our JavaScript testing needs
+[@dwyl](https://github.com/dwyl?language=javascript)
+but _occasionally_ we find that having a few _specific_ extra functions
+simplifies our tests and reduces the repetitive "boilerplate".
+
+If you find yourself needing a `before` or `after` function
+to do "setup", "teardown" or resetting state in tests,
+***or*** you need to run tests in ***parallel***
+(_because you have lots of tests_),
+then _consider_ using ***`Tap`***:
+[**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
