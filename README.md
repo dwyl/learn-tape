@@ -39,7 +39,7 @@ or ***inject global variables*** into your run-time or have complicated syntax.
 
 The _shortcut_ to choosing our tools is to apply Antoine's principal:
 
-![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")
+[![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")](https://en.wikiquote.org/wiki/Antoine_de_Saint_Exup%C3%A9ry)
 
 We use Tape because it's ***minimalist feature-set***
 lets us craft ***simple maintainable tests*** that ***run fast***.
@@ -56,7 +56,8 @@ e.g: `node test/my-test.js`
 + No globally installed "CLI" required to _run_ your tests.
 + Appearance of test output (what you see in your terminal/browser) is fully customisable.
 
-> <small>Read: https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4 </small>
+> <small>For more elaborate reasoning for using Tape, read: <br /> https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4
+</small>
 
 ## *What?*
 
@@ -90,7 +91,7 @@ People who write tests for their Node.js or Frontend JavaScript code.
 ### _Initialise_
 
 In your existing (_test-lacking_) project or a new learning directory, <br />
-_ensure_ that you have a **`package.json`** file
+ensure that you have a **`package.json`** file
 by running the **`npm init`** command:
 
 ```sh
@@ -111,12 +112,13 @@ That will create a basic **`package.json`** file with the following:
   "license": "ISC"
 }
 ```
-That's enough to continue with the learning quest. <br />
-If you want to _understand_ the **`package.json`** file
+That's enough to continue with the learning quest.
+We will update the `"scripts"` section later on. <br />
+If you are _curious_ and want to _understand_ the **`package.json`** file
 in more detail, see: https://docs.npmjs.com/files/package.json
 
 > If you are pushing your learning code to GitHub/GitLab,
-consider adding the standard node.js
+consider adding a
 [**`.gitignore`**](https://github.com/github/gitignore/blob/master/Node.gitignore)
 file too.
 
@@ -206,6 +208,16 @@ Great Succes! Let's try something with a bit more code.
 
 ### Mini TDD Project: Change Calculator
 
+We are going to build a basic cash register change calculator
+following TDD using tape.
+
+> <small>
+**Note**: this should be _familiar_ to you
+if you followed the _general_
+[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+tutorial.
+</small>
+
 #### Basic Requirements
 
 > Given a **Total Payable** and **Cash From Customer**
@@ -267,12 +279,14 @@ node test/change-calculator.test.js
 
 ![Tape TFD Fail](https://cloud.githubusercontent.com/assets/194400/18610249/3a620b70-7d0f-11e6-9af5-6176f2927b26.png "Tape TFD Fail = Cannot Find Module")
 
-This error (``Cannot find module '../lib/change-calculator.js'`) is pretty self explanatory.
+This error (`Cannot find module '../lib/change-calculator.js'`)
+is pretty self explanatory. <br />
 We haven't created the file yet so the test is _requiring_ a non-existent file!
 
 > **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
 > **A**: To get used to the idea of *only* writing the code required to *pass*
->    the *current* (*failing*) *test*, and _never_ write code you think you _might_ need.
+>    the *current* (*failing*) *test*,
+and _never_ write code you think you _might_ need;
 see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 
@@ -283,9 +297,12 @@ write the code that makes the test pass.
 
 Create a new file for our change calculator `/lib/change-calculator.js`:
 
-**Note**: We are *not* going to add any code to it _yet_.
+> **Note**: We are *not* going to add any code to it _yet_.
+This is _intentional_.
 
-Re-run the test file in your terminal, you should expect to see _no output_ (_it will "pass" because there are no tests_)
+Re-run the test file in your terminal,
+you should expect to see _no output_
+(_it will "pass silently" because there are no tests!_)
 
 ![Tape Pass 0 Tests](https://cloud.githubusercontent.com/assets/194400/18610318/2d54ec02-7d11-11e6-8f72-35f967836348.png "Tape Pass 0 Tests")
 
@@ -350,7 +367,7 @@ Re-run the test file `node test/change-calculator.test.js` (_now it "passes"_):
 ![Tape 1 Test Passes](https://cloud.githubusercontent.com/assets/194400/18610825/877be2f0-7d1e-11e6-9e8f-887e9700fd1b.png "Tape 1 Test Passes")
 
 
-> Note: we aren't _really_ ***passing*** the test, we are _faking_ it
+> **Note**: we aren't _really_ ***passing*** the test, we are _faking_ it
 for illustration.
 
 
@@ -393,10 +410,13 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
 ```
 
 But its arguably *more work* than simply *solving* the problem.
-Lets do that instead.
-(**Note**: this is the *readable* version of the solution! feel free to suggest a more compact algorithm)
+Lets do that instead. <br />
 
-Update the calculateChange function in `change-calculator.js`:
+> **Note**: this is the _readable_ version of the solution!
+  Feel free to suggest a
+  [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-)
+
+Update the `calculateChange` function in `change-calculator.js`:
 
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
@@ -491,18 +511,24 @@ istanbul cover tape ./test/*.test.js
 
 Follow these steps to run `Tape` tests in the browser:
 
-1. You'll have to bundle up your test files so that the browser can read them.
-We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. **(other module bundlers are
-available)**. You'll need to install it globally to access the commands that
-come with it. Enter the following command into the command line:
+1. You'll have to bundle up your test files
+so that the browser can read them. <br />
+We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. (_other module bundlers are available_).  <br />
+You'll need to install it globally
+to access the commands that come with it. <br />
+Enter the following command into the command line:
 `npm install browserify --save-dev`
+
 2. Next you have to bundle your test files. Run the following browserify
 command:
 `node_modules/.bin/browserify test/*.js > lib/bundle.js`
+
 3. Create a `test.html` file that can hold your bundle:
 `touch lib/test.html`
+
 4. Add your test script to your newly created `test.html`:
 `echo '<script src="bundle.js"></script>' > lib/test.html`
+
 5. Copy the full path of your `test.html` file and then paste it into your
 browser. Open up the developer console and you should see something that looks
 like:
