@@ -14,8 +14,10 @@
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
 and ***Tap*** including front-end testing!
 
-<img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
-alt="Car Designers follow a Testing Mindset">
+<a href="https://youtu.be/epPS_DjEWWY?t=32" <!-- why Volvo cars are so safe! -->
+  <img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
+  alt="Car Designers follow a Testing Mindset">
+</a>
 
 </div>
 <br />
