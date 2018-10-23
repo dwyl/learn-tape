@@ -1,4 +1,4 @@
-# _Why_ Use `Tap`?
+# _Why_ `Tap`?
 
 In _most_ situations **`Tape`** will be _exactly_ what you need
 to write and run your Node.js/JavaScript tests. <br />
@@ -11,7 +11,15 @@ If you find yourself (_your project_) needing to do "setup"
 (_e.g. resetting a mock or the state of a front-end app_),
 ***OR*** you have a few hundred/thousand tests which are taking a "long time"
 to run (_e.g: more than 10 seconds_),
-then you will benefit form switching to **`Tap`**.
+then you will benefit form switching/upgrading to **`Tap`**.
+
+
+# _What_?
+
+**`Tap`** is testing framework that
+has a few _useful_ extra features without being "bloated".
+
+# _How_?
 
 
 
@@ -49,6 +57,9 @@ then you will benefit form switching to **`Tap`**.
 <br />
 
 ## Analogy: _Single_ Speed vs. _Geared_ Bicycle
+
+
+To the _untrained_ observer,
 
 
 <div align="center">
@@ -94,6 +105,8 @@ in which case we recommend a bit of background reading:
 https://bicycles.stackexchange.com/questions/1983/why-ride-a-single-speed-bike
 </small>
 
+<br />
+
 # _Why_ NOT Use `Tap` _Everywhere_?
 
 One of the _benefits_ of Free/Open Source software
@@ -122,5 +135,5 @@ or simply where test runs take longer than 10 seconds
 and running them in ***parallel*** significantly reduces waiting time.
 
 For an _extended_ practical example of where writing tests with **`Tap`**
-instead of **`Tape`** was worth the switch,
-see:
+_instead_ of **`Tape`** was worth the switch,
+see: https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example

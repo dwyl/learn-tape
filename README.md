@@ -14,7 +14,9 @@
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
 and ***Tap*** including front-end testing!
 
-<a href="https://youtu.be/epPS_DjEWWY?t=32" <!-- why Volvo cars are so safe! -->
+<a href="https://youtu.be/epPS_DjEWWY?t=32"
+ alt="Volvo cars are safer because they learn from every real world crash!">
+<!-- why Volvo cars are so safe! -->
   <img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
   alt="Car Designers follow a Testing Mindset">
 </a>
@@ -23,7 +25,7 @@ and ***Tap*** including front-end testing!
 <br />
 
 > <small>
-**Note**: if you are ***new to Test Driven Development*** (TDD),
+**Note**: if you are ***new to Test Driven Development*** (TDD), <br />
 consider reading our _general **beginner's introduction**_:
 [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
 </small>
@@ -581,26 +583,30 @@ node_js:
  - "node"
 ```
 
-And _enable_ the project on Traivs-CI.
+And _enable_ the project on Traivs-CI. <br />
+**Done**. [![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
+
+<br />
 
 
-### Can We Use Tape for _Frontend_ Tests?
+
+# Can We Use Tape for _Frontend_ Tests?
 
 Now that you've learned how to use Tape to test your back end code
 check out our guide on
 [frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
 
 
-## What about _Tap_?
+# What about _Tap_?
 
 We use **Tape** for _most_ of our JavaScript testing needs
 [@dwyl](https://github.com/dwyl?language=javascript)
 but _occasionally_ we find that having a few _specific_ extra functions
-simplifies our tests and reduces the repetitive "boilerplate".
+_simplifies_ our tests and reduces the repetitive "boilerplate".
 
-If you find yourself needing a `before` or `after` function
+If you find yourself needing a **`before`** or **`after`** function
 to do "setup", "teardown" or resetting state in tests,
 ***or*** you need to run tests in ***parallel***
 (_because you have lots of tests_),
-then _consider_ using ***`Tap`***:
+then _consider_ using **`Tap`**:
 [**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
