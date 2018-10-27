@@ -47,7 +47,6 @@ focus on building your App/Project and if you find
 that you are repeating yourself a lot in your tests,
 open an issue describing the problem e.g:
 
-
 # _How_?
 
 Continuing our theme of a "_vending machine_",
@@ -57,9 +56,10 @@ let's consider the following _real world_ use cases:
 2. _Multiple_ Vending Machines!
 
 We will add this functionality to the `calculateChange` function
-and showcase two useful **`Tap`** features.
+and showcase two useful **`Tap`** features. <br />
+Once those basics are covered,
+we will dive into something _way_ more _ambitious_!
 
-Let's get started by re-purposing the Tap test:
 
 ## 1. Install `Tap` as a Dev Dependency
 
@@ -79,6 +79,9 @@ cp test/change-calculator.test.js test/change-tap.test.js
 ```
 
 ## 3. Change the First Line of the `test/change-tap.test.js` File
+
+Open the `test/change-tap.test.js` file and change the _first_ line
+to require **`tap`** instead of **`tape`**.
 
 From:
 ```js
@@ -102,6 +105,55 @@ The output is slightly different from **`Tape`**,
 but the tests still pass:
 
 ![tap-tests-pass](https://user-images.githubusercontent.com/194400/47609430-48d7ee00-da36-11e8-9f3c-f448f78311bb.png)
+
+## 5. New Requirement: Real World Coin Supply
+
+In the "real world" the coins in the machine will be given out
+as change to the people buying products and may "run out".
+Therefore having a _fixed_ Array of coins in the `calculateChange` function
+is _artificially_ setting expectations that might not reflect _reality_.
+
+We need a way of (_optionally_) passing
+the array of coins into the `calculateChange` function
+but having a _default_ array of coins
+so the _existing_ tests continue to pass.
+
+
+> **Note**: for brevity, we are using the _functional_ solution
+to `calculateChange` function. <br />
+If this is unfamiliar to you,
+please see: https://github.com/dwyl/learn-tdd#functional
+
+
+Let's add a _new_ parameter to our JSDOC comment (_above the function_):
+
+Before:
+```js
+/**
+ * calculateChange accepts two parameters (totalPayable and cashPaid)
+ * and calculates the change in "coins" that needs to be returned.
+ * @param {number} totalPayable the integer amount (in pennies) to be paid
+ * @param {number} cashPaid the integer amount (in pennies) the person paid
+ * @returns {array} list of coins we need to dispense to the person as change
+ * @example calculateChange(215, 300); // returns [50, 20, 10, 5]
+ */
+```
+
+After:
+```js
+/**
+ * calculateChange accepts two parameters (totalPayable and cashPaid)
+ * and calculates the change in "coins" that needs to be returned.
+ * @param {number} totalPayable the integer amount (in pennies) to be paid
+ * @param {number} cashPaid the integer amount (in pennies) the person paid
+ * @param {array} [coins=COINS] the list of coins to select change from.
+ * @returns {array} list of coins we need to dispense to the person as change
+ * @example calculateChange(215, 300); // returns [50, 20, 10, 5]
+ */
+```
+
+The _full_ file should now look like this:
+[`lib/change-calculator.js`]()
 
 
 
