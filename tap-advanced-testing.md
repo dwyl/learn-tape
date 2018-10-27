@@ -4,7 +4,8 @@ In _most_ situations **`Tape`** will be _exactly_ what you need
 to write and run your Node.js/JavaScript tests. <br />
 **`Tape`** is minimalist, fast and has flexibility when you need it.
 _Occasionally_ however, the needs of the project
-require a few extra features from the testing framework.
+require a few extra features from the testing framework,
+that is when we use **`Tap`**.
 
 If you find yourself (_your project_) needing to do "setup"
 **`before`** running a test or "teardown" **`after`** the test is complete
@@ -13,14 +14,94 @@ If you find yourself (_your project_) needing to do "setup"
 to run (_e.g: more than 10 seconds_),
 then you will benefit form switching/upgrading to **`Tap`**.
 
+The **`Tap`** repo has quite a good breakdown of the _reasons_
+why you should consider using **`Tap`**:
+https://github.com/tapjs/node-tap#why-tap
+
+> _**`Tape`** has 5x more usage than **`Tap`**
+according to NPM install stats. <br />
+> This is due to a number of factors including "founder effect". <br />
+But the fact that **`Tape`** has **fewer features**
+has contributed to it's enduring/growing popularity. <br />
+Ensure you have **used** **`Tape`** in at least one "real" project
+**`before`** considering **`Tap`**, otherwise you risk complexity!_
+
+
 
 # _What_?
 
-**`Tap`** is testing framework that
-has a few _useful_ extra features without being "bloated".
+**`Tap`** is a testing framework that
+has a few _useful_ extra features _without_ being "bloated".
+
++ [x] `beforeEach`
++ [x] `afterEach`
++ [x] _parallel_ test execution
++ [x] built-in code coverage
+
+We will cover each of these features below. <br />
+
+> **`Tap`** has _many_ more "advanced" features,
+if you are _curious_ see: https://www.node-tap.org/advanced <br />
+But don't get distracted by the "bells and whistles",
+focus on building your App/Project and if you find
+that you are repeating yourself a lot in your tests,
+open an issue describing the problem e.g:
+
 
 # _How_?
 
+Continuing our theme of a "_vending machine_",
+let's consider the following _real world_ use cases:
+
+1. The Vending Machine "runs out" of coins and needs to be _re-filled_!
+2. _Multiple_ Vending Machines!
+
+We will add this functionality to the `calculateChange` function
+and showcase two useful **`Tap`** features.
+
+Let's get started by re-purposing the Tap test:
+
+## 1. Install `Tap` as a Dev Dependency
+
+Start by installing `Tap` ]
+and saving it to your `package.json`:
+
+```sh
+npm install tap --save-dev
+```
+
+## 2. Copy the **`Tape`** Test
+
+Copy the **`Tape`** test
+so we can repurpose it for **`Tap`**:
+```js
+cp test/change-calculator.test.js test/change-tap.test.js
+```
+
+## 3. Change the First Line of the `test/change-tap.test.js` File
+
+From:
+```js
+const test = require('tape');
+```
+
+To:
+```js
+const test = require('tap').test;
+```
+
+## 4. Run the Test
+
+Run the **`Tap`** tests:
+
+```sh
+node test/change-tap.test.js
+```
+
+The output is slightly different from **`Tape`**,
+but the tests still pass:
+
+![tap-tests-pass](https://user-images.githubusercontent.com/194400/47609430-48d7ee00-da36-11e8-9f3c-f448f78311bb.png)
 
 
 
@@ -42,19 +123,8 @@ has a few _useful_ extra features without being "bloated".
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<br />
+<!--
+<br /><br /><br />
 
 ## Analogy: _Single_ Speed vs. _Geared_ Bicycle
 
@@ -63,7 +133,7 @@ To the _untrained_ observer,
 
 
 <div align="center">
-    <a href="https://user-images.githubusercontent.com/194400/46041154-102cb800-c10a-11e8-8646-153a77b53408.jpg"> <!-- link to larger version of image -->
+    <a href="https://user-images.githubusercontent.com/194400/46041154-102cb800-c10a-11e8-8646-153a77b53408.jpg">
         <img width="700px" src="https://user-images.githubusercontent.com/194400/47200839-8a4e0680-d36f-11e8-9419-96e8c0ca968e.jpg"
         alt="single speed bicycle - perfect for short trips on fairly flat ground">
     </a>
@@ -79,7 +149,7 @@ for commuting from home to work, going to the shops, etc.
 
 
 <div align="center">
-    <a href="https://user-images.githubusercontent.com/194400/46041153-102cb800-c10a-11e8-9c51-3c16eb81db4c.jpg"> <!-- link to larger version of image -->
+    <a href="https://user-images.githubusercontent.com/194400/46041153-102cb800-c10a-11e8-9c51-3c16eb81db4c.jpg">
         <img width="700px" src="https://user-images.githubusercontent.com/194400/47200840-8a4e0680-d36f-11e8-8634-2fcf80eedee5.jpg"
         alt="geared bicycle bicycle - for longer distances and hilly terrain">
     </a>
@@ -118,7 +188,7 @@ the only "cost" to adopting a new tool is **_learning_ time**.
 Given that **`Tap`** is a "drop-in replacement" for **`Tape`**
 in _most_ cases, the switching cost is just **`npm install tap --save-dev`**
 followed by a find-and-replace across the files in your project from:
-**`require('tape')`** to **`require('tap')`**.
+**`require('tape')`** to **`require('tap').test`**.
 
 Over the last 5 years @dwyl we have tested **200+** projects using **`Tape`**
 (_both Open Source and Client projects_).
@@ -137,3 +207,5 @@ and running them in ***parallel*** significantly reduces waiting time.
 For an _extended_ practical example of where writing tests with **`Tap`**
 _instead_ of **`Tape`** was worth the switch,
 see: https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+
+-->
