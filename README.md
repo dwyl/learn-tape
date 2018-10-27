@@ -25,8 +25,9 @@ and ***Tap*** including front-end testing!
 <br />
 
 > <small>
-**Note**: if you are ***new to Test Driven Development*** (TDD), <br />
-consider reading our _general **beginner's introduction**_:
+**Note**: this guide is specific to testing with **`Tape`**.
+If you are ***new to Test Driven Development*** (TDD) in _general_,
+consider reading our _**beginner's introduction**_:
 [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
 </small>
 
@@ -320,7 +321,7 @@ e.g:
 ```
 totalPayable = 210         // £2.10
 cashPaid     = 300         // £3.00
-difference    =  90         // 90p
+difference   =  90         // 90p
 change       = [50,20,20]  // 50p, 20p, 20p
 ```
 
@@ -343,8 +344,9 @@ Re-run the test file: `node test/change-calculator.test.js`
 
 #### Export the `calculateChange` Function
 
-Right now our `change-calculator.js` file does not _contain_ anything,
-so when it's `require`'d in the test we get a error: `TypeError: calculateChange is not a function`
+Right now our `change-calculator.js` file does not _contain_ anything, <br />
+so when it's `require`'d in the test we get a error:
+`TypeError: calculateChange is not a function`
 
 We can "fix" this by _exporting_ a function. add a single line to `change-calculator.js`:
 
@@ -428,7 +430,7 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
   const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
   let change = [];
   const length = coins.length;
-  let remaining = cashPaid - totalPayable;          // we reduce this below
+  let remaining = cashPaid - totalPayable;  // we reduce this below
 
   for (let i = 0; i < length; i++) { // loop through array of notes & coins:
     let coin = coins[i];
@@ -445,6 +447,18 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
   return change;
 };
 ```
+
+> _**Note**: we **prefer** the "**functional programming**" approach
+when solving the to the calculateChange function._ <br />
+_We have used an "**imperative**" style here simply because
+it is more **familiar** to **most people** ... <br />
+If you are **curious** about the the **functional** solution,
+and you should be, <br />
+see_: https://github.com/dwyl/learn-tdd#functional
+
+
+
+#### Add More Tests!
 
 Add _one more_ test to ensure we are *fully* exercising our method:
 
@@ -467,10 +481,18 @@ test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 
 ![Tape 4 Passing](https://cloud.githubusercontent.com/assets/194400/18611450/9676bfb0-7d31-11e6-91fa-c48fb2630a65.png "Tape 4 Passing")
 
 
+> _**Note**: adding more test examples is good way of achieving **confidence**
+in your code. We often have 3x more example/test code than we do "library" code
+in order to test all the "edge cases".
+If you get the point where feel you are "working too hard" writing tests,
+consider using_
+["property based testing"](https://github.com/dwyl/learn-elixir/issues/93#issuecomment-433616917)
+_to **automate** testing thousands of cases_.
+
 
 - - -
 
-### Bonus Level
+### _Bonus_ Level
 
 #### Code Coverage
 
