@@ -393,8 +393,8 @@ module.exports = {
 ```
 
 Try to solve this challenge yourself (_or in pairs/teams_)
-before looking at the "solution":
-[`lib/vending-machine.js > reduceCoinSupply`]()
+_before_ looking at the "solution":
+[`lib/vending-machine.js > reduceCoinSupply`](https://github.com/dwyl/learn-tape/blob/4237175283ff36777fb7631aa52cbbefbf578853/lib/vending-machine.js#L10)
 
 When it passes you should see:
 
