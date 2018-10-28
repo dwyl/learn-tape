@@ -313,13 +313,13 @@ https://en.wikipedia.org/wiki/Coins_of_the_pound_sterling#Coins_in_circulation
 
 #### 5.5.1 Create the `lib/vending-machine.js` File
 
-Create the new file for the more "advanced" Vending Machine functionality:
+Create the `new` file for the more "advanced" Vending Machine functionality:
 
 ```sh
 atom lib/vending-machine.js
 ```
 
-#### 5.5.2 Write JSDOC for the Function
+#### 5.5.2 Write JSDOC for the `reduceCoinSupply` function
 
 Following "Documentation Driven Development" (DDD),
 we write the JSDOC Documentation comment _first_
@@ -351,8 +351,32 @@ but the more experienced you become as a engineer,
 the more you will value maintainability;
 writing maintainable code is a _super power_ everyone can achieve!
 
+#### 5.5.3 Write a _Test_ for the `reduceCoinSupply` function
 
+Create the file `test/vending-machine.test.js`
+and add the following code to it:
 
+```js
+const test = require('tap').test;
+const vendingMachine = require('../lib/vending-machine.js');
+const reduceCoinSupply = vendingMachine.reduceCoinSupply;
+
+test('reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]); returns [200, 1]', function (t) {
+  const result = reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]);
+  const expected = [200, 1];
+  t.deepEqual(result, expected);
+  t.end();
+});
+```
+
+Save the file and run the test:
+```sh
+node test/vending-machine.test.js
+```
+
+You should see it _fail_:
+
+![reduceCoinSupply-failing-test-not-a-function](https://user-images.githubusercontent.com/194400/47623074-9b7fdb80-db04-11e8-8b79-706d858b3b27.png)
 
 
 
