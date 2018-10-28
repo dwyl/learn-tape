@@ -106,7 +106,7 @@ but the tests still pass:
 
 ![tap-tests-pass](https://user-images.githubusercontent.com/194400/47609430-48d7ee00-da36-11e8-9f3c-f448f78311bb.png)
 
-## 5. New Requirement: Real World Coin Supply
+## 5. New Requirement: Real World Coin "Supply"
 
 In the "real world" the coins in the machine will be given out
 as change to the people buying products and may "run out".
@@ -224,6 +224,7 @@ module.exports = function calculateChange (totalPayable, cashPaid, coinsAvail) {
 
 The tests will still not pass. Re-run them and see for yourself.
 
+
 ### 5.4 _Implement_ Default value `COINS` when `coinsAvail` is `undefined`
 
 Given that the `coinsAvail` parameter is _optional_ we need
@@ -251,8 +252,8 @@ module.exports = function calculateChange (totalPayable, cashPaid, coinsAvail) {
 }
 ```
 
-This should be enough code to make the test defined above in step 5.2 _pass_.
-Save your chances to the `calculateChange` function and re-run the tests:
+This should be _enough_ code to make the test defined above in step 5.2 _pass_.
+Save your changes to the `calculateChange` function and re-run the tests:
 
 ```sh
 node test/change-tap.test.js
@@ -267,9 +268,88 @@ That's it, you've satisfied the requirement of allowing a
 to be passed into the `calculateChange` function.
 
 But hold on ... are we _really_ testing the _real-world_ scenario
-where the coins are _removed_ from the `coinsAvail` each time
+where the coins are _removed_ from the `coinsAvail` ("supply") each time
 the Vending Machine gives out change...?
 
+The answer is "No".
+All our _previous_ tests assume an infinite supply of coins
+and the _latest_ test simply passes in the array of `coinsAvail`,
+we are not _removing_ the coins from the `coinsAvail` Array.
+
+
+### 5.5 Reduce the "Supply" of Available Coins
+
+In the "_real world_" we need to reduce the coins in the vending machine
+each time change is given.
+
+Imagine that the vending machine starts out
+with a supply of **10** of _each_ coin:
+
+```js
+let COINS = [
+  200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+  100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+  50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+  20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+  10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+  5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+];
+```
+
+Each time the machine returns coins we need to _remove_ them from the supply
+otherwise we could end up giving the _incorrect_ change
+because the machine may attempt to disburse coins which it does not _have_.
+
+Let's create a new module/function to implement this requirement.
+
+> <small>_**Note**: for the purposes of this tutorial/example we are allocating
+10 of each type of coin to the "supply". <br />
+If we want represent the **actual** coins in circulation,
+we would need to apportion coins according to their popularity, <br /> see_:
+https://en.wikipedia.org/wiki/Coins_of_the_pound_sterling#Coins_in_circulation
+</small>
+
+#### 5.5.1 Create the `lib/vending-machine.js` File
+
+Create the new file for the more "advanced" Vending Machine functionality:
+
+```sh
+atom lib/vending-machine.js
+```
+
+#### 5.5.2 Write JSDOC for the Function
+
+Following "Documentation Driven Development" (DDD),
+we write the JSDOC Documentation comment _first_
+and consider the function signature up-front.
+
+```js
+/**
+ * reduceCoinSupply removes the coins being given as change from the "supply"
+ * so that the vending machine does not attempt to give coins it does not have!
+ * @param {number} cashPaid the integer amount (in pennies) the person paid
+ * @param {array} coinsAvail supply of coins to chose from when giving change.
+ * @param {array} changeGiven the list of coins returned as change.
+ * @returns {array} list of coins available in the vending machine
+ * @example reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]); // [200, 1]
+ */
+function reduceCoinSupply (coinsAvail, changeGiven) {
+
+}
+```
+
+By now the JSDOC syntax should be _familiar_ to you.
+If not, see: https://github.com/dwyl/learn-jsdoc
+
+> Document-Driven Development as an engineering discipline
+takes a bit of getting used to,
+but it's _guaranteed_ to result in more maintainable code.
+As a beginner, this may not be your primary focus,
+but the more experienced you become as a engineer,
+the more you will value maintainability;
+writing maintainable code is a _super power_ everyone can achieve!
 
 
 
