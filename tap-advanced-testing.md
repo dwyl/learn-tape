@@ -378,6 +378,28 @@ You should see it _fail_:
 
 ![reduceCoinSupply-failing-test-not-a-function](https://user-images.githubusercontent.com/194400/47623074-9b7fdb80-db04-11e8-8b79-706d858b3b27.png)
 
+#### 5.5.4 Write _Just Enough_ Code to Make the Test Pass!
+
+In the `lib/vending-machine.js` file,
+write _just_ enough code in the `reduceCoinSupply` function body
+to make the test pass.
+
+Remember to _export_ the function at the end of the file:
+
+```js
+module.exports = {
+  reduceCoinSupply: reduceCoinSupply
+}
+```
+
+Try to solve this challenge yourself (_or in pairs/teams_)
+before looking at the "solution":
+[`lib/vending-machine.js > reduceCoinSupply`]()
+
+When it passes you should see:
+
+![reduceCoinSupply-test-passing](https://user-images.githubusercontent.com/194400/47623473-e0f2d780-db09-11e8-9dbb-48493ee0352e.png)
+
 
 
 <!--
