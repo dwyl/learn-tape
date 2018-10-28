@@ -28,3 +28,11 @@ test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 
   t.deepEqual(result, expected);
   t.end();
 });
+
+test('Vending Machine has no £1 coins left! calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]) should equal [100, 50, 10, 2, 1 ]',
+function (t) {
+  const result = calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]);
+  const expected = [50, 50, 50, 10, 2, 1 ]; // £1.63
+  t.deepEqual(result, expected);
+  t.end();
+});

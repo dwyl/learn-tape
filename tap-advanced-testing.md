@@ -124,8 +124,9 @@ to `calculateChange` function. <br />
 If this is unfamiliar to you,
 please see: https://github.com/dwyl/learn-tdd#functional
 
+### 5.1 Add `coinsAvail` (_optional_) parameter to JSDOC
 
-Let's add a _new_ parameter to our JSDOC comment (_above the function_):
+Add a _new_ parameter to the JSDOC comment (_above the function_):
 
 Before:
 ```js
@@ -146,28 +147,128 @@ After:
  * and calculates the change in "coins" that needs to be returned.
  * @param {number} totalPayable the integer amount (in pennies) to be paid
  * @param {number} cashPaid the integer amount (in pennies) the person paid
- * @param {array} [coins=COINS] the list of coins to select change from.
+ * @param {array} [coinsAvail=COINS] the list of coins available to select from.
  * @returns {array} list of coins we need to dispense to the person as change
  * @example calculateChange(215, 300); // returns [50, 20, 10, 5]
  */
 ```
 
+The important bit is:
+```js
+ * @param {array} [coinsAvail=COINS] the list of coins available to select from.
+```
+
+`[coinsAvail=COINS]` means:
++ the argument will be called `coinsAvail` and
++ a default value of `COINS` (_the default Array of coins_) will be set
+if the argument is undefined.
++ the `[ ]` (_square brackets_) around
+the parameter definition indicates that it's _optional_.
+
+More detail on optional parameters in JSDOC comments, <br />
+see: http://usejsdoc.org/tags-param.html#optional-parameters-and-default-values
+
 The _full_ file should now look like this:
-[`lib/change-calculator.js`]()
+[`lib/change-calculator.js`](https://github.com/dwyl/learn-tape/blob/d157a609ad8f2900588b1e118624b6e17d4c36c9/lib/change-calculator.js)
+
+
+> At this point nothing in the `calculateChange` function or tests has changed,
+so if you run the tests,
+you should see _exactly_ the same output as above in step 4;
+all tests still pass.
+
+
+### 5.2 Add a _Test_ For the New `coinsAvail` Parameter
+
+Add the following test to your `test/change-tap.test.js` file:
+
+```js
+test('Vending Machine has no £1 coins left! calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]) should equal [100, 50, 10, 2, 1 ]', function (t) {
+  const result = calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]);
+  const expected = [50, 50, 50, 10, 2, 1 ]; // £1.63
+  t.deepEqual(result, expected);
+  t.end();
+});
+```
+
+Run the **`Tap`** tests:
+
+```sh
+node test/change-tap.test.js
+```
+
+You should see the test _fail_:
+
+![tap-test-fail](https://user-images.githubusercontent.com/194400/47610486-539e7d00-da4e-11e8-9989-2c39bc2403e7.png)
 
 
 
+### 5.3 Add `coinsAvail` (_optional_) Parameter to `calculateChange` Function
 
+Now that we've written the JSDOC for our function,
+let's add the `coinsAvail` parameter to the `calculateChange` function:
 
+Before:
+```js
+module.exports = function calculateChange (totalPayable, cashPaid) {
+  ...
+}
+```
 
+After:
+```js
+module.exports = function calculateChange (totalPayable, cashPaid, coinsAvail) {
+  ...
+}
+```
 
+The tests will still not pass. Re-run them and see for yourself.
 
+### 5.4 _Implement_ Default value `COINS` when `coinsAvail` is `undefined`
 
+Given that the `coinsAvail` parameter is _optional_ we need
+a default value to work with in our function,
+let's create a `coins` function-scoped variable
+and use _conditional assignment_ to set `COINS` as the default value
+of the Array if `coinsAvail` is undefined:
 
+Before:
+```js
+module.exports = function calculateChange (totalPayable, cashPaid, coinsAvail) {
+  return COINS.reduce(function (change, coin) {
+    // etc.
+  }, []);
+}
+```
 
+After:
+```js
+module.exports = function calculateChange (totalPayable, cashPaid, coinsAvail) {
+  const coins = coinsAvail || COINS; // if coinsAvail param undefined use COINS
+  return coins.reduce(function (change, coin) {
+    // etc.  
+  }, []);
+}
+```
 
+This should be enough code to make the test defined above in step 5.2 _pass_.
+Save your chances to the `calculateChange` function and re-run the tests:
 
+```sh
+node test/change-tap.test.js
+```
 
+You should see all the tests _pass_:
+
+![coinsAvail-test-passing](https://user-images.githubusercontent.com/194400/47610513-fbb44600-da4e-11e8-9593-683735cde5a6.png)
+
+That's it, you've satisfied the requirement of allowing a
+`coinsAvail` ("Coins Available") array
+to be passed into the `calculateChange` function.
+
+But hold on ... are we _really_ testing the _real-world_ scenario
+where the coins are _removed_ from the `coinsAvail` each time
+the Vending Machine gives out change...?
 
 
 
