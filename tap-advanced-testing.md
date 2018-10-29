@@ -624,7 +624,6 @@ tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function
 });
 ```
 
-<!--
 > <small> _**Note**: you will have noticed both from the JSDOC and
 the test invocation that the `sellProduct` function returns **one**
 array; the list of coins to give the customer as change.
@@ -635,7 +634,8 @@ primitive
 so we can either return an `Object` in the `sellProduct` function
 or `return` **just** the Array of coins
 to be given to the customer as change.
-
+The second assertion in the test shows that the COINS array in
+vendingMachine module is being "mutated" by the `sellProduct` function.
 This is an **undesirable** "**side effect**" but
 this illustrates something you are likely to see in the "wild".
 If you feel "uncomfortable" with this "impure" style, and you should,
@@ -644,7 +644,6 @@ _JavaScript "works", but it's **ridiculously easy**
 to **inadvertently introduce bugs** and "unsafety".
 which is why [sanctuary](https://github.com/sanctuary-js/sanctuary)
 exists._ </small><br />
--->
 
 
 If you run the tests:
@@ -677,6 +676,10 @@ before looking at the
 
 Don't forget to **`export`** the `sellProduct` function.
 
+
+#### 5.7.4 What is the State?
+
+Within the context of our
 
 
 <!--
