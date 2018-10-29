@@ -624,6 +624,7 @@ tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function
 });
 ```
 
+<!--
 > <small> _**Note**: you will have noticed both from the JSDOC and
 the test invocation that the `sellProduct` function returns **one**
 array; the list of coins to give the customer as change.
@@ -633,10 +634,8 @@ primitive
 (which would allow a function to return multiple values),
 so we can either return an `Object` in the `sellProduct` function
 or `return` **just** the Array of coins
-to be given to the customer as change
-and rely on JavaScript passing variables
-[by reference](https://hackernoon.com/grasp-by-value-and-by-reference-in-javascript-7ed75efa1293)
-to ensure that the `COINS` array will be reduced.
+to be given to the customer as change.
+
 This is an **undesirable** "**side effect**" but
 this illustrates something you are likely to see in the "wild".
 If you feel "uncomfortable" with this "impure" style, and you should,
@@ -645,6 +644,7 @@ _JavaScript "works", but it's **ridiculously easy**
 to **inadvertently introduce bugs** and "unsafety".
 which is why [sanctuary](https://github.com/sanctuary-js/sanctuary)
 exists._ </small><br />
+-->
 
 
 If you run the tests:
