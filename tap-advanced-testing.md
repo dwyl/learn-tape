@@ -401,6 +401,62 @@ When it passes you should see:
 ![reduceCoinSupply-test-passing](https://user-images.githubusercontent.com/194400/47623473-e0f2d780-db09-11e8-9dbb-48493ee0352e.png)
 
 
+#### 5.5.5 Write _Another_ Test Example!
+
+To "_exercise_" the `reduceCoinSupply` function,
+let's add another test example.
+Add the following test to the `test/vending-machine.test.js` file:
+
+```js
+test('reduceCoinSupply remove more coins!', function (t) {
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  const remove = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10,
+    5, 5, 5, 5,
+    2, 2, 2,
+    1, 1,
+  ];
+  const expected = [
+    200,
+    100, 100,
+    50, 50, 50,
+    20, 20, 20, 20,
+    10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1
+  ];
+
+  const result = reduceCoinSupply(COINS, remove);
+  t.deepEqual(result, expected);
+  t.end();
+});
+```
+
+You should not need to make any changes to your `reduceCoinSupply` function.
+Simply saving the test file and re-running the Tap tests:
+
+```sh
+node test/vending-machine.test.js
+```
+
+You should see the _both_ tests pass:
+
+![remove-more-coins-passing](https://user-images.githubusercontent.com/194400/47623857-f8cc5a80-db0d-11e8-82da-e828a00e7ca6.png)
+
 
 <!--
 <br /><br /><br />
