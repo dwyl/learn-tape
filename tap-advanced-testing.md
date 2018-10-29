@@ -143,7 +143,7 @@ Before:
 After:
 ```js
 /**
- * calculateChange accepts two parameters (totalPayable and cashPaid)
+ * calculateChange accepts three parameters (totalPayable, cashPaid, coinsAvail)
  * and calculates the change in "coins" that needs to be returned.
  * @param {number} totalPayable the integer amount (in pennies) to be paid
  * @param {number} cashPaid the integer amount (in pennies) the person paid
@@ -549,16 +549,83 @@ which calculates the change for a given amount of money received
 and price of product being purchased,
 and we have the `reduceCoinSupply` function which removes coins
 from the "supply" the vending machine has.
+These can be considered "internal" functions.
 
 Now _all_ we have to do is _combine_ these two functions into a
 "public interface" which handles _both_ calculating change
 and disbursing the coins from the supply.
 
-#### 5.7.1 
+#### 5.7.1 Write JSDOC Comment for `sellProduct` Function
+
+Add the following JSDOC comment and function signature to
+the `lib/vending-machine.js` file:
+
+```js
+/**
+ * sellProduct accepts three parameters (totalPayable, coinsPaid and coinsAvail)
+ * and calculates the change in "coins" that needs to be returned.
+ * @param {number} totalPayable the integer amount (in pennies) to be paid
+ * @param {array} coinsPaid the list of coins (in pennies) the person paid
+ * @param {array} [coinsAvail=COINS] the list of coins available to select from.
+ * @returns {array} list of coins we need to dispense to the person as change
+ * @example sellProduct(215, [200, 100]); // returns [50, 20, 10, 5]
+ */
+function sellProduct (totalPayable, coinsPaid, coinsAvail) {
+
+}
+```
+
+Things to note here:
+the JSDOC and function signature
+are _similar_ to the `calculateChange` function
+the key distinction is the second parameter: `coinsPaid`.
+The vending machine receives a list of _coins_ when the person makes a purchase.
 
 
+#### 5.7.2 Craft a _Test_ for the `sellProduct` Function
+
+In your `test/vending-machine.test.js` file add the following code:
+
+```js
+tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function (t) {
+  const result = sellProduct(215, [200, 100])
+  const expected = [50, 20, 10, 5];
+  t.deepEqual(COINS, vendingMachine.COINS);
+  t.end();
+});
+```
+
+> _**Note**: you will have noticed both from the JSDOC and
+the test invocation that the `sellProduct` function returns **one**
+array; the list of coins to give the customer as change.
+JavaScript does not have a
+["tuple"](https://elixir-lang.org/getting-started/basic-types.html)
+primitive
+(which would allow a function to return multiple values),
+so we can either return an `Object` in the `sellProduct` function
+or `return` **just** the Array of coins
+to be given to the customer as change
+and rely on JavaScript passing variables by reference feature
+to ensure that the COINS array will be reduced.
+This is an **undesirable** "**side effect**" but
+this illustrates something you are likely to see in the "wild".
+If you feel "uncomfortable" with this "impure" style, and you should,
+consider learning a functional language like Elm, Elixir or Haskell_
+_JavaScript "works", but it's **ridiculously easy**
+to **inadvertently introduce bugs** and "unsafety".
+which is why [sanctuary](https://github.com/sanctuary-js/sanctuary) exists._
 
 
+If you run the tests,
+
+```sh
+node test/vending-machine.test.js
+```
+
+you will see the last one fail:
+
+
+#### 5.7.3
 
 At the top of the `lib/vending-machine.js` file,
 add the following line:
