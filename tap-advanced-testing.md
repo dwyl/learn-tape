@@ -1,3 +1,8 @@
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/194400/47678067-c0ce2180-dbb8-11e8-84c9-061f495e96c2.png"
+  alt="TAP">
+</div>
+
 # _Why_ `Tap`?
 
 In _most_ situations **`Tape`** will be _exactly_ what you need
@@ -493,7 +498,9 @@ tap.test('Check Initial Supply of Coins in Vending Machine', function (t) {
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ];
-  t.deepEqual(COINS, vendingMachine.COINS);
+  t.deepEqual(vendingMachine.getCoinsAvail(), COINS);
+  vendingMachine.setCoinsAvail([1,2,3]);
+  t.deepEqual(vendingMachine.getCoinsAvail(), [1,2,3]);
   t.end();
 });
 ```
@@ -525,15 +532,33 @@ let COINS = [
   2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ];
+
+
+/**
+ * setCoinsAvail a "setter" for the COINS Array
+ * @param {Array} coinsAvail the list of available coins
+ */
+function setCoinsAvail (coinsAvail) {
+  COINS = coinsAvail;
+}
+
+/**
+ * getCoinsAvail a "getter" for the COINS Array
+ */
+function getCoinsAvail () {
+  return COINS;
+}
+
 ```
 
 We will _use_ the `COINS` array in the next step.
-For now, simply _export_ it so the test will pass:
+For now, simply _export_ "getter" and "setter" so the test will pass:
 
 ```js
 module.exports = {
   reduceCoinSupply: reduceCoinSupply,
-  COINS: COINS
+  setCoinsAvail: setCoinsAvail,
+  getCoinsAvail: getCoinsAvail,
 }
 ```
 
@@ -588,14 +613,18 @@ In your `test/vending-machine.test.js` file add the following code:
 
 ```js
 tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function (t) {
-  const result = sellProduct(215, [200, 100])
+  const COINS = vendingMachine.getCoinsAvail();
+  const coinsPaid = [200, 100];
+  const result = vendingMachine.sellProduct(215, coinsPaid, COINS);
   const expected = [50, 20, 10, 5];
-  t.deepEqual(COINS, vendingMachine.COINS);
+  t.deepEqual(result, expected);
+  // check that the supply of COINS Available in the vendingMachine was reduced:
+  t.deepEqual(vendingMachine.getCoinsAvail(), reduceCoinSupply(COINS, result));
   t.end();
 });
 ```
 
-> _**Note**: you will have noticed both from the JSDOC and
+> <small> _**Note**: you will have noticed both from the JSDOC and
 the test invocation that the `sellProduct` function returns **one**
 array; the list of coins to give the customer as change.
 JavaScript does not have a
@@ -605,18 +634,20 @@ primitive
 so we can either return an `Object` in the `sellProduct` function
 or `return` **just** the Array of coins
 to be given to the customer as change
-and rely on JavaScript passing variables by reference feature
-to ensure that the COINS array will be reduced.
+and rely on JavaScript passing variables
+[by reference](https://hackernoon.com/grasp-by-value-and-by-reference-in-javascript-7ed75efa1293)
+to ensure that the `COINS` array will be reduced.
 This is an **undesirable** "**side effect**" but
 this illustrates something you are likely to see in the "wild".
 If you feel "uncomfortable" with this "impure" style, and you should,
 consider learning a functional language like Elm, Elixir or Haskell_
 _JavaScript "works", but it's **ridiculously easy**
 to **inadvertently introduce bugs** and "unsafety".
-which is why [sanctuary](https://github.com/sanctuary-js/sanctuary) exists._
+which is why [sanctuary](https://github.com/sanctuary-js/sanctuary)
+exists._ </small><br />
 
 
-If you run the tests,
+If you run the tests:
 
 ```sh
 node test/vending-machine.test.js
@@ -624,8 +655,13 @@ node test/vending-machine.test.js
 
 you will see the last one fail:
 
+![sellProduct-test-fail](https://user-images.githubusercontent.com/194400/47678596-1bb44880-dbba-11e8-8927-892149a201bd.png)
 
-#### 5.7.3
+
+#### 5.7.3 _Implement_ the `sellProduct` Function to Pass the Test
+
+The `sellProduct` function will _invoke_ the `calculateChange` function,
+so the _first_ thing we need to do is import it.
 
 At the top of the `lib/vending-machine.js` file,
 add the following line:
@@ -633,7 +669,13 @@ add the following line:
 const calculateChange = require('./change-calculator.js');
 ```
 
+Now we can implement `sellProduct` which should only a few lines
+invoking other functions.
+Again, try implementing it yourself (_or in pairs/teams_),
+before looking at the
+[`vendingMachine.sellProduct` solution]()
 
+Don't forget to **`export`** the `sellProduct` function.
 
 
 

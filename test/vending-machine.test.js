@@ -57,6 +57,19 @@ tap.test('Check Initial Supply of Coins in Vending Machine', function (t) {
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1
   ];
-  t.deepEqual(vendingMachine.COINS, COINS);
+  t.deepEqual(vendingMachine.getCoinsAvail(), COINS);
+  vendingMachine.setCoinsAvail([1,2,3]);
+  t.deepEqual(vendingMachine.getCoinsAvail(), [1,2,3]);
+  t.end();
+});
+
+tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function (t) {
+  const COINS = vendingMachine.getCoinsAvail();
+  const coinsPaid = [200, 100];
+  const result = vendingMachine.sellProduct(215, coinsPaid, COINS);
+  const expected = [50, 20, 10, 5];
+  t.deepEqual(result, expected);
+  // check that the supply of COINS Available in the vendingMachine was reduced:
+  t.deepEqual(vendingMachine.getCoinsAvail(), reduceCoinSupply(COINS, result));
   t.end();
 });
