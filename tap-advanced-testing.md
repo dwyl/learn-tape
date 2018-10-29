@@ -357,11 +357,11 @@ Create the file `test/vending-machine.test.js`
 and add the following code to it:
 
 ```js
-const test = require('tap').test;
+const test = require('tap');
 const vendingMachine = require('../lib/vending-machine.js');
 const reduceCoinSupply = vendingMachine.reduceCoinSupply;
 
-test('reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]); returns [200, 1]', function (t) {
+tap.test('reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]); returns [200, 1]', function (t) {
   const result = reduceCoinSupply([200, 100, 50, 10, 1], [100, 50, 10]);
   const expected = [200, 1];
   t.deepEqual(result, expected);
@@ -404,11 +404,11 @@ When it passes you should see:
 #### 5.5.5 Write _Another_ Test Example!
 
 To "_exercise_" the `reduceCoinSupply` function,
-let's add another test example.
+let's add another test example. <br />
 Add the following test to the `test/vending-machine.test.js` file:
 
 ```js
-test('reduceCoinSupply remove more coins!', function (t) {
+tap.test('reduceCoinSupply remove more coins!', function (t) {
   const COINS = [
     200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
     100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
@@ -456,6 +456,118 @@ node test/vending-machine.test.js
 You should see the _both_ tests pass:
 
 ![remove-more-coins-passing](https://user-images.githubusercontent.com/194400/47623857-f8cc5a80-db0d-11e8-82da-e828a00e7ca6.png)
+
+
+So far so good, we have a way of reducing the coins available
+but there is still an
+["elephant in the room"](https://en.wikipedia.org/wiki/Elephant_in_the_room) ...
+how does the Vending Machine **keep track**
+of the **coins** it has _**available**_?
+i.e the "**state**" of the machine.
+
+### 5.6 How Does the Vending Machine Maintain "State"?
+
+The vending machine needs to "_know_" how many coins it still has,
+to avoid trying to give coins it does not have available.
+
+> There are a _number_ of ways of doing "state management".
+Our favourite is the Elm Architecture.
+We wrote a _dedicated_ tutorial for it; see:
+https://github.com/dwyl/learn-elm-architecture-in-javascript <br />
+However to illustrate a _less_ sophisticated state management
+we are using a _global_ `COINS` Array.
+
+#### 5.6.1 Create a Test for the Vending Machine `COINS` "Initial State"
+
+In your `test/vending-machine.test.js` file add the following code:
+
+```js
+tap.test('Check Initial Supply of Coins in Vending Machine', function (t) {
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  t.deepEqual(COINS, vendingMachine.COINS);
+  t.end();
+});
+```
+
+If you run the tests,
+
+```sh
+node test/vending-machine.test.js
+```
+
+you will see the last one fail:
+![coin-supply-test-fail](https://user-images.githubusercontent.com/194400/47670542-5cee2d80-dba5-11e8-820b-811de276d8dd.png)
+
+#### 5.6.2 Write the Code to Make the Test _Pass_
+
+In `lib/vending-machine.js` file,
+after the `reduceCoinSupply` function definition,
+add the following variable declaration:
+
+```js
+// GOLBAL Coins Available Array. 10 of each type of coin.
+let COINS = [
+  200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+  100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+  50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+  20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+  10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+  5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+];
+```
+
+We will _use_ the `COINS` array in the next step.
+For now, simply _export_ it so the test will pass:
+
+```js
+module.exports = {
+  reduceCoinSupply: reduceCoinSupply,
+  COINS: COINS
+}
+```
+
+Re-run the test and watch it _pass_:
+
+![coins-test-passing](https://user-images.githubusercontent.com/194400/47670720-d2f29480-dba5-11e8-8187-48b1b3fa7017.png)
+
+
+### 5.7 Vending Machine > `sellProduct` Function
+
+We already have a `calculateChange` function
+which calculates the change for a given amount of money received
+and price of product being purchased,
+and we have the `reduceCoinSupply` function which removes coins
+from the "supply" the vending machine has.
+
+Now _all_ we have to do is _combine_ these two functions into a
+"public interface" which handles _both_ calculating change
+and disbursing the coins from the supply.
+
+#### 5.7.1 
+
+
+
+
+
+At the top of the `lib/vending-machine.js` file,
+add the following line:
+```js
+const calculateChange = require('./change-calculator.js');
+```
+
+
+
 
 
 <!--
