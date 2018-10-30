@@ -191,7 +191,8 @@ Add the following test to your `test/change-tap.test.js` file:
 test('Vending Machine has no £1 coins left! calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]) should equal [100, 50, 10, 2, 1 ]', function (t) {
   const result = calculateChange(1337, 1500, [200, 50, 50, 50, 10, 5, 2, 1]);
   const expected = [50, 50, 50, 10, 2, 1 ]; // £1.63
-  t.deepEqual(result, expected);
+  t.deepEqual(result, expected,
+    'calculateChange returns the correct change');
   t.end();
 });
 ```
@@ -679,7 +680,10 @@ Don't forget to **`export`** the `sellProduct` function.
 
 #### 5.7.4 What is the State?
 
-Within the context of our
+During the execution of our last test,
+the `COINS` array in the Vending Machine has been altered.
+
+
 
 
 <!--
