@@ -303,6 +303,7 @@ let COINS = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ];
 ```
+This is a total of **80 coins**; 8 coin types x 10 of each type.
 
 Each time the machine returns coins we need to _remove_ them from the supply
 otherwise we could end up giving the _incorrect_ change
@@ -687,9 +688,40 @@ Don't forget to **`export`** the `sellProduct` function.
 
 #### 5.7.4 What is the State?
 
-During the execution of our last test,
+During the execution of our last test for the `sellProduct` function,
 the `COINS` array in the Vending Machine has been altered.
 
+Let's write another test to illustrate this.
+
+In your `test/vending-machine.test.js` file add the following code:
+
+```js
+tap.test('Check COINS Available Supply in Vending Machine', function (t) {
+  const coinsAvail = vendingMachine.getCoinsAvail()
+  t.equal(coinsAvail.length, 76,
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+```
+
+If you followed all the previous steps the test will pass,
+meaning that the `COINS` array in the `vendingMachine`
+was _modified_ by the _previous_ test.
+
+![COINS-available-76](https://user-images.githubusercontent.com/194400/47731483-1c9db680-dc5c-11e8-9e22-5fc295ab36d5.png)
+
+The _initial_ state for the `COINS` array
+that we defined in step **5.6.2** (_above_)
+was **80 Coins**,
+but after executing the `sellProduct` test it's **76 coins**.
+
+It both _simulates_ the "***real world***" and creates a testing "_headache_";
+modifying the `COINS` array (_the vending machine's coins available "state"_)
+is _desirable_ because in the _real world_ each time an item is sold
+the state of `COINS` _should_ be updated.
+But it means we need to "_reset_" the `COINS` array between _tests_
+otherwise we will end up writing _coupled_ ("_co-dependent_" tests.
 
 
 
