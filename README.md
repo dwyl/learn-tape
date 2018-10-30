@@ -12,7 +12,7 @@
 -->
 
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
-and ***Tap*** including front-end testing!
+and ***Tap*** including front-end testing with JSDOM.
 
 <a href="https://youtu.be/epPS_DjEWWY?t=32"
  alt="Volvo cars are safer because they learn from every real world crash!">
@@ -25,10 +25,19 @@ and ***Tap*** including front-end testing!
 <br />
 
 > <small>
-**Note**: this guide is specific to testing with **`Tape`**.
+**Note**: this guide is _specific_ to testing
+with **`Tape`** and **`Tap`**. <br />
 If you are ***new to Test Driven Development*** (TDD) in _general_,
 consider reading our _**beginner's introduction**_:
 [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+<br />
+The "vending machine" example/tutorial is _designed_ to be simple.
+If you prefer a more _extended_ "real world" example app, see:
+https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+<br />
+We _highly_ recommend learning the fundamentals here _first_
+before diving into the bigger example. Once you are comfortable
+with the Tape/Tap syntax, there is a clear "next step". 📝✅
 </small>
 
 

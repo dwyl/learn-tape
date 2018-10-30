@@ -16,17 +16,24 @@ We're going to learn how to use JSDOM alongside tape to test our front end code.
 We're going to have a small example, with some basic DOM manipulation,
 and we're going to write some tests for it!
 
-If you haven't already, look through the
+> If you haven't already, look through the
 [`README.md`](https://github.com/dwyl/learn-tape/blob/master/README.md)
  of this repo to get introduced to tape.
 
-So our example lives in `front-end-testing/lib`, just open the `index.html` in
-that directory in your browser, it's a basic counter which increments,
-decrements and resets.
-Have a look at it and read through the code in `script.js`
+The example we are following is a basic counter
+which increments, decrements and resets.
+The complete code is in
+[`front-end-testing/lib`](https://github.com/dwyl/learn-tape/tree/master/front-end-testing/lib),
+open the [`index.html`](https://github.com/dwyl/learn-tape/blob/master/front-end-testing/lib/index.html)
+in your web browser,
+
+Have a look at it and read through the code in
+[`script.js`](https://github.com/dwyl/learn-tape/blob/master/front-end-testing/lib/script.js)
 and make sure you understand it.
 
-The first thing to note from this is the `if` statement at the bottom.
+The first thing to note from reading
+[`script.js`](https://github.com/dwyl/learn-tape/blob/master/front-end-testing/lib/script.js)
+is the `if` statement at the bottom:
 
 ```js
 /*istanbul ignore next */
@@ -43,20 +50,24 @@ if (typeof module !== 'undefined' && module.exports) {
 
 This just stops the browser from trying to process `module.exports`
 so that we don't get any console errors
-when the code is run in actual browser
-(if `module` is `undefined` then trying to access properties from
+when the code is run in a browser
+(if `module` is `undefined`
+  then trying to access properties from
   it will result in an error).
 
 We need to use `module.exports` still
 so that we can require it into our test file.
 
-We use `/*istanbul ignore next*/` as we do not want this if statement to effect
- our coverage. If you've not used istanbul before check out our
+We use `/*istanbul ignore next*/` as we do
+not want this if statement to effect our coverage. <br />
+If you've not used istanbul before check out our
  [`learn-istanbul`](https://github.com/dwyl/learn-istanbul) repo.
 
-So, lets get started!
+With that `if` block of code covered, lets get started on testing!
 
-Inside of the `front-end-testing` directory make a new directory called `test`
+Inside of the
+[`front-end-testing`](https://github.com/dwyl/learn-tape/tree/master/front-end-testing)
+directory make a new directory called `test`
 and inside of the new `front-end-testing/test` directory you just created
 create a file called `test.spec.js`.
 
@@ -224,7 +235,8 @@ Now that we've walked through how to write a test for the increment function,
 you should now be able to have a go at writing tests
 for the `decrement`, `resetFunc`, `currentCount`, and `updateDom` functions!
 
-If you get stuck you can take a look in the `front-end-testing/test-complete`
+If you get stuck you can take a look in the
+[`front-end-testing/test-complete`](https://github.com/dwyl/learn-tape/tree/master/front-end-testing/test-complete)
 to see how we've written our tests.
 
 Run `npm run front-end-test` whenever you write a test to make sure it's passing
@@ -240,7 +252,7 @@ If your coverage is looking lower on any of the options then look at your tests,
 are you testing all of the functions? Are you testing all possible outcomes of
 each function?
 
-### Let's get that coverage up to :100:
+### Let's get that coverage up to 💯
 
 The last bits to test are our event listeners, since inside of the functions
 passed as the arguments to the event listeners we compose our functions, we need
@@ -259,7 +271,7 @@ test('increment is called properly when the inc button is clicked', function(t) 
 });
 ```
 
-now we want to make sure that `count` is at zero,
+Now we want to make sure that `count` is at zero,
 just in case the previous code has effected it,
 so we pull in the count node and update it:
 
@@ -269,7 +281,7 @@ let count = document.querySelector('.count');
 frontEndCode.updateDom(frontEndCode.resetFunc(), count);
 ```
 
-Now, we want to simulate a click on our "+" button,
+Next we want to simulate a click on our "+" button,
 just like in a browser we can call `.click()` on any DOM node
 to simulate a click on it!
 
@@ -323,6 +335,13 @@ this on your own projects!
 
 Now you can use tape for your front end and back end code,
 and get 100% test coverage everywhere!
+
+
+# _Now_ What?
+
+If you found this _taster_ to front-end testing with Tape and JSDOM
+helpful, consider reading our more _comprehensive_ example:
+https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
 
 ## Further reading
 

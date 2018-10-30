@@ -851,14 +851,22 @@ Both of these approaches will give the same _result_:
 
 ![before-each-test-passing](https://user-images.githubusercontent.com/194400/47737541-0ea26280-dc69-11e8-96b2-f41257fb802b.png)
 
-But the `beforeEach` approach has an immediate benefit in terms of
-reduction of duplicate code which is less to read and easier to maintain.
+But the `beforeEach` approach has an _immediate_ benefit in terms of
+reduction of duplicate code in tests
+which is less to read (_reduces cognitive load_)
+and easier to maintain (_if the "reset state" code needs to be changed,
+it's changed in one place_).
+
+
+# _Now_ What?
+
+If you found this _taster_ on testing with **`Tap`**
+helpful, consider reading our more _comprehensive_ Todo List example:
+https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
 
 
 
 
-
-<!--
 <br /><br /><br />
 
 ## Analogy: _Single_ Speed vs. _Geared_ Bicycle
@@ -942,5 +950,3 @@ and running them in ***parallel*** significantly reduces waiting time.
 For an _extended_ practical example of where writing tests with **`Tap`**
 _instead_ of **`Tape`** was worth the switch,
 see: https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
-
--->
