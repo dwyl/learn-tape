@@ -7,9 +7,8 @@
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
-<!-- uncomment when PR is ready!
 [![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
--->
+
 
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
 and ***Tap*** including front-end testing with JSDOM.
@@ -31,7 +30,8 @@ If you are ***new to Test Driven Development*** (TDD) in _general_,
 consider reading our _**beginner's introduction**_:
 [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
 <br />
-The "vending machine" example/tutorial is _designed_ to be simple.
+The "vending machine" example/tutorial is _designed_ to be simple
+for complete beginners. <br />
 If you prefer a more _extended_ "real world" example app, see:
 https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
 <br />

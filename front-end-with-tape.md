@@ -5,7 +5,7 @@
 Generally it would be nice to only use one testing framework rather than using
 separate front end and back end testing frameworks.
 It means you don't have to flit between different syntaxes for tests,
-and that you don't have to bloat your dev dependencies.
+and that you don't have to bloat your `devDependencies`.
 
 ## What?
 
