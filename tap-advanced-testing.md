@@ -38,12 +38,12 @@ Ensure you have **used** **`Tape`** in at least one "real" project
 **`Tap`** is a testing framework that
 has a few _useful_ extra features _without_ being "bloated".
 
-+ [x] `beforeEach`
-+ [x] `afterEach`
-+ [x] _parallel_ test execution
-+ [x] built-in code coverage
++ [x] `beforeEach` or `afterEach` for "resetting state" between tests.
++ [x] _parallel_ test execution: https://www.node-tap.org/parallel/
++ [x] built-in code coverage: https://www.node-tap.org/coverage/
 
-We will cover each of these features below. <br />
+We will cover `beforeEach` by adding a real world "coin supply"
+to our vending machine example below. <br />
 
 > **`Tap`** has _many_ more "advanced" features,
 if you are _curious_ see: https://www.node-tap.org/advanced <br />
@@ -55,16 +55,13 @@ open an issue describing the problem e.g:
 # _How_?
 
 Continuing our theme of a "_vending machine_",
-let's consider the following _real world_ use cases:
-
-1. The Vending Machine "runs out" of coins and needs to be _re-filled_!
-2. _Multiple_ Vending Machines!
+let's consider the following _real world_ use case:
+The Vending Machine "runs out" of coins and needs to be _re-filled_!
 
 We will add this functionality to the `calculateChange` function
-and showcase two useful **`Tap`** features. <br />
+and showcase a useful **`Tap`** feature: `beforeEach` <br />
 Once those basics are covered,
 we will dive into something _way_ more _ambitious_!
-
 
 ## 1. Install `Tap` as a Dev Dependency
 
@@ -707,7 +704,7 @@ tap.test('Check COINS Available Supply in Vending Machine', function (t) {
 
 If you followed all the previous steps the test will pass,
 meaning that the `COINS` array in the `vendingMachine`
-was _modified_ by the _previous_ test.
+was _modified_ by the _previous_ (`sellProduct`) test.
 
 ![COINS-available-76](https://user-images.githubusercontent.com/194400/47731483-1c9db680-dc5c-11e8-9e22-5fc295ab36d5.png)
 
@@ -722,6 +719,142 @@ is _desirable_ because in the _real world_ each time an item is sold
 the state of `COINS` _should_ be updated.
 But it means we need to "_reset_" the `COINS` array between _tests_
 otherwise we will end up writing _coupled_ ("_co-dependent_" tests.
+
+
+### 5.8 _Reset_ `COINS` State in Vending Machine Between Tests?
+
+Given that the `COINS` state in the vending machine is being
+modified by the `sellProduct` function,
+and the fact that we don't _want_ tests to be co-dependent,
+we _either_ need to "reset" the state of `COINS` _inside_ each test,
+***or*** we need to reset the state of `COINS` _before_ each test.
+
+Here is the difference:
+
+#### 5.8.1 Reset `COINS` State at the Top of _Each_ Test
+
+```js
+tap.test('Check COINS Available Supply in Vending Machine', function (t) {
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  vendingMachine.setCoinsAvail(COINS);
+  const coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 80,
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+
+tap.test('sellProduct(1337, [1000, 500], coinsAvail) >> [100, 50, 10, 2, 1]', function (t) {
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  vendingMachine.setCoinsAvail(COINS);
+  let coinsAvail = vendingMachine.getCoinsAvail();
+  const expected = [100, 50, 10, 2, 1];
+  const result = vendingMachine.sellProduct(1337, [1000, 500], coinsAvail)
+  t.equal(result, expected,
+    'sellProduct(1337, [1000, 500], coinsAvail) is ' + result);
+
+  coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 75, // 80 minus the coins dispensed (5)
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+```
+
+As you can see these two tests share the same "setup" or "reset state" code:
+
+```js
+const COINS = [
+  200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+  100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+  50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+  20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+  10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+  5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+  2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+];
+vendingMachine.setCoinsAvail(COINS);
+const coinsAvail = vendingMachine.getCoinsAvail();
+```
+
+We can _easily_ remove this identical duplication of code
+by using one of **`Tap`**'s built-in testing helper functions: `beforeEach`!
+
+#### 5.8.1 Reset `COINS` State `beforeEach` Test
+
+We can re-write the two preceding tests
+and eliminate the duplication,
+by using the **`Tap`** `beforeEach` function
+to reset the test _before_ each test:
+
+
+
+```js
+tap.beforeEach(function (done) { // reset state of COINS before each test:
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  vendingMachine.setCoinsAvail(COINS);
+  done()
+});
+
+tap.test('Check COINS Available Supply in Vending Machine', function (t) {
+  const coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 80,
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+
+tap.test('sellProduct(1337, [1000, 500], coinsAvail) >> [100, 50, 10, 2, 1]', function (t) {
+  let coinsAvail = vendingMachine.getCoinsAvail();
+  const expected = [100, 50, 10, 2, 1];
+  const result = vendingMachine.sellProduct(1337, [1000, 500], coinsAvail)
+  t.deepEqual(result, expected,
+    'sellProduct(1337, [1000, 500], coinsAvail) is ' + result);
+
+  coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 75, // 80 minus the coins dispensed (5)
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+```
+
+Both of these approaches will give the same _result_:
+
+![before-each-test-passing](https://user-images.githubusercontent.com/194400/47737541-0ea26280-dc69-11e8-96b2-f41257fb802b.png)
+
+But the `beforeEach` approach has an immediate benefit in terms of
+reduction of duplicate code which is less to read and easier to maintain.
+
+
 
 
 

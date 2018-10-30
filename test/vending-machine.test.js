@@ -91,9 +91,38 @@ tap.test('sellProduct(215, [200, 100], COINS) returns [50, 20, 10, 5]', function
   t.end();
 });
 
+tap.beforeEach(function (done) { // reset state of COINS before each test:
+  const COINS = [
+    200, 200, 200, 200, 200, 200, 200, 200, 200, 200,
+    100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+    50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
+    20, 20, 20, 20, 20, 20, 20, 20, 20, 20,
+    10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+    5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+    2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+  ];
+  vendingMachine.setCoinsAvail(COINS);
+  done()
+});
+
 tap.test('Check COINS Available Supply in Vending Machine', function (t) {
-  const coinsAvail = vendingMachine.getCoinsAvail()
-  t.equal(coinsAvail.length, 76,
+  const coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 80,
+    'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
+    coinsAvail.length);
+  t.end();
+});
+
+tap.test('sellProduct(1337, [1000, 500], coinsAvail) >> [100, 50, 10, 2, 1]', function (t) {
+  let coinsAvail = vendingMachine.getCoinsAvail();
+  const expected = [100, 50, 10, 2, 1];
+  const result = vendingMachine.sellProduct(1337, [1000, 500], coinsAvail)
+  t.deepEqual(result, expected,
+    'sellProduct(1337, [1000, 500], coinsAvail) is ' + result);
+
+  coinsAvail = vendingMachine.getCoinsAvail();
+  t.equal(coinsAvail.length, 75, // 80 minus the coins dispensed (5)
     'vendingMachine.getCoinsAvail() shows COINS in Vending Machine is ' +
     coinsAvail.length);
   t.end();
