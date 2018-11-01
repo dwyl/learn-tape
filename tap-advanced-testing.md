@@ -7,9 +7,9 @@
 
 In _most_ situations **`Tape`** will be _exactly_ what you need
 to write and run your Node.js/JavaScript tests. <br />
-**`Tape`** is minimalist, fast and has flexibility when you need it.
+**`Tape`** is minimalist, fast and has flexibility when you need it.  
 _Occasionally_ however, the needs of the project
-require a few extra features from the testing framework,
+require a few extra features from the testing framework and
 that is when we use **`Tap`**.
 
 If you find yourself (_your project_) needing to do "setup"
@@ -126,7 +126,7 @@ to `calculateChange` function. <br />
 If this is unfamiliar to you,
 please see: https://github.com/dwyl/learn-tdd#functional
 
-### 5.1 Add `coinsAvail` (_optional_) parameter to JSDOC
+### 5.1 Add `coinsAvail` (_optional_) parameter to JSDOC
 
 Add a _new_ parameter to the JSDOC comment (_above the function_):
 
@@ -280,7 +280,7 @@ and the _latest_ test simply passes in the array of `coinsAvail`,
 we are not _removing_ the coins from the `coinsAvail` Array.
 
 
-### 5.5 Reduce the "Supply" of Available Coins
+### 5.5 Reduce the "Supply" of Available Coins
 
 In the "_real world_" we need to reduce the coins in the vending machine
 each time change is given.
@@ -718,7 +718,7 @@ modifying the `COINS` array (_the vending machine's coins available "state"_)
 is _desirable_ because in the _real world_ each time an item is sold
 the state of `COINS` _should_ be updated.
 But it means we need to "_reset_" the `COINS` array between _tests_
-otherwise we will end up writing _coupled_ ("_co-dependent_" tests.
+otherwise we will end up writing _coupled_ ("_co-dependent_") tests.
 
 
 ### 5.8 _Reset_ `COINS` State in Vending Machine Between Tests?
@@ -862,7 +862,7 @@ it's changed in one place_).
 
 If you found this _taster_ on testing with **`Tap`**
 helpful, consider reading our more _comprehensive_ Todo List example:
-https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example .
 
 
 
@@ -885,7 +885,7 @@ To the _untrained_ observer,
 
 **`Tape`** is like a **single speed** bicycle;
 lightweight, fewer "moving parts", less to learn and _fast_! <br />
-_Perfect_ for **_short_ trips** on _relatively_ **_flat_ terrain**.
+_Perfect_ for **_short_ trips** on _relatively_ **_flat_ terrain**.  
 _Most_ journeys in cities fit this description.
 _Most_ of the time you won't _need_ anything more than this
 for commuting from home to work, going to the shops, etc.
@@ -949,4 +949,4 @@ and running them in ***parallel*** significantly reduces waiting time.
 
 For an _extended_ practical example of where writing tests with **`Tap`**
 _instead_ of **`Tape`** was worth the switch,
-see: https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+see: https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example .
