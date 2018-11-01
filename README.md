@@ -55,18 +55,18 @@ The _shortcut_ to choosing our tools is to apply Antoine's principal:
 
 [![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")](https://en.wikiquote.org/wiki/Antoine_de_Saint_Exup%C3%A9ry)
 
-We use Tape because it's ***minimalist feature-set***
+We use Tape because its ***minimalist feature-set***
 lets us craft ***simple maintainable tests*** that ***run fast***.
 
-### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
+### Why Tape (not XYZ Test Runner/Framework...)?
 
-+ ***No configuration*** required. (_works out of the box, but can be configured if needed_)
++ ***No configuration*** required (_works out of the box, but can be configured if needed_).
 + ***No "Magic" / Global Variables*** injected into your run-time
-(e.g: `describe`, `it`, `before`, `after`, etc.)
-+ ***No Shared State*** between tests. (_tape does not encourage you to write messy / "leaky" tests_!)
+(e.g: `describe`, `it`, `before`, `after`, etc.).
++ ***No Shared State*** between tests (_tape does not encourage you to write messy / "leaky" tests_!).
 + **Bare-minimum** only `require` or `import` into your test file.
 + Tests are **Just JavaScript** so you can run tests as a node script
-e.g: `node test/my-test.js`
+e.g: `node test/my-test.js`.
 + No globally installed "CLI" required to _run_ your tests.
 + Appearance of test output (what you see in your terminal/browser) is fully customisable.
 
@@ -425,11 +425,11 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
 ```
 
 But its arguably *more work* than simply *solving* the problem.
-Lets do that instead. <br />
+Let's do that instead. <br />
 
 > **Note**: this is the _readable_ version of the solution!
   Feel free to suggest a
-  [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-)
+  [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-).
 
 Update the `calculateChange` function in `change-calculator.js`:
 
@@ -458,7 +458,7 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
 ```
 
 > _**Note**: we **prefer** the "**functional programming**" approach
-when solving the to the calculateChange function._ <br />
+when solving the calculateChange function._ <br />
 _We have used an "**imperative**" style here simply because
 it is more **familiar** to **most people** ... <br />
 If you are **curious** about the the **functional** solution,
