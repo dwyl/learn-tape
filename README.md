@@ -1,15 +1,44 @@
-# Learn Tape
-[![Build Status](https://travis-ci.org/dwyl/learn-tape.png?branch=master)](https://travis-ci.org/dwyl/learn-tape)
-[![codecov](https://codecov.io/gh/dwyl/learn-tape/branch/master/graph/badge.svg)](https://codecov.io/gh/dwyl/learn-tape/branch/master)
-[![Code Climate](https://codeclimate.com/github/dwyl/learn-tape.png)](https://codeclimate.com/github/dwyl/learn-tape)
-[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg)](https://david-dm.org/dwyl/learn-tape?type=dev)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/learn-tape/issues)
+<div align="center">
 
-A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
+# Learn Tape ~ Testing in JavaScript
 
-> <small>**Note**: if you are ***new to Test Driven Development*** (TDD), we have a  more *general*
-***beginner's introduction*** and background about testing:
-[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd) </small>
+[![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-tape?branch=master)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
+[![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
+
+
+A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
+and ***Tap*** including front-end testing with JSDOM.
+
+<a href="https://youtu.be/epPS_DjEWWY?t=32"
+ alt="Volvo cars are safer because they learn from every real world crash!">
+<!-- why Volvo cars are so safe! -->
+  <img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
+  alt="Car Designers follow a Testing Mindset">
+</a>
+
+</div>
+<br />
+
+> <small>
+**Note**: this guide is _specific_ to testing
+with **`Tape`** and **`Tap`**. <br />
+If you are ***new to Test Driven Development*** (TDD) in _general_,
+consider reading our _**beginner's introduction**_:
+[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+<br />
+The "vending machine" example/tutorial is _designed_ to be simple
+for complete beginners. <br />
+If you prefer a more _extended_ "real world" example app, see:
+https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+<br />
+We _highly_ recommend learning the fundamentals here _first_
+before diving into the bigger example. Once you are comfortable
+with the Tape/Tap syntax, there is a clear "next step". 📝✅
+</small>
 
 
 ## *Why?*
@@ -17,35 +46,38 @@ A *Beginner's Guide* to Test Driven Development (TDD) with ***Tape***.
 ***Testing*** your code is ***essential*** to ensuring reliability.
 
 There are _many_ testing frameworks so it can be
-[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en),
-***most*** try to do too much, have ***too many features***
+[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en).
+Most testing frameworks/systems try to do too much, have ***too many features***
 (["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
 or ***inject global variables*** into your run-time or have complicated syntax.
 
-The _shortcut_ to choosing our tools is to apply the golden rule:
+The _shortcut_ to choosing our tools is to apply Antoine's principal:
 
-![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png)
+[![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")](https://en.wikiquote.org/wiki/Antoine_de_Saint_Exup%C3%A9ry)
 
-We use Tape because it's ***minimalist feature-set*** lets you craft ***simple maintainable tests*** that ***run fast***.
+We use Tape because its ***minimalist feature-set***
+lets us craft ***simple maintainable tests*** that ***run fast***.
 
-### _Reasons_ Why Tape (not XYZ Test Runner/Framework...)
+### Why Tape (not XYZ Test Runner/Framework...)?
 
-+ ***No configuration*** required. (_works out of the box, but can be configured if needed_)
++ ***No configuration*** required (_works out of the box, but can be configured if needed_).
 + ***No "Magic" / Global Variables*** injected into your run-time
-(e.g: `describe`, `it`, `before`, `after`, etc.)
-+ ***No Shared State*** between tests. (_tape does not encourage you to write messy / "leaky" tests_!)
+(e.g: `describe`, `it`, `before`, `after`, etc.).
++ ***No Shared State*** between tests (_tape does not encourage you to write messy / "leaky" tests_!).
 + **Bare-minimum** only `require` or `import` into your test file.
 + Tests are **Just JavaScript** so you can run tests as a node script
-e.g: `node test/my-test.js`
+e.g: `node test/my-test.js`.
 + No globally installed "CLI" required to _run_ your tests.
 + Appearance of test output (what you see in your terminal/browser) is fully customisable.
 
-> <small>Read: https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4 </small>
+> <small>For more elaborate reasoning for using Tape, read: <br /> https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4
+</small>
 
 ## *What?*
 
-Tape is a JavaScript testing framework that works in both Node.js and Browsers.
-It lets you write simple tests that are easy to read/maintain.
+Tape is a JavaScript testing framework
+that works in both Node.js and Browsers. <br />
+It lets you write simple tests that are easy to read and maintain.
 The _output_ of Tape tests is a "***TAP Stream***" which can be
 read by other programs/packages e.g. to display statistics of your tests.
 
@@ -59,22 +91,59 @@ https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
 ## *Who?*
 
-People who want to write tests for their Node.js or Web Browser JavaScript code.
-(*i.e. ALL JavaScript coders!*)
+People who write tests for their Node.js or Frontend JavaScript code.
+(_i.e. everyone that writes JavaScript!_)
 
 ## *How?*
 
+<!--
 ### Tape Features (*Subset*)
 
 > https://github.com/dwyl/learn-tape/issues/7 (_help wanted_!)
+-->
+
+### _Initialise_
+
+In your existing (_test-lacking_) project or a new learning directory, <br />
+ensure that you have a **`package.json`** file
+by running the **`npm init`** command:
+
+```sh
+npm init -y
+```
+That will create a basic **`package.json`** file with the following:
+```js
+{
+  "name": "learn-tape",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+That's enough to continue with the learning quest.
+We will update the `"scripts"` section later on. <br />
+If you are _curious_ and want to _understand_ the **`package.json`** file
+in more detail, see: https://docs.npmjs.com/files/package.json
+
+> If you are pushing your learning code to GitHub/GitLab,
+consider adding a
+[**`.gitignore`**](https://github.com/github/gitignore/blob/master/Node.gitignore)
+file too.
 
 
 ### Install
 
+Install **`tape`** using the following command:
+
 ```sh
 npm install tape --save-dev
 ```
-(For us newbies, I'd like to suggest you include the npm init step.  We did this project in Iron Yard bootcamp, but didn't know to init npm, nor to add Node to the .gitignore file)
 
 You should see some output *confirming* it *installed*:
 
@@ -153,6 +222,16 @@ Great Succes! Let's try something with a bit more code.
 
 ### Mini TDD Project: Change Calculator
 
+We are going to build a basic cash register change calculator
+following TDD using tape.
+
+> <small>
+**Note**: this should be _familiar_ to you
+if you followed the _general_
+[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+tutorial.
+</small>
+
 #### Basic Requirements
 
 > Given a **Total Payable** and **Cash From Customer**
@@ -214,12 +293,14 @@ node test/change-calculator.test.js
 
 ![Tape TFD Fail](https://cloud.githubusercontent.com/assets/194400/18610249/3a620b70-7d0f-11e6-9af5-6176f2927b26.png "Tape TFD Fail = Cannot Find Module")
 
-This error (``Cannot find module '../lib/change-calculator.js'`) is pretty self explanatory.
+This error (`Cannot find module '../lib/change-calculator.js'`)
+is pretty self explanatory. <br />
 We haven't created the file yet so the test is _requiring_ a non-existent file!
 
 > **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
 > **A**: To get used to the idea of *only* writing the code required to *pass*
->    the *current* (*failing*) *test*, and _never_ write code you think you _might_ need.
+>    the *current* (*failing*) *test*,
+and _never_ write code you think you _might_ need;
 see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 
@@ -230,9 +311,12 @@ write the code that makes the test pass.
 
 Create a new file for our change calculator `/lib/change-calculator.js`:
 
-**Note**: We are *not* going to add any code to it _yet_.
+> **Note**: We are *not* going to add any code to it _yet_.
+This is _intentional_.
 
-Re-run the test file in your terminal, you should expect to see _no output_ (_it will "pass" because there are no tests_)
+Re-run the test file in your terminal,
+you should expect to see _no output_
+(_it will "pass silently" because there are no tests!_)
 
 ![Tape Pass 0 Tests](https://cloud.githubusercontent.com/assets/194400/18610318/2d54ec02-7d11-11e6-8f72-35f967836348.png "Tape Pass 0 Tests")
 
@@ -246,7 +330,7 @@ e.g:
 ```
 totalPayable = 210         // £2.10
 cashPaid     = 300         // £3.00
-difference    =  90         // 90p
+difference   =  90         // 90p
 change       = [50,20,20]  // 50p, 20p, 20p
 ```
 
@@ -269,8 +353,9 @@ Re-run the test file: `node test/change-calculator.test.js`
 
 #### Export the `calculateChange` Function
 
-Right now our `change-calculator.js` file does not _contain_ anything,
-so when it's `require`'d in the test we get a error: `TypeError: calculateChange is not a function`
+Right now our `change-calculator.js` file does not _contain_ anything, <br />
+so when it's `require`'d in the test we get a error:
+`TypeError: calculateChange is not a function`
 
 We can "fix" this by _exporting_ a function. add a single line to `change-calculator.js`:
 
@@ -297,7 +382,7 @@ Re-run the test file `node test/change-calculator.test.js` (_now it "passes"_):
 ![Tape 1 Test Passes](https://cloud.githubusercontent.com/assets/194400/18610825/877be2f0-7d1e-11e6-9e8f-887e9700fd1b.png "Tape 1 Test Passes")
 
 
-> Note: we aren't _really_ ***passing*** the test, we are _faking_ it
+> **Note**: we aren't _really_ ***passing*** the test, we are _faking_ it
 for illustration.
 
 
@@ -340,10 +425,13 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
 ```
 
 But its arguably *more work* than simply *solving* the problem.
-Lets do that instead.
-(**Note**: this is the *readable* version of the solution! feel free to suggest a more compact algorithm)
+Let's do that instead. <br />
 
-Update the calculateChange function in `change-calculator.js`:
+> **Note**: this is the _readable_ version of the solution!
+  Feel free to suggest a
+  [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-).
+
+Update the `calculateChange` function in `change-calculator.js`:
 
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
@@ -351,7 +439,7 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
   const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
   let change = [];
   const length = coins.length;
-  let remaining = cashPaid - totalPayable;          // we reduce this below
+  let remaining = cashPaid - totalPayable;  // we reduce this below
 
   for (let i = 0; i < length; i++) { // loop through array of notes & coins:
     let coin = coins[i];
@@ -368,6 +456,18 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
   return change;
 };
 ```
+
+> _**Note**: we **prefer** the "**functional programming**" approach
+when solving the calculateChange function._ <br />
+_We have used an "**imperative**" style here simply because
+it is more **familiar** to **most people** ... <br />
+If you are **curious** about the the **functional** solution,
+and you should be, <br />
+see_: https://github.com/dwyl/learn-tdd#functional
+
+
+
+#### Add More Tests!
 
 Add _one more_ test to ensure we are *fully* exercising our method:
 
@@ -390,10 +490,18 @@ test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 
 ![Tape 4 Passing](https://cloud.githubusercontent.com/assets/194400/18611450/9676bfb0-7d31-11e6-91fa-c48fb2630a65.png "Tape 4 Passing")
 
 
+> _**Note**: adding more test examples is good way of achieving **confidence**
+in your code. We often have 3x more example/test code than we do "library" code
+in order to test all the "edge cases".
+If you get the point where feel you are "working too hard" writing tests,
+consider using_
+["property based testing"](https://github.com/dwyl/learn-elixir/issues/93#issuecomment-433616917)
+_to **automate** testing thousands of cases_.
+
 
 - - -
 
-### Bonus Level
+### _Bonus_ Level
 
 #### Code Coverage
 
@@ -433,35 +541,47 @@ section in your `package.json`;
 ```sh
 istanbul cover tape ./test/*.test.js
 ```
+
 ### Run your Tape tests in the browser
 
 Follow these steps to run `Tape` tests in the browser:
 
-1. You'll have to bundle up your test files so that the browser can read them.
-We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. **(other module bundlers are
-available)**. You'll need to install it globally to access the commands that
-come with it. Enter the following command into the command line:
+1. You'll have to bundle up your test files
+so that the browser can read them. <br />
+We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. (_other module bundlers are available_).  <br />
+You'll need to install it globally
+to access the commands that come with it. <br />
+Enter the following command into the command line:
 `npm install browserify --save-dev`
+
 2. Next you have to bundle your test files. Run the following browserify
 command:
 `node_modules/.bin/browserify test/*.js > lib/bundle.js`
+
 3. Create a `test.html` file that can hold your bundle:
 `touch lib/test.html`
+
 4. Add your test script to your newly created `test.html`:
 `echo '<script src="bundle.js"></script>' > lib/test.html`
-5. Copy the full path of your `test.html` file and then paste it into your
-browser. Open up the developer console and you should see something that looks
-like:
+
+5. Copy the full path of your `test.html` file
+and then paste it into your browser. <br />
+Open up the developer console
+and you should see something that looks like this:
+
 ![browser](https://cloud.githubusercontent.com/assets/12450298/19898078/79f41d30-a052-11e6-954b-8dad5fa71771.png)
 
 #### Headless Browser
+
 You can print our your test results to the command line instead of the browser
 by using a headless browser:
 
 1. Install [`testling`](https://www.npmjs.com/package/testling):
 `npm install testling --save-dev`
+
 2. Run the following command to print your test results in your terminal:
 `node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`
+
 3. You should see something that looks like this:
 ![testling](https://cloud.githubusercontent.com/assets/12450298/19898553/63e0e8a0-a054-11e6-93e1-2fe4872989ed.png)
 
@@ -470,19 +590,54 @@ by using a headless browser:
 > If you are new to Travis CI check out our tutorial:
 https://github.com/dwyl/learn-travis
 
-Setting up Travis-CI (_or any other CI service_) for your Tape tests is _easy_
-simply define the `test` script in your `package.json`:
+Setting up Travis-CI (_or any other CI service_) for your Tape tests
+is quite straightforward. <br />
+First define the `test` script in your `package.json`:
 
-```
+```sh
 tape ./test/*.test.js
 ```
 
-We usually let Travis send Code Coverage data to Codecov.io so we run our
-tape tests using Istanbul (see the coverage section above):
+We usually let Travis send Code Coverage data to
+[Codecov.io](https://github.com/dwyl/learn-istanbul#tracking-coverage-as-a-service)
+so we run our tape tests using Istanbul (_see the coverage section above_):
 
-```
+```sh
 istanbul cover tape ./test/*.test.js
 ```
 
-#### What about front end code with Tape?
-Now that you're a pro at using Tape to test your back end code check out our [front end testing with tape guide!](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md)
+Next add a basic `.travis.yml` file to your project:
+
+```yml
+language: node_js
+node_js:
+ - "node"
+```
+
+And _enable_ the project on Traivs-CI. <br />
+**Done**. [![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
+
+<br />
+
+
+
+# Can We Use Tape for _Frontend_ Tests?
+
+Now that you've learned how to use Tape to test your back end code
+check out our guide on
+[frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
+
+
+# What about _Tap_?
+
+We use **Tape** for _most_ of our JavaScript testing needs
+[@dwyl](https://github.com/dwyl?language=javascript)
+but _occasionally_ we find that having a few _specific_ extra functions
+_simplifies_ our tests and reduces the repetitive "boilerplate".
+
+If you find yourself needing a **`before`** or **`after`** function
+to do "setup", "teardown" or resetting state in tests,
+***or*** you need to run tests in ***parallel***
+(_because you have lots of tests_),
+then _consider_ using **`Tap`**:
+[**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
