@@ -27,7 +27,7 @@ The complete code is in
 open the [`index.html`](https://github.com/dwyl/learn-tape/blob/master/front-end-testing/lib/index.html)
 in your web browser,
 
-Have a look at it and read through the code in
+Have a look at it, read through the code in
 [`script.js`](https://github.com/dwyl/learn-tape/blob/master/front-end-testing/lib/script.js)
 and make sure you understand it.
 
@@ -67,7 +67,7 @@ With that `if` block of code covered, lets get started on testing!
 
 Inside of the
 [`front-end-testing`](https://github.com/dwyl/learn-tape/tree/master/front-end-testing)
-directory make a new directory called `test`
+directory, make a new directory called `test`
 and inside of the new `front-end-testing/test` directory you just created
 create a file called `test.spec.js`.
 
@@ -103,7 +103,8 @@ and we assign it to the variable 'DOM'
 const DOM = new JSDOM(html);
 ```
 
-Next we declare a global variable, node is a little different to the browser,
+Next we declare a global variable.  
+Node is a little different to the browser:
 if we want something to be in the global scope (as in, available in other files
 whilst they are being processed by 'require') then we need to specifically
 declare that. We do this with the 'document' from the DOM we just created
@@ -113,10 +114,10 @@ so that it can be used by our JS file.
 global.document = DOM.window.document;
 ```
 
-this takes the `document` from the DOM object
+:arrow_up: This takes the `document` from the DOM object
 and makes it globally available
-in the current node environment,
-this means that when we require in our `script.js`
+in the current node environment.  
+This means that when we require in our `script.js`
 file it won't error due to `document` being undefined,
 because it is defined
 with the DOM we just made!
@@ -127,18 +128,18 @@ So now we can require our script file in.
 const frontEndCode = require('../lib/script.js');
 ```
 
-So now frontEndCode will be an object
+Now frontEndCode will be an object
 which is a copy of what we exported using
 `module.exports` in `script.js`.
 
-So, now lets write some tests!
+So, now let's write some tests!
 
 Our increment and decrement functions both take in a number
 (or a number as a string),
 and return that number increased/decreased by one, respectively.
 If it is passed something which is not a number,
 or a string which can be coerced to a number,
-then it should update the Dom to add an error message.
+then it should update the DOM to add an error message.
 
 So first off lets write a test for increment for when it's passed the expected
 arguments.
@@ -152,11 +153,11 @@ test('test increment function', function(t) {
 });
 ```
 
-This test is just like the tests from the README.md
-of this repo as we're doing returning a basic value.
+This test is just like the tests from the `README.md`
+of this repo as we're returning a basic value.
 
 But, as said, if we call it with invalid input
-it updates the dom with with an error message.
+it updates the DOM with an error message.
 
 So we can update the test function so it looks like this:
 
@@ -175,14 +176,14 @@ test('test increment function', function(t) {
 });
 ```
 
-So let's break down what happens here:
+Let's break down what happens here:
 We call our increment function with invalid input
 
 ```js
 frontEndCode.increment('not a number');
 ```
 
-So we now hope that, as the code in our `script.js` suggests, the div with the
+We now hope that, as the code in our `script.js` suggests, the div with the
 class `error` should now have a text node inside which says "Error: Argument
 passed to increment was not a number".
 
