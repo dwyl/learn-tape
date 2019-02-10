@@ -142,7 +142,7 @@ file too.
 Install **`tape`** using the following command:
 
 ```sh
-npm install tape --save-dev
+npm install tape -D
 ```
 
 You should see some output *confirming* it *installed*:
@@ -515,7 +515,7 @@ https://github.com/dwyl/learn-istanbul
 Install `istanbul` from NPM:
 
 ```sh
-npm install istanbul --save-dev
+npm install istanbul -D
 ```
 
 Run the following command (_in your terminal_) to get a coverage report:
@@ -552,7 +552,7 @@ We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) t
 You'll need to install it globally
 to access the commands that come with it. <br />
 Enter the following command into the command line:
-`npm install browserify --save-dev`
+`npm install browserify -D`
 
 2. Next you have to bundle your test files. Run the following browserify
 command:
@@ -577,7 +577,7 @@ You can print our your test results to the command line instead of the browser
 by using a headless browser:
 
 1. Install [`testling`](https://www.npmjs.com/package/testling):
-`npm install testling --save-dev`
+`npm install testling -D`
 
 2. Run the following command to print your test results in your terminal:
 `node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`
