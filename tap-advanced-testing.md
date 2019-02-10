@@ -69,7 +69,7 @@ Start by installing `Tap` ]
 and saving it to your `package.json`:
 
 ```sh
-npm install tap --save-dev
+npm install tap -D
 ```
 
 ## 2. Copy the **`Tape`** Test
@@ -929,7 +929,7 @@ Since we aren't paying for the code,
 the only "cost" to adopting a new tool is **_learning_ time**.
 
 Given that **`Tap`** is a "drop-in replacement" for **`Tape`**
-in _most_ cases, the switching cost is just **`npm install tap --save-dev`**
+in _most_ cases, the switching cost is just **`npm install tap -D`**
 followed by a find-and-replace across the files in your project from:
 **`require('tape')`** to **`require('tap').test`**.
 
