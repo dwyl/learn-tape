@@ -9,14 +9,15 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
 
-
-A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
-and ***Tap*** including front-end testing with JSDOM.
+A _Beginner's Guide_ to Test Driven Development (TDD) using **_Tape_**
+and **_Tap_** including front-end testing with JSDOM.
 
 <a href="https://youtu.be/epPS_DjEWWY?t=32"
  alt="Volvo cars are safer because they learn from every real world crash!">
+
 <!-- why Volvo cars are so safe! -->
-  <img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
+
+<img src="https://user-images.githubusercontent.com/194400/47100041-7bac0600-d22e-11e8-97c6-319f454efde5.jpg"
   alt="Car Designers follow a Testing Mindset">
 </a>
 
@@ -24,77 +25,74 @@ and ***Tap*** including front-end testing with JSDOM.
 <br />
 
 > <small>
-**Note**: this guide is _specific_ to testing
-with **`Tape`** and **`Tap`**. <br />
-If you are ***new to Test Driven Development*** (TDD) in _general_,
-consider reading our _**beginner's introduction**_:
-[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
-<br />
-The "vending machine" example/tutorial is _designed_ to be simple
-for complete beginners. <br />
-If you prefer a more _extended_ "real world" example app, see:
-https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
-<br />
-We _highly_ recommend learning the fundamentals here _first_
-before diving into the bigger example. Once you are comfortable
-with the Tape/Tap syntax, there is a clear "next step". 📝✅
-</small>
+> **Note**: this guide is _specific_ to testing
+> with **`Tape`** and **`Tap`**. <br />
+> If you are ***new to Test Driven Development*** (TDD) in _general_,
+> consider reading our _**beginner's introduction**_:
+> [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+> <br />
+> The "vending machine" example/tutorial is _designed_ to be simple
+> for complete beginners. <br />
+> If you prefer a more _extended_ "real world" example app, see:
+> https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+> <br />
+> We _highly_ recommend learning the fundamentals here _first_
+> before diving into the bigger example. Once you are comfortable
+> with the Tape/Tap syntax, there is a clear "next step". 📝✅
+> </small>
 
+## _Why?_
 
-## *Why?*
-
-***Testing*** your code is ***essential*** to ensuring reliability.
+**_Testing_** your code is **_essential_** to ensuring reliability.
 
 There are _many_ testing frameworks so it can be
-[*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en).
-Most testing frameworks/systems try to do too much, have ***too many features***
+[_difficult to choose_](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en).
+Most testing frameworks/systems try to do too much, have **_too many features_**
 (["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
-or ***inject global variables*** into your run-time or have complicated syntax.
+or **_inject global variables_** into your run-time or have complicated syntax.
 
 The _shortcut_ to choosing our tools is to apply Antoine's principal:
 
 [![perfection-achieved](https://cloud.githubusercontent.com/assets/194400/17927874/c7d06200-69ef-11e6-9ec8-a3c3692aaeed.png "Perfection achieved when there is nothing left to take away ~ Antoine de Saint-Exupéry")](https://en.wikiquote.org/wiki/Antoine_de_Saint_Exup%C3%A9ry)
 
-We use Tape because its ***minimalist feature-set***
-lets us craft ***simple maintainable tests*** that ***run fast***.
+We use Tape because its **_minimalist feature-set_**
+lets us craft **_simple maintainable tests_** that **_run fast_**.
 
 ### Why Tape (not XYZ Test Runner/Framework...)?
 
-+ ***No configuration*** required (_works out of the box, but can be configured if needed_).
-+ ***No "Magic" / Global Variables*** injected into your run-time
-(e.g: `describe`, `it`, `before`, `after`, etc.).
-+ ***No Shared State*** between tests (_tape does not encourage you to write messy / "leaky" tests_!).
-+ **Bare-minimum** only `require` or `import` into your test file.
-+ Tests are **Just JavaScript** so you can run tests as a node script
-e.g: `node test/my-test.js`.
-+ No globally installed "CLI" required to _run_ your tests.
-+ Appearance of test output (what you see in your terminal/browser) is fully customisable.
+- **_No configuration_** required (_works out of the box, but can be configured if needed_).
+- **_No "Magic" / Global Variables_** injected into your run-time
+  (e.g: `describe`, `it`, `before`, `after`, etc.).
+- **_No Shared State_** between tests (_tape does not encourage you to write messy / "leaky" tests_!).
+- **Bare-minimum** only `require` or `import` into your test file.
+- Tests are **Just JavaScript** so you can run tests as a node script
+  e.g: `node test/my-test.js`.
+- No globally installed "CLI" required to _run_ your tests.
+- Appearance of test output (what you see in your terminal/browser) is fully customisable.
 
-> <small>For more elaborate reasoning for using Tape, read: <br /> https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4
-</small>
+> <small>For more elaborate reasoning for using Tape, read: <br /> https://medium.com/javascript-scene/why-i-use-tape-instead-of-Tape-so-should-you-6aa105d8eaf4 > </small>
 
-## *What?*
+## _What?_
 
 Tape is a JavaScript testing framework
 that works in both Node.js and Browsers. <br />
 It lets you write simple tests that are easy to read and maintain.
-The _output_ of Tape tests is a "***TAP Stream***" which can be
+The _output_ of Tape tests is a "**_TAP Stream_**" which can be
 read by other programs/packages e.g. to display statistics of your tests.
 
 ### Background Reading
 
-+ Tape website: https://github.com/substack/tape
-+ Test Anything Protocol (TAP) https://testanything.org/
-+ Test Anything Protocol - gentler introduction:
-https://en.wikipedia.org/wiki/Test_Anything_Protocol
+- Tape website: https://github.com/substack/tape
+- Test Anything Protocol (TAP) https://testanything.org/
+- Test Anything Protocol - gentler introduction:
+  https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
-
-## *Who?*
+## _Who?_
 
 People who write tests for their Node.js or Frontend JavaScript code.
 (_i.e. everyone that writes JavaScript!_)
 
-## *How?*
+## _How?_
 
 <!--
 ### Tape Features (*Subset*)
@@ -111,7 +109,9 @@ by running the **`npm init`** command:
 ```sh
 npm init -y
 ```
+
 That will create a basic **`package.json`** file with the following:
+
 ```js
 {
   "name": "learn-tape",
@@ -126,29 +126,28 @@ That will create a basic **`package.json`** file with the following:
   "license": "ISC"
 }
 ```
+
 That's enough to continue with the learning quest.
 We will update the `"scripts"` section later on. <br />
 If you are _curious_ and want to _understand_ the **`package.json`** file
 in more detail, see: https://docs.npmjs.com/files/package.json
 
 > If you are pushing your learning code to GitHub/GitLab,
-consider adding a
-[**`.gitignore`**](https://github.com/github/gitignore/blob/master/Node.gitignore)
-file too.
-
+> consider adding a
+> [**`.gitignore`**](https://github.com/github/gitignore/blob/master/Node.gitignore)
+> file too.
 
 ### Install
 
 Install **`tape`** using the following command:
 
 ```sh
-npm install tape --save-dev
+npm install tape -D
 ```
 
-You should see some output *confirming* it *installed*:
+You should see some output _confirming_ it _installed_:
 
 ![learn-tape-install-save-dev](https://cloud.githubusercontent.com/assets/12497678/18086275/04850802-6ea7-11e6-8e27-ef357daa258c.png)
-
 
 ### First Tape Test
 
@@ -167,14 +166,13 @@ Now create a new file `/test/learn-tape.test.js` in your text editor.
 and write (_or copy-paste_) the following code:
 
 ```js
-const test = require('tape'); // assign the tape library to the variable "test"
+const test = require("tape"); // assign the tape library to the variable "test"
 
-test('should return -1 when the value is not present in Array', function (t) {
-  t.equal(-1, [1,2,3].indexOf(4)); // 4 is not present in this array so passes
+test("should return -1 when the value is not present in Array", function(t) {
+  t.equal(-1, [1, 2, 3].indexOf(4)); // 4 is not present in this array so passes
   t.end();
 });
 ```
-
 
 #### Run The Test
 
@@ -187,22 +185,22 @@ node test/learn-tape.test.js
 ![your-first-tape-test-passing](https://cloud.githubusercontent.com/assets/12497678/18088977/869f9efc-6eb5-11e6-9ed3-20018e32ae9c.png)
 
 > **Note**: we use this naming convention `/test/{test-name}.test.js`
-for test files in our projects so that we can keep other "_helper_" files
-in the `/test` directory and still be able to _run_ all the _test_ files in the
-`/test` directory using a _pattern_: `node_modules/.bin/tape ./test/*.test.js`
+> for test files in our projects so that we can keep other "_helper_" files
+> in the `/test` directory and still be able to _run_ all the _test_ files in the
+> `/test` directory using a _pattern_: `node_modules/.bin/tape ./test/*.test.js`
 
 ### Make it _Pass_
 
 Copy the following code into a new file called `test/make-it-pass.test.js`:
 
 ```js
-const test = require('tape'); // assign the tape library to the variable "test"
+const test = require("tape"); // assign the tape library to the variable "test"
 
-function sum (a, b) {
+function sum(a, b) {
   // your code to make the test pass goes here ...
 }
 
-test('sum should return the addition of two numbers', function (t) {
+test("sum should return the addition of two numbers", function(t) {
   t.equal(3, sum(1, 2)); // make this test pass by completing the add function!
   t.end();
 });
@@ -226,18 +224,18 @@ We are going to build a basic cash register change calculator
 following TDD using tape.
 
 > <small>
-**Note**: this should be _familiar_ to you
-if you followed the _general_
-[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
-tutorial.
-</small>
+> **Note**: this should be _familiar_ to you
+> if you followed the _general_
+> [https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+> tutorial.
+> </small>
 
 #### Basic Requirements
 
 > Given a **Total Payable** and **Cash From Customer**
 > Return: **Change To Customer** (notes and coins).
 
-Essentially we are building a *simple* **calculator** that *only does* **subtraction**
+Essentially we are building a _simple_ **calculator** that _only does_ **subtraction**
 (Total - Cash = Change), but also splits the **result** into the various **notes & coins**.
 
 In the UK we have the following Notes & Coins:
@@ -255,23 +253,23 @@ the notes and coins can be represented as:
 - 5000 (£50)
 - 2000 (£20)
 - 1000 (£10)
--  500 (£5)
--  200 (£2)
--  100 (£1)
--   50 (50p)
--   20 (20p)
--   10 (10p)
--    5 (5p)
--    2 (2p)
--    1 (1p)
+- 500 (£5)
+- 200 (£2)
+- 100 (£1)
+- 50 (50p)
+- 20 (20p)
+- 10 (10p)
+- 5 (5p)
+- 2 (2p)
+- 1 (1p)
 
 this can be represented as an Array:
 
 ```javascript
-const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1]
+const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
 ```
 
-**Note**: the same can be done for any other cash system ($ ¥ €)
+**Note**: the same can be done for any other cash system (\$ ¥ €)
 simply use the cent, sen or rin as the unit and scale up notes.
 
 #### Create Test File
@@ -279,13 +277,13 @@ simply use the cent, sen or rin as the unit and scale up notes.
 Create a file called `change-calculator.test.js` in your `/test` directory and add the following lines:
 
 ```javascript
-const test = require('tape'); // assign the tape library to the variable "test"
-const calculateChange = require('../lib/change-calculator.js');  // require (not-yet-written) module
+const test = require("tape"); // assign the tape library to the variable "test"
+const calculateChange = require("../lib/change-calculator.js"); // require (not-yet-written) module
 ```
 
 #### Watch it Fail
 
-Back in your terminal window, the test by executing the command (and watch it *fail*):
+Back in your terminal window, the test by executing the command (and watch it _fail_):
 
 ```sh
 node test/change-calculator.test.js
@@ -297,22 +295,20 @@ This error (`Cannot find module '../lib/change-calculator.js'`)
 is pretty self explanatory. <br />
 We haven't created the file yet so the test is _requiring_ a non-existent file!
 
-> **Q**: Why *deliberately* write a test we *know* is going to *fail*...? <br />
-> **A**: To get used to the idea of *only* writing the code required to *pass*
->    the *current* (*failing*) *test*,
-and _never_ write code you think you _might_ need;
-see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
-
+> **Q**: Why _deliberately_ write a test we _know_ is going to _fail_...? <br /> > **A**: To get used to the idea of _only_ writing the code required to _pass_
+> the _current_ (_failing_) _test_,
+> and _never_ write code you think you _might_ need;
+> see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 
 #### Create the Module File
 
-In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
+In **T**est **F**irst **D**evelopment (TFD) we write a test _first_ and _then_
 write the code that makes the test pass.
 
 Create a new file for our change calculator `/lib/change-calculator.js`:
 
-> **Note**: We are *not* going to add any code to it _yet_.
-This is _intentional_.
+> **Note**: We are _not_ going to add any code to it _yet_.
+> This is _intentional_.
 
 Re-run the test file in your terminal,
 you should expect to see _no output_
@@ -327,6 +323,7 @@ two arguments/parameters (**totalPayable** and **cashPaid**) and return an
 array containing the coins equal to the difference:
 
 e.g:
+
 ```
 totalPayable = 210         // £2.10
 cashPaid     = 300         // £3.00
@@ -337,16 +334,17 @@ change       = [50,20,20]  // 50p, 20p, 20p
 Lets add a _test_ to `test/change-calculator.test.js` and watch it fail:
 
 ```javascript
-const test = require('tape'); // assign the tape library to the variable "test"
-const calculateChange = require('../lib/change-calculator.js');  // require the calculator module
+const test = require("tape"); // assign the tape library to the variable "test"
+const calculateChange = require("../lib/change-calculator.js"); // require the calculator module
 
-test('calculateChange(215, 300) should return [50, 20, 10, 5]', function(t) {
+test("calculateChange(215, 300) should return [50, 20, 10, 5]", function(t) {
   const result = calculateChange(215, 300); // expect an array containing [50,20,10,5]
   const expected = [50, 20, 10, 5];
   t.deepEqual(result, expected);
   t.end();
 });
 ```
+
 Re-run the test file: `node test/change-calculator.test.js`
 
 ![Tape 1 Test Failing](https://cloud.githubusercontent.com/assets/194400/18610528/70577c9a-7d16-11e6-925a-9858915316ca.png "Tape 1 Test Failing")
@@ -367,7 +365,7 @@ Now when we run the test, we see more _useful_ error message:
 
 ![learn-tape-first-test-failing](https://cloud.githubusercontent.com/assets/194400/18610631/d30f9bd6-7d18-11e6-819b-0795c104e64f.png)
 
-#### Write *Just* Enough Code to Make the Test Pass
+#### Write _Just_ Enough Code to Make the Test Pass
 
 We can "fake" passing the test by by simply returning an Array in `change-calculator.js`:
 
@@ -381,24 +379,22 @@ Re-run the test file `node test/change-calculator.test.js` (_now it "passes"_):
 
 ![Tape 1 Test Passes](https://cloud.githubusercontent.com/assets/194400/18610825/877be2f0-7d1e-11e6-9e8f-887e9700fd1b.png "Tape 1 Test Passes")
 
-
-> **Note**: we aren't _really_ ***passing*** the test, we are _faking_ it
-for illustration.
-
+> **Note**: we aren't _really_ **_passing_** the test, we are _faking_ it
+> for illustration.
 
 #### Add _More_ Test Cases
 
 Add a couple more tests to `test/change-calculator.test.js`:
 
 ```javascript
-test('calculateChange(486, 600) should equal [100, 10, 2, 2]', function(t) {
+test("calculateChange(486, 600) should equal [100, 10, 2, 2]", function(t) {
   const result = calculateChange(486, 600);
   const expected = [100, 10, 2, 2];
   t.deepEqual(result, expected);
   t.end();
 });
 
-test('calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', function(t) {
+test("calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]", function(t) {
   const result = calculateChange(12, 400);
   const expected = [200, 100, 50, 20, 10, 5, 2, 1];
   t.deepEqual(result, expected);
@@ -408,7 +404,6 @@ test('calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]', f
 
 Re-run the test file: `node test/change-calculator.test.js` (_expect to see both tests failing_)
 
-
 ![learn-tape-two-failing-tests](https://cloud.githubusercontent.com/assets/194400/18611328/61787460-7d2d-11e6-8edc-8791f6d07fc3.png)
 
 #### Keep Cheating or Solve the Problem?
@@ -417,39 +412,39 @@ We could keep cheating by writing a series of if statements:
 
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
-    if(totalPayable == 486 && cashPaid == 1000)
-        return [500, 10, 2, 2];
-    else if(totalPayable == 210 && cashPaid == 300)
-        return [50, 20, 20];
+  if (totalPayable == 486 && cashPaid == 1000) return [500, 10, 2, 2];
+  else if (totalPayable == 210 && cashPaid == 300) return [50, 20, 20];
 };
 ```
 
-But its arguably *more work* than simply *solving* the problem.
+But its arguably _more work_ than simply _solving_ the problem.
 Let's do that instead. <br />
 
 > **Note**: this is the _readable_ version of the solution!
-  Feel free to suggest a
-  [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-).
+> Feel free to suggest a
+> [more _compact_ function](https://github.com/dwyl/learn-tdd#solutions-).
 
 Update the `calculateChange` function in `change-calculator.js`:
 
 ```javascript
 module.exports = function calculateChange(totalPayable, cashPaid) {
-
   const coins = [5000, 2000, 1000, 500, 200, 100, 50, 20, 10, 5, 2, 1];
   let change = [];
   const length = coins.length;
-  let remaining = cashPaid - totalPayable;  // we reduce this below
+  let remaining = cashPaid - totalPayable; // we reduce this below
 
-  for (let i = 0; i < length; i++) { // loop through array of notes & coins:
+  for (let i = 0; i < length; i++) {
+    // loop through array of notes & coins:
     let coin = coins[i];
 
-    if(remaining/coin >= 1) { // check coin fits into the remaining amount
-      let times = Math.floor(remaining/coin);        // no partial coins
+    if (remaining / coin >= 1) {
+      // check coin fits into the remaining amount
+      let times = Math.floor(remaining / coin); // no partial coins
 
-      for(let j = 0; j < times; j++) {     // add coin to change x times
+      for (let j = 0; j < times; j++) {
+        // add coin to change x times
         change.push(coin);
-        remaining = remaining - coin;  // subtract coin from remaining
+        remaining = remaining - coin; // subtract coin from remaining
       }
     }
   }
@@ -458,18 +453,15 @@ module.exports = function calculateChange(totalPayable, cashPaid) {
 ```
 
 > _**Note**: we **prefer** the "**functional programming**" approach
-when solving the calculateChange function._ <br />
-_We have used an "**imperative**" style here simply because
-it is more **familiar** to **most people** ... <br />
-If you are **curious** about the the **functional** solution,
-and you should be, <br />
-see_: https://github.com/dwyl/learn-tdd#functional
-
-
+> when solving the calculateChange function._ <br /> > _We have used an "**imperative**" style here simply because
+> it is more **familiar** to **most people** ... <br />
+> If you are **curious** about the the **functional** solution,
+> and you should be, <br />
+> see_: https://github.com/dwyl/learn-tdd#functional
 
 #### Add More Tests!
 
-Add _one more_ test to ensure we are *fully* exercising our method:
+Add _one more_ test to ensure we are _fully_ exercising our method:
 
 ```
 totalPayable = 1487                                 // £14.87  (fourteen pounds and eighty-seven pence)
@@ -479,9 +471,9 @@ change       = [5000, 2000, 1000, 500, 10, 2, 1 ]   // £50, £20, £10, £5, 10
 ```
 
 ```javascript
-test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]', function(t) {
-  const result = calculateChange(1487,10000);
-  const expected = [5000, 2000, 1000, 500, 10, 2, 1 ];
+test("calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]", function(t) {
+  const result = calculateChange(1487, 10000);
+  const expected = [5000, 2000, 1000, 500, 10, 2, 1];
   t.deepEqual(result, expected);
   t.end();
 });
@@ -489,17 +481,13 @@ test('calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 
 
 ![Tape 4 Passing](https://cloud.githubusercontent.com/assets/194400/18611450/9676bfb0-7d31-11e6-91fa-c48fb2630a65.png "Tape 4 Passing")
 
-
 > _**Note**: adding more test examples is good way of achieving **confidence**
-in your code. We often have 3x more example/test code than we do "library" code
-in order to test all the "edge cases".
-If you get the point where feel you are "working too hard" writing tests,
-consider using_
-["property based testing"](https://github.com/dwyl/learn-elixir/issues/93#issuecomment-433616917)
-_to **automate** testing thousands of cases_.
+> in your code. We often have 3x more example/test code than we do "library" code
+> in order to test all the "edge cases".
+> If you get the point where feel you are "working too hard" writing tests,
+> consider using_ > ["property based testing"](https://github.com/dwyl/learn-elixir/issues/93#issuecomment-433616917) > _to **automate** testing thousands of cases_.
 
-
-- - -
+---
 
 ### _Bonus_ Level
 
@@ -507,7 +495,7 @@ _to **automate** testing thousands of cases_.
 
 Code coverage lets you know _exactly_ which lines of code you have written
 are "_covered_" by your tests (_i.e. helps you check if there is
-  "dead", "un-used" or just "un-tested" code_)
+"dead", "un-used" or just "un-tested" code_)
 We use `istanbul` for code coverage.
 If you are new to `istanbul` check out tutorial:
 https://github.com/dwyl/learn-istanbul
@@ -515,7 +503,7 @@ https://github.com/dwyl/learn-istanbul
 Install `istanbul` from NPM:
 
 ```sh
-npm install istanbul --save-dev
+npm install istanbul -D
 ```
 
 Run the following command (_in your terminal_) to get a coverage report:
@@ -527,7 +515,6 @@ node_modules/.bin/istanbul cover node_modules/.bin/tape ./test/*.test.js
 You should expect to see something like this:
 
 ![learn-tape-coverage](https://cloud.githubusercontent.com/assets/194400/18611615/c1fe6322-7d36-11e6-8f3a-349d661ae012.png)
-
 
 or if you prefer the **lcov-report**:
 
@@ -547,27 +534,27 @@ istanbul cover tape ./test/*.test.js
 Follow these steps to run `Tape` tests in the browser:
 
 1. You'll have to bundle up your test files
-so that the browser can read them. <br />
-We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. (_other module bundlers are available_).  <br />
-You'll need to install it globally
-to access the commands that come with it. <br />
-Enter the following command into the command line:
-`npm install browserify --save-dev`
+   so that the browser can read them. <br />
+   We have chosen to use [`browserify`](https://www.npmjs.com/package/browserify) to do this. (_other module bundlers are available_). <br />
+   You'll need to install it globally
+   to access the commands that come with it. <br />
+   Enter the following command into the command line:
+   `npm install browserify -D`
 
 2. Next you have to bundle your test files. Run the following browserify
-command:
-`node_modules/.bin/browserify test/*.js > lib/bundle.js`
+   command:
+   `node_modules/.bin/browserify test/*.js > lib/bundle.js`
 
 3. Create a `test.html` file that can hold your bundle:
-`touch lib/test.html`
+   `touch lib/test.html`
 
 4. Add your test script to your newly created `test.html`:
-`echo '<script src="bundle.js"></script>' > lib/test.html`
+   `echo '<script src="bundle.js"></script>' > lib/test.html`
 
 5. Copy the full path of your `test.html` file
-and then paste it into your browser. <br />
-Open up the developer console
-and you should see something that looks like this:
+   and then paste it into your browser. <br />
+   Open up the developer console
+   and you should see something that looks like this:
 
 ![browser](https://cloud.githubusercontent.com/assets/12450298/19898078/79f41d30-a052-11e6-954b-8dad5fa71771.png)
 
@@ -577,18 +564,18 @@ You can print our your test results to the command line instead of the browser
 by using a headless browser:
 
 1. Install [`testling`](https://www.npmjs.com/package/testling):
-`npm install testling --save-dev`
+   `npm install testling -D`
 
 2. Run the following command to print your test results in your terminal:
-`node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`
+   `node_modules/.bin/browserify test/*.js | node_modules/.bin/testling`
 
 3. You should see something that looks like this:
-![testling](https://cloud.githubusercontent.com/assets/12450298/19898553/63e0e8a0-a054-11e6-93e1-2fe4872989ed.png)
+   ![testling](https://cloud.githubusercontent.com/assets/12450298/19898553/63e0e8a0-a054-11e6-93e1-2fe4872989ed.png)
 
 ### Continuous Integration?
 
 > If you are new to Travis CI check out our tutorial:
-https://github.com/dwyl/learn-travis
+> https://github.com/dwyl/learn-travis
 
 Setting up Travis-CI (_or any other CI service_) for your Tape tests
 is quite straightforward. <br />
@@ -611,7 +598,7 @@ Next add a basic `.travis.yml` file to your project:
 ```yml
 language: node_js
 node_js:
- - "node"
+  - "node"
 ```
 
 And _enable_ the project on Traivs-CI. <br />
@@ -619,14 +606,11 @@ And _enable_ the project on Traivs-CI. <br />
 
 <br />
 
-
-
 # Can We Use Tape for _Frontend_ Tests?
 
 Now that you've learned how to use Tape to test your back end code
 check out our guide on
 [frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
-
 
 # What about _Tap_?
 
@@ -637,7 +621,7 @@ _simplifies_ our tests and reduces the repetitive "boilerplate".
 
 If you find yourself needing a **`before`** or **`after`** function
 to do "setup", "teardown" or resetting state in tests,
-***or*** you need to run tests in ***parallel***
+**_or_** you need to run tests in **_parallel_**
 (_because you have lots of tests_),
 then _consider_ using **`Tap`**:
 [**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
