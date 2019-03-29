@@ -25,18 +25,19 @@ and ***Tap*** including front-end testing with JSDOM.
 
 > <small>
 **Note**: this guide is _specific_ to testing
-with **`Tape`** and **`Tap`**. <br />
+with **`Tape`** and **`Tap`**.
 If you are ***new to Test Driven Development*** (TDD) in _general_,
 consider reading our _**beginner's introduction**_:
-[https://github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
+[github.com/dwyl/**learn-tdd**](https://github.com/dwyl/learn-tdd)
 <br />
 The "vending machine" example/tutorial is _designed_ to be simple
 for complete beginners. <br />
 If you prefer a more _extended_ "real world" example app, see:
-https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+[github.com/dwyl/**todo-list-javascript-tutorial**](https://github.com/dwyl/todo-list-javascript-tutorial)
 <br />
 We _highly_ recommend learning the fundamentals here _first_
-before diving into the bigger example. Once you are comfortable
+before diving into the bigger example. <br />
+Once you are comfortable
 with the Tape/Tap syntax, there is a clear "next step". 📝✅
 </small>
 
