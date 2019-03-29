@@ -621,15 +621,17 @@ And _enable_ the project on Traivs-CI. <br />
 <br />
 
 
+# Frequently Asked Questions
 
-# Can We Use Tape for _Frontend_ Tests?
+
+## Can We Use Tape for _Frontend_ Tests?
 
 Now that you've learned how to use Tape to test your back end code
 check out our guide on
 [frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
 
 
-# What about _Tap_?
+## What about _Tap_?
 
 We use **Tape** for _most_ of our JavaScript testing needs
 [@dwyl](https://github.com/dwyl?language=javascript)
@@ -642,3 +644,114 @@ to do "setup", "teardown" or resetting state in tests,
 (_because you have lots of tests_),
 then _consider_ using **`Tap`**:
 [**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
+
+
+
+## Tap Spec?
+
+One of the major advantages of Tap/Tape
+is outputting the results of your tests
+as text according to the
+["Test Anything Protocol"](https://testanything.org)
+For example:
+```sh
+1..3
+ok 1 - Input file opened
+not ok 2 - First line of the input valid
+ok 3 - Read the rest of the file
+# tests 3
+# pass  3
+# fail  0
+```
+
+This basic text output from our tests
+can then be _re-formatted_ in a more _attractive_ format using a "reporter".
+
+There are _several_ "reporters" available,
+see: https://github.com/substack/tape#pretty-reporters
+
+Our _favourite_ of these reporters is tap-spec:
+https://github.com/scottcorgan/tap-spec
+
+It's _super_ easy to use, simply install:
+```sh
+npm install tap-spec --save-dev
+```
+And then _pipe_ the output of your test(s) through tap-spec:
+```sh
+tape ./test/*.test.js | tap-spec
+```
+That's it. <br />
+
+If you want to see the difference in output,
+simply run the test in _this_
+repository to see the difference in output.
+When you run the command:
+```
+npm run fast
+```
+
+You should see the "Normal" TAP output:
+```tap
+TAP version 13
+# calculateChange(215, 300) should return [50, 20, 10, 5]
+ok 1 should be equivalent
+# calculateChange(486, 600) should equal [100, 10, 2, 2]
+ok 2 should be equivalent
+# calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]
+ok 3 should be equivalent
+# calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]
+ok 4 should be equivalent
+# should return -1 when the value is not present in Array
+ok 5 should be equal
+# sum should return the addition of two numbers
+ok 6 should be equal
+
+1..6
+# tests 6
+# pass  6
+
+# ok
+```
+
+```
+npm run spec
+```
+You should see the following output:
+```sh
+calculateChange(215, 300) should return [50, 20, 10, 5]
+
+    ✔ should be equivalent
+
+  calculateChange(486, 600) should equal [100, 10, 2, 2]
+
+    ✔ should be equivalent
+
+  calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]
+
+    ✔ should be equivalent
+
+  calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]
+
+    ✔ should be equivalent
+
+  should return -1 when the value is not present in Array
+
+    ✔ should be equal
+
+  sum should return the addition of two numbers
+
+    ✔ should be equal
+
+  time=53.935ms
+
+
+
+  total:     17
+  passing:   17
+  duration:  101ms
+```
+
+Not only do we get more information but it's spaced out more.
+Play around with the different formatter/reporters and find one you like.
+We like tap-spec.
