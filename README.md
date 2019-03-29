@@ -5,6 +5,7 @@
 [![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-tape?branch=master)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
