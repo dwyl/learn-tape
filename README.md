@@ -143,7 +143,7 @@ file too.
 Install **`tape`** using the following command:
 
 ```sh
-npm install tape -D
+npm init -y && npm install tape --save-dev
 ```
 
 You should see some output *confirming* it *installed*:
