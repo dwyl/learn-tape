@@ -646,6 +646,12 @@ then _consider_ using **`Tap`**:
 [**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
 
 
+## `t.plan(2)` vs. `t.end()`
+
+If you have multiple _asynchronous_ assertions in the same test,
+you may want to use `t.plan(2)` at the start of your test.
+For more detail, see: https://github.com/dwyl/learn-tape/issues/12
+
 
 ## Tap Spec?
 
@@ -670,7 +676,7 @@ can then be _re-formatted_ in a more _attractive_ format using a "reporter".
 There are _several_ "reporters" available,
 see: https://github.com/substack/tape#pretty-reporters
 
-Our _favourite_ of these reporters is tap-spec:
+Our _favourite_ of these reporters is **`tap-spec`**:
 https://github.com/scottcorgan/tap-spec
 
 It's _super_ easy to use, simply install:
@@ -684,8 +690,7 @@ tape ./test/*.test.js | tap-spec
 That's it. <br />
 
 If you want to see the difference in output,
-simply run the test in _this_
-repository to see the difference in output.
+simply run the test in _this_ repository.
 When you run the command:
 ```
 npm run fast
@@ -717,7 +722,7 @@ ok 6 should be equal
 ```
 npm run spec
 ```
-You should see the following output:
+You should see the "spec" formatted output:
 ```sh
 calculateChange(215, 300) should return [50, 20, 10, 5]
 
