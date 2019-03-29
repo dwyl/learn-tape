@@ -163,7 +163,7 @@ mkdir test
 
 #### Create Test _File_
 
-Now create a new file `/test/learn-tape.test.js` in your text editor.
+Now create a new file `./test/learn-tape.test.js` in your text editor.
 
 and write (_or copy-paste_) the following code:
 
@@ -277,7 +277,8 @@ simply use the cent, sen or rin as the unit and scale up notes.
 
 #### Create Test File
 
-Create a file called `change-calculator.test.js` in your `/test` directory and add the following lines:
+Create a file called `change-calculator.test.js`
+in your `/test` directory and add the following lines:
 
 ```javascript
 const test = require('tape'); // assign the tape library to the variable "test"
@@ -310,7 +311,8 @@ see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
 write the code that makes the test pass.
 
-Create a new file for our change calculator `/lib/change-calculator.js`:
+Create a new file for our change calculator `change-calculator.js`
+in the `./lib` directory.
 
 > **Note**: We are *not* going to add any code to it _yet_.
 This is _intentional_.
