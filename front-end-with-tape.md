@@ -338,11 +338,11 @@ Now you can use tape for your front end and back end code,
 and get 100% test coverage everywhere!
 
 
-# _Now_ What?
+# What _Next_?
 
 If you found this _taster_ to front-end testing with Tape and JSDOM
 helpful, consider reading our more _comprehensive_ example:
-https://github.com/dwyl/todomvc-vanilla-javascript-elm-architecture-example
+[github.com/dwyl/**todo-list-javascript-tutorial**](https://github.com/dwyl/todo-list-javascript-tutorial)
 
 ## Further reading
 
