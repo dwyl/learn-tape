@@ -661,7 +661,7 @@ For more detail, see: https://github.com/dwyl/learn-tape/issues/12
 One of the major advantages of Tap/Tape
 is outputting the results of your tests
 as text according to the
-["Test Anything Protocol"](https://testanything.org)
+["Test Anything Protocol"](https://testanything.org).  
 For example:
 ```sh
 1..3
@@ -722,6 +722,7 @@ ok 6 should be equal
 # ok
 ```
 
+If you run the command:
 ```
 npm run spec
 ```
@@ -760,6 +761,6 @@ calculateChange(215, 300) should return [50, 20, 10, 5]
   duration:  101ms
 ```
 
-Not only do we get more information but it's spaced out more.
-Play around with the different formatter/reporters and find one you like.
-We like tap-spec.
+Not only do we get more information but it's more spaced out.  
+Play around with the different formatters/reporters and find one you like.
+We're fans of _tap-spec_.
