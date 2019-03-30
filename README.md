@@ -5,6 +5,7 @@
 [![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
 [![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-tape?branch=master)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
+[![devDependencies Status](https://david-dm.org/dwyl/learn-tape/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
 [![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
@@ -143,7 +144,7 @@ file too.
 Install **`tape`** using the following command:
 
 ```sh
-npm install tape -D
+npm init -y && npm install tape --save-dev
 ```
 
 You should see some output *confirming* it *installed*:
@@ -163,7 +164,7 @@ mkdir test
 
 #### Create Test _File_
 
-Now create a new file `/test/learn-tape.test.js` in your text editor.
+Now create a new file `./test/learn-tape.test.js` in your text editor.
 
 and write (_or copy-paste_) the following code:
 
@@ -277,7 +278,8 @@ simply use the cent, sen or rin as the unit and scale up notes.
 
 #### Create Test File
 
-Create a file called `change-calculator.test.js` in your `/test` directory and add the following lines:
+Create a file called `change-calculator.test.js`
+in your `/test` directory and add the following lines:
 
 ```javascript
 const test = require('tape'); // assign the tape library to the variable "test"
@@ -310,7 +312,8 @@ see: [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 In **T**est **F**irst **D**evelopment (TFD) we write a test *first* and *then*
 write the code that makes the test pass.
 
-Create a new file for our change calculator `/lib/change-calculator.js`:
+Create a new file for our change calculator `change-calculator.js`
+in the `./lib` directory.
 
 > **Note**: We are *not* going to add any code to it _yet_.
 This is _intentional_.
@@ -621,15 +624,17 @@ And _enable_ the project on Traivs-CI. <br />
 <br />
 
 
+# Frequently Asked Questions
 
-# Can We Use Tape for _Frontend_ Tests?
+
+## Can We Use Tape for _Frontend_ Tests?
 
 Now that you've learned how to use Tape to test your back end code
 check out our guide on
 [frontend testing with tape](https://github.com/dwyl/learn-tape/blob/master/front-end-with-tape.md).
 
 
-# What about _Tap_?
+## What about _Tap_?
 
 We use **Tape** for _most_ of our JavaScript testing needs
 [@dwyl](https://github.com/dwyl?language=javascript)
@@ -642,3 +647,120 @@ to do "setup", "teardown" or resetting state in tests,
 (_because you have lots of tests_),
 then _consider_ using **`Tap`**:
 [**`tap-advanced-testing.md`**](https://github.com/dwyl/learn-tape/blob/master/tap-advanced-testing.md)
+
+
+## `t.plan(2)` vs. `t.end()`
+
+If you have multiple _asynchronous_ assertions in the same test,
+you may want to use `t.plan(2)` at the start of your test.
+For more detail, see: https://github.com/dwyl/learn-tape/issues/12
+
+
+## Tap Spec?
+
+One of the major advantages of Tap/Tape
+is outputting the results of your tests
+as text according to the
+["Test Anything Protocol"](https://testanything.org).  
+For example:
+```sh
+1..3
+ok 1 - Input file opened
+not ok 2 - First line of the input valid
+ok 3 - Read the rest of the file
+# tests 3
+# pass  3
+# fail  0
+```
+
+This basic text output from our tests
+can then be _re-formatted_ in a more _attractive_ format using a "reporter".
+
+There are _several_ "reporters" available,
+see: https://github.com/substack/tape#pretty-reporters
+
+Our _favourite_ of these reporters is **`tap-spec`**:
+https://github.com/scottcorgan/tap-spec
+
+It's _super_ easy to use, simply install:
+```sh
+npm install tap-spec --save-dev
+```
+And then _pipe_ the output of your test(s) through tap-spec:
+```sh
+tape ./test/*.test.js | tap-spec
+```
+That's it. <br />
+
+If you want to see the difference in output,
+simply run the test in _this_ repository.
+When you run the command:
+```
+npm run fast
+```
+
+You should see the "Normal" TAP output:
+```tap
+TAP version 13
+# calculateChange(215, 300) should return [50, 20, 10, 5]
+ok 1 should be equivalent
+# calculateChange(486, 600) should equal [100, 10, 2, 2]
+ok 2 should be equivalent
+# calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]
+ok 3 should be equivalent
+# calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]
+ok 4 should be equivalent
+# should return -1 when the value is not present in Array
+ok 5 should be equal
+# sum should return the addition of two numbers
+ok 6 should be equal
+
+1..6
+# tests 6
+# pass  6
+
+# ok
+```
+
+If you run the command:
+```
+npm run spec
+```
+You should see the "spec" formatted output:
+```sh
+calculateChange(215, 300) should return [50, 20, 10, 5]
+
+    ✔ should be equivalent
+
+  calculateChange(486, 600) should equal [100, 10, 2, 2]
+
+    ✔ should be equivalent
+
+  calculateChange(12, 400) should return [200, 100, 50, 20, 10, 5, 2, 1]
+
+    ✔ should be equivalent
+
+  calculateChange(1487,10000) should equal [5000, 2000, 1000, 500, 10, 2, 1 ]
+
+    ✔ should be equivalent
+
+  should return -1 when the value is not present in Array
+
+    ✔ should be equal
+
+  sum should return the addition of two numbers
+
+    ✔ should be equal
+
+  time=53.935ms
+
+
+
+  total:     17
+  passing:   17
+  duration:  101ms
+```
+
+Not only do we get more information but it's more spaced out.  
+Play around with the different formatters/reporters and find one you like.
+We're fans of _tap-spec_.
