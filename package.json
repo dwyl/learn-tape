@@ -42,8 +42,8 @@
     "report-dir": "./coverage"
   },
   "pre-commit": [
-    "coverage",
-    "front-end-coverage-complete"
+    "test",
+    "front-end-test"
   ],
   "license": "MIT",
   "keywords": [
