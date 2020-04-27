@@ -8,14 +8,14 @@
   "description": "Simple Test Driven Development (TDD) Tutorial using Tape",
   "author": "dwyl & friends!",
   "devDependencies": {
-    "browserify": "^16.5.0",
-    "jsdom": "^15.2.0",
-    "nyc": "^14.1.1",
+    "browserify": "^16.5.1",
+    "jsdom": "^16.2.2",
+    "nyc": "^15.0.1",
     "pre-commit": "^1.2.2",
-    "tap": "^14.7.1",
+    "tap": "^14.10.7",
     "tap-nyc": "^1.0.3",
-    "tape": "^4.11.0",
-    "testling": "^1.7.1"
+    "tape": "^5.0.0",
+    "testling": "^1.7.3"
   },
   "scripts": {
     "test": "nyc tape ./test/*.test.js | tap-nyc",
