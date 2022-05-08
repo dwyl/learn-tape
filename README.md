@@ -8,7 +8,7 @@
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
-[![HitCount](http://hits.dwyl.io/dwyl/learn-tape.svg)](http://hits.dwyl.io/dwyl/learn-tape)
+[![HitCount](http://hits.dwyl.com/dwyl/learn-tape.svg)](http://hits.dwyl.com/dwyl/learn-tape)
 
 
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
