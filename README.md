@@ -3,12 +3,12 @@
 # Learn Tape ~ Testing in JavaScript
 
 [![Build Status](https://img.shields.io/travis/dwyl/learn-tape/master.svg?style=flat-square)](https://travis-ci.org/dwyl/learn-tape)
-[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](http://codecov.io/github/dwyl/learn-tape?branch=master)
+[![codecov.io](https://img.shields.io/codecov/c/github/dwyl/learn-tape/master.svg?style=flat-square)](https://codecov.io/github/dwyl/learn-tape?branch=master)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/dwyl/learn-tape.svg?style=flat-square)](https://codeclimate.com/github/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape)
 [![devDependencies Status](https://david-dm.org/dwyl/learn-tape/dev-status.svg?style=flat-square)](https://david-dm.org/dwyl/learn-tape?type=dev)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat-square)](https://github.com/dwyl/learn-tape/issues)
-[![HitCount](http://hits.dwyl.com/dwyl/learn-tape.svg)](http://hits.dwyl.com/dwyl/learn-tape)
+[![HitCount](https://hits.dwyl.com/dwyl/learn-tape.svg)](https://hits.dwyl.com/dwyl/learn-tape)
 
 
 A *Beginner's Guide* to Test Driven Development (TDD) using ***Tape***
@@ -50,7 +50,7 @@ with the Tape/Tap syntax, there is a clear "next step". 📝✅
 There are _many_ testing frameworks so it can be
 [*difficult to choose*](https://www.ted.com/talks/barry_schwartz_on_the_paradox_of_choice?language=en).
 Most testing frameworks/systems try to do too much, have ***too many features***
-(["_bells and whistles_"](http://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
+(["_bells and whistles_"](https://dictionary.cambridge.org/dictionary/english/bells-and-whistles) ...)
 or ***inject global variables*** into your run-time or have complicated syntax.
 
 The _shortcut_ to choosing our tools is to apply Antoine's principal:
@@ -247,7 +247,7 @@ In the UK we have the following Notes & Coins:
 ![GBP Notes](https://cloud.githubusercontent.com/assets/194400/18094402/3faa2d62-6ecb-11e6-8c32-76fcc1168460.jpeg "GBP Notes")
 ![GBP Coins](https://cloud.githubusercontent.com/assets/194400/18094436/5b2aca6a-6ecb-11e6-8e97-985edc0469af.jpeg "GBP Coins")
 
-see: http://en.wikipedia.org/wiki/Banknotes_of_the_pound_sterling
+see: https://en.wikipedia.org/wiki/Banknotes_of_the_pound_sterling
 (_technically there are also £100 and even £100,000,000 notes,
 but these aren't common so we can leave them out._ ;-)
 
